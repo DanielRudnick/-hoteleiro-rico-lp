@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>João Gallucci — Hoteleiro Rico</title>
+<meta name="description" content="20 anos de hotelaria. 16 meios de hospedagem construídos. Uma missão: democratizar a gestão profissional no turismo brasileiro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0A;
+  --bg2:#111111;
+  --bg3:#181818;
+  --red:#8B1A1A;
+  --red2:#B22222;
+  --red3:#CC2929;
+  --cream:#F5EFE6;
+  --gold:#C9A84C;
+  --gold2:#E8C96A;
+  --white:#FFFFFF;
+  --gray:#888888;
+  --gray2:#BBBBBB;
+  --green:#2E7D32;
+  --green2:#43A047;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden}
+
+/* ── UTILS ── */
+.container{max-width:1100px;margin:0 auto;padding:0 28px}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.35);padding:5px 14px;margin-bottom:18px}
+.fade-up{opacity:0;transform:translateY(32px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:background 0.3s,padding 0.3s}
+nav.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);padding:14px 0;border-bottom:1px solid rgba(139,26,26,0.2)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--cream);text-decoration:none}
+.nav-logo span{color:var(--red3)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:13px;color:var(--gray2);text-decoration:none;font-weight:500;letter-spacing:0.04em;transition:color 0.2s}
+.nav-links a:hover{color:var(--cream)}
+.nav-cta{background:var(--red2);color:var(--cream)!important;padding:10px 22px;font-weight:700!important;font-size:12px!important;letter-spacing:0.08em!important;text-transform:uppercase;transition:background 0.2s!important}
+.nav-cta:hover{background:var(--red3)!important}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 70% 40%,rgba(139,26,26,0.14) 0%,transparent 65%),radial-gradient(ellipse 30% 40% at 5% 90%,rgba(201,168,76,0.05) 0%,transparent 60%)}
+.hero-grid{display:grid;grid-template-columns:1fr 420px;gap:72px;align-items:center;position:relative;z-index:1}
+
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.eyebrow-line{width:40px;height:2px;background:var(--red2)}
+.eyebrow-text{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--red3)}
+
+h1.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7.5vw,90px);line-height:0.93;letter-spacing:0.01em;color:var(--cream);margin-bottom:10px}
+h1.hero-title .gold{color:var(--gold)}
+h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400}
+
+.hero-sub{font-size:18px;font-weight:300;color:var(--gray2);line-height:1.6;max-width:500px;margin:22px 0 40px}
+
+.btn-primary{display:inline-block;background:var(--red2);color:var(--cream);font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:18px 42px;text-decoration:none;transition:background 0.2s,transform 0.15s}
+.btn-primary:hover{background:var(--red3);transform:translateY(-2px)}
+.btn-ghost{display:inline-block;border:1px solid rgba(245,239,230,0.2);color:var(--gray2);font-size:13px;font-weight:500;padding:17px 32px;text-decoration:none;transition:border-color 0.2s,color 0.2s;margin-left:16px}
+.btn-ghost:hover{border-color:var(--cream);color:var(--cream)}
+
+/* Foto placeholder / card lateral */
+.hero-foto{position:relative}
+.foto-frame{
+  width:100%;
+  aspect-ratio:3/4;
+  background:var(--bg3);
+  border:1px solid rgba(139,26,26,0.4);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+}
+.foto-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.foto-placeholder{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:12px;color:var(--gray);font-size:13px;
+  background:linear-gradient(160deg,#181818 0%,#0f0f0f 100%);
+}
+.foto-placeholder svg{opacity:0.2}
+.foto-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(10,10,10,0.95));
+  padding:32px 28px 24px;
+}
+.foto-nome{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.04em;color:var(--cream)}
+.foto-cargo{font-size:12px;color:var(--gold);font-weight:600;letter-spacing:0.12em;text-transform:uppercase}
+.foto-badge{
+  position:absolute;top:24px;right:-12px;
+  background:var(--red);
+  padding:12px 20px;
+  font-size:11px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--cream);
+  box-shadow:-4px 4px 20px rgba(0,0,0,0.5);
+}
+
+/* ── FAIXA NÚMEROS ── */
+.numeros{background:var(--red);padding:0}
+.numeros-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.numero-item{
+  padding:36px 28px;
+  border-right:1px solid rgba(255,255,255,0.1);
+  text-align:center;
+}
+.numero-item:last-child{border-right:none}
+.numero-val{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--cream);line-height:1;letter-spacing:0.01em}
+.numero-val sup{font-size:28px;vertical-align:top;margin-top:6px}
+.numero-label{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,239,230,0.65);margin-top:4px}
+
+/* ── SOBRE JOÃO ── */
+.sobre{padding:110px 0}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.sobre-texto h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,56px);line-height:0.95;color:var(--cream);margin-bottom:24px;letter-spacing:0.02em}
+.sobre-texto h2 em{font-family:'DM Serif Display',serif;font-style:italic;color:var(--red3)}
+.sobre-texto p{font-size:16px;color:var(--gray2);line-height:1.75;margin-bottom:16px;font-weight:300}
+.sobre-texto p strong{color:var(--cream);font-weight:600}
+.sobre-timeline{display:flex;flex-direction:column;gap:0}
+.timeline-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.timeline-item:last-child{border-bottom:none}
+.tl-ano{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--red2);min-width:60px;line-height:1.1}
+.tl-body h4{font-size:14px;font-weight:700;color:var(--cream);margin-bottom:4px;letter-spacing:0.03em}
+.tl-body p{font-size:13px;color:var(--gray);line-height:1.55}
+
+/* ── ECOSSISTEMA ── */
+.ecossistema{padding:110px 0;background:var(--bg2)}
+.eco-header{text-align:center;max-width:660px;margin:0 auto 72px}
+.eco-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,58px);color:var(--cream);line-height:0.95;letter-spacing:0.02em;margin-bottom:16px}
+.eco-header p{font-size:16px;color:var(--gray);font-weight:300;line-height:1.65}
+
+.eco-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.eco-card{
+  background:var(--bg3);
+  padding:44px 36px;
+  position:relative;
+  display:flex;flex-direction:column;
+  transition:transform 0.2s;
+}
+.eco-card:hover{transform:translateY(-4px)}
+.eco-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+}
+.eco-card.red::before{background:linear-gradient(90deg,var(--red),var(--red3))}
+.eco-card.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.eco-card.green::before{background:linear-gradient(90deg,var(--green),var(--green2))}
+
+.eco-icon{font-size:36px;margin-bottom:20px}
+.eco-nome{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--cream);line-height:1;margin-bottom:6px}
+.eco-tipo{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px}
+.eco-card.red .eco-tipo{color:var(--red3)}
+.eco-card.gold .eco-tipo{color:var(--gold)}
+.eco-card.green .eco-tipo{color:var(--green2)}
+.eco-desc{font-size:14px;color:var(--gray);line-height:1.65;flex:1;margin-bottom:28px}
+.eco-features{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.eco-feat{font-size:12px;color:var(--gray2);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.eco-feat::before{content:'→';color:var(--red3);flex-shrink:0;font-size:11px;margin-top:1px}
+.eco-card.gold .eco-feat::before{color:var(--gold)}
+.eco-card.green .eco-feat::before{color:var(--green2)}
+.eco-cta{
+  display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.08em;
+  text-transform:uppercase;padding:12px 24px;text-decoration:none;
+  margin-top:auto;text-align:center;transition:opacity 0.2s;
+}
+.eco-card.red .eco-cta{background:var(--red);color:var(--cream)}
+.eco-card.red .eco-cta:hover{background:var(--red2)}
+.eco-card.gold .eco-cta{background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.3)}
+.eco-card.gold .eco-cta:hover{background:rgba(201,168,76,0.25)}
+.eco-card.green .eco-cta{background:var(--green);color:#fff}
+.eco-card.green .eco-cta:hover{background:var(--green2)}
+
+/* ── DIAGNÓSTICO CTA ── */
+.diagnostico{padding:110px 0;position:relative;overflow:hidden}
+.diagnostico::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(139,26,26,0.12) 0%,transparent 70%);
+}
+.diag-inner{
+  max-width:780px;margin:0 auto;text-align:center;position:relative;z-index:1;
+}
+.diag-inner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,68px);color:var(--cream);line-height:0.95;letter-spacing:0.02em;margin-bottom:20px}
+.diag-inner h2 span{color:var(--red3)}
+.diag-inner p{font-size:17px;color:var(--gray2);font-weight:300;line-height:1.65;margin-bottom:44px;max-width:600px;margin-left:auto;margin-right:auto}
+
+.diag-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3px;
+  margin-bottom:48px;
+  text-align:left;
+}
+.diag-step{background:var(--bg3);padding:24px 24px}
+.diag-step-n{font-family:'Bebas Neue',sans-serif;font-size:42px;color:rgba(139,26,26,0.35);line-height:1;margin-bottom:8px}
+.diag-step h4{font-size:13px;font-weight:700;color:var(--cream);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
+.diag-step p{font-size:12px;color:var(--gray);line-height:1.55}
+
+/* ── MISSÃO ── */
+.missao{background:var(--red);padding:80px 0;text-align:center;position:relative;overflow:hidden}
+.missao::before{
+  content:'MISSÃO';
+  font-family:'Bebas Neue',sans-serif;
+  font-size:220px;letter-spacing:0.05em;
+  color:rgba(0,0,0,0.12);
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;pointer-events:none;line-height:1;
+}
+.missao blockquote{
+  font-family:'DM Serif Display',serif;
+  font-style:italic;
+  font-size:clamp(22px,4vw,36px);
+  color:var(--cream);
+  max-width:800px;margin:0 auto;
+  line-height:1.4;position:relative;z-index:1;
+}
+.missao cite{
+  display:block;
+  font-family:'DM Sans',sans-serif;
+  font-style:normal;font-size:12px;
+  font-weight:700;letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:rgba(245,239,230,0.5);
+  margin-top:22px;
+}
+
+/* ── TREINAMENTO TEASER ── */
+.treinamento-teaser{padding:80px 0;background:var(--bg2)}
+.teaser-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:40px;
+  border:1px solid rgba(201,168,76,0.2);
+  padding:48px 56px;
+  background:rgba(201,168,76,0.03);
+  position:relative;overflow:hidden;
+  flex-wrap:wrap;
+}
+.teaser-inner::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.teaser-text h3{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:38px;color:var(--cream);
+  letter-spacing:0.03em;line-height:1;margin-bottom:10px;
+}
+.teaser-text p{font-size:14px;color:var(--gray);line-height:1.65;max-width:480px}
+.teaser-badge{
+  background:rgba(201,168,76,0.12);
+  border:1px solid rgba(201,168,76,0.3);
+  padding:8px 20px;
+  font-size:10px;font-weight:700;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:16px;display:inline-block;
+}
+.btn-teaser{
+  flex-shrink:0;
+  display:inline-block;
+  border:1px solid rgba(201,168,76,0.4);
+  color:var(--gold);
+  font-size:12px;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:16px 36px;text-decoration:none;
+  transition:background 0.2s,color 0.2s;
+  white-space:nowrap;
+}
+.btn-teaser:hover{background:rgba(201,168,76,0.1)}
+
+/* ── FOOTER ── */
+footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 0 40px}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.06em;color:var(--cream);margin-bottom:12px}
+.footer-brand .logo span{color:var(--red3)}
+.footer-brand p{font-size:13px;color:#555;line-height:1.65}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:#555;text-decoration:none;margin-bottom:8px;transition:color 0.2s}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:11px;color:#333}
+.footer-bottom a{color:var(--red2);text-decoration:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-foto{display:none}
+  .numeros-grid{grid-template-columns:repeat(2,1fr)}
+  .numero-item{border-bottom:1px solid rgba(255,255,255,0.1)}
+  .sobre-grid{grid-template-columns:1fr}
+  .eco-cards{grid-template-columns:1fr}
+  .diag-steps{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .teaser-inner{padding:36px 28px}
+  nav .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">HOTELEIRO<span>RICO</span></a>
+      <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#ecossistema">Soluções</a>
+        <a href="#diagnostico">Diagnóstico</a>
+        <a href="mentoria-hoteleiro-rico.html" class="nav-cta">Ver Mentoria</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">João Gallucci · Hoteleiro Rico</div>
+        </div>
+        <h1 class="hero-title">
+          20 anos<br>
+          <span class="serif">transformando</span><br>
+          <span class="gold">hotelaria</span><br>
+          brasileira.
+        </h1>
+        <p class="hero-sub">
+          De R$1.000 e 1 imóvel alugado em 2009 a 16 empresas, 12 meios de hospedagem e 1 ecossistema completo de gestão hoteleira. Uma missão: democratizar a gestão profissional no turismo brasileiro.
+        </p>
+        <div>
+          <a href="#diagnostico" class="btn-primary">Fazer diagnóstico gratuito</a>
+          <a href="#ecossistema" class="btn-ghost">Ver soluções</a>
+        </div>
+      </div>
+
+      <div class="hero-foto fade-up">
+        <div class="foto-frame">
+          <!-- Substitua pela foto real: <img src="joao-gallucci.jpg" alt="João Gallucci"> -->
+          <div class="foto-placeholder">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>Foto em breve</span>
+          </div>
+          <div class="foto-overlay">
+            <div class="foto-nome">João Gallucci</div>
+            <div class="foto-cargo">Fundador · Hoteleiro Rico</div>
+          </div>
+        </div>
+        <div class="foto-badge">Palestrante<br>Equipotel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<div class="numeros">
+  <div class="numeros-grid">
+    <div class="numero-item fade-up">
+      <div class="numero-val">20<sup>+</sup></div>
+      <div class="numero-label">Anos em Hotelaria</div>
+    </div>
+    <div class="numero-item fade-up">
+      <div class="numero-val">12</div>
+      <div class="numero-label">Meios de Hospedagem</div>
+    </div>
+    <div class="numero-item fade-up">
+      <div class="numero-val">100<sup>+</sup></div>
+      <div class="numero-label">Clientes Atendidos</div>
+    </div>
+    <div class="numero-item fade-up">
+      <div class="numero-val">mil<sup>+</sup></div>
+      <div class="numero-label">Hoteleiros Impactados</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ SOBRE ════════ -->
+<section class="sobre" id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-texto fade-up">
+        <div class="tag">A história</div>
+        <h2>Do primeiro quarto<br>a um <em>ecossistema</em><br>completo.</h2>
+        <p>
+          João Gallucci entrou na hotelaria em <strong>2004</strong> e empreendeu pela primeira vez em <strong>2009 com R$1.000 e 1 imóvel alugado</strong>. Em 8 anos, construiu 16 empresas totalizando 12 meios de hospedagem nas principais cidades do Brasil — São Paulo, Rio de Janeiro, Salvador e Manaus.
+        </p>
+        <p>
+          Fundou a <strong>rede The Hostel</strong> e depois a <strong>Rede Namoa</strong>, totalizando 12 unidades. A pandemia de 2020 encerrou as atividades das duas redes — e foi esse momento que transformou João de operador em mentor. Hoje administra 1 unidade da Rede Namoa e dedica sua experiência a ensinar hoteleiros a vender mais, gerir melhor e construir operações lucrativas e previsíveis.
+        </p>
+      </div>
+
+      <div class="sobre-timeline fade-up">
+        <div class="timeline-item">
+          <div class="tl-ano">2004</div>
+          <div class="tl-body">
+            <h4>Entrada na hotelaria</h4>
+            <p>Início de uma jornada de mais de 20 anos no setor de hospedagem brasileiro.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-ano">2009</div>
+          <div class="tl-body">
+            <h4>Primeiro empreendimento</h4>
+            <p>Com R$1.000 de capital inicial, abre o primeiro meio de hospedagem.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-ano">2017</div>
+          <div class="tl-body">
+            <h4>16 empresas · 12 meios de hospedagem</h4>
+            <p>Expande para SP, RJ, Salvador e Manaus com a Rede The Hostel e a Rede Namoa — o maior momento da operação.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-ano">2020</div>
+          <div class="tl-body">
+            <h4>A pandemia muda tudo</h4>
+            <p>A COVID-19 encerra as atividades das duas redes. Uma virada de chave: de operador a mentor. Nasce o Hoteleiro Rico e a Inn.Side.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-ano">Hoje</div>
+          <div class="tl-body">
+            <h4>+100 clientes atendidos · milhares impactados</h4>
+            <p>Administra 1 unidade da Rede Namoa e ensina milhares de hoteleiros gratuitamente via YouTube, Instagram e workshops — e mais de 100 de forma individual.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ MISSÃO ════════ -->
+<div class="missao">
+  <div class="container">
+    <blockquote>
+      "A missão do Hoteleiro Rico é impactar a hotelaria brasileira e democratizar o acesso à gestão profissional no turismo nacional."
+    </blockquote>
+    <cite>— João Gallucci</cite>
+  </div>
+</div>
+
+<!-- ════════ ECOSSISTEMA ════════ -->
+<section class="ecossistema" id="ecossistema">
+  <div class="container">
+    <div class="eco-header fade-up">
+      <div class="tag">O ecossistema</div>
+      <h2>Três frentes.<br>Uma missão.</h2>
+      <p>Cada empresa do ecossistema resolve um problema específico do hoteleiro — e juntas formam a operação completa que seu negócio precisa.</p>
+    </div>
+
+    <div class="eco-cards">
+
+      <!-- HOTELEIRO RICO -->
+      <div class="eco-card red fade-up">
+        <div class="eco-icon">🎓</div>
+        <div class="eco-nome">Hoteleiro Rico</div>
+        <div class="eco-tipo">Educação · Mentoria · Conteúdo</div>
+        <p class="eco-desc">
+          A porta de entrada para a gestão profissional. Conteúdo gratuito nas redes, workshops e a Mentoria de Implementação para quem quer transformar a operação em até 60 dias.
+        </p>
+        <div class="eco-features">
+          <div class="eco-feat">Mentoria de Implementação individual (60 dias)</div>
+          <div class="eco-feat">Conteúdo gratuito no YouTube e Instagram</div>
+          <div class="eco-feat">Workshops práticos de Revenue Management</div>
+          <div class="eco-feat">Diagnóstico de operação hoteleira</div>
+        </div>
+        <a href="mentoria-hoteleiro-rico.html" class="eco-cta">Ver Mentoria →</a>
+      </div>
+
+      <!-- INN.SIDE -->
+      <div class="eco-card gold fade-up">
+        <div class="eco-icon">📊</div>
+        <div class="eco-nome">Inn.Side</div>
+        <div class="eco-tipo">Inteligência Hoteleira · Consultoria</div>
+        <p class="eco-desc">
+          O braço de consultoria do ecossistema. A Inn.Side Inteligência Hoteleira cuida de Revenue Management, distribuição em OTAs, Channel Manager e gestão de receita de forma contínua.
+        </p>
+        <div class="eco-features">
+          <div class="eco-feat">Revenue Management estratégico</div>
+          <div class="eco-feat">Configuração e otimização de OTAs</div>
+          <div class="eco-feat">Setup completo de Channel Manager</div>
+          <div class="eco-feat">Acompanhamento mensal recorrente</div>
+        </div>
+        <a href="https://innsidehotelaria.com.br" target="_blank" class="eco-cta">Conhecer Inn.Side →</a>
+      </div>
+
+      <!-- REDE NAMOA -->
+      <div class="eco-card green fade-up">
+        <div class="eco-icon">🏨</div>
+        <div class="eco-nome">Rede Namoa</div>
+        <div class="eco-tipo">Experiência Real · Origem do Método</div>
+        <p class="eco-desc">
+          A Rede Namoa é a prova viva de que o método foi construído na prática. Fundada por João, passou pela pandemia e hoje opera 1 unidade — um laboratório real onde tudo que é ensinado foi antes vivido.
+        </p>
+        <div class="eco-features">
+          <div class="eco-feat">Gestão e administração de propriedade própria</div>
+          <div class="eco-feat">Método construído na operação real</div>
+          <div class="eco-feat">20 anos de experiência aplicada</div>
+          <div class="eco-feat">Base de tudo que João ensina hoje</div>
+        </div>
+        <a href="https://redenamoa.com.br" target="_blank" class="eco-cta">Conhecer Rede Namoa →</a>
+      </div>
+
+    </div>
+
+    <!-- PARCEIROS -->
+    <div style="margin-top:48px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.06);" class="fade-up">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);margin-bottom:28px;text-align:center;">Empresas parceiras indicadas</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px;max-width:720px;margin:0 auto;">
+
+        <div style="background:var(--bg3);padding:28px 32px;display:flex;align-items:center;gap:20px;">
+          <div style="font-size:28px;flex-shrink:0;">📱</div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Rudnick Digital</div>
+            <div style="font-size:11px;color:var(--gray);margin-top:4px;line-height:1.5;">Marketing hoteleiro · Tráfego · Automação</div>
+          </div>
+        </div>
+
+        <div style="background:var(--bg3);padding:28px 32px;display:flex;align-items:center;gap:20px;">
+          <div style="font-size:28px;flex-shrink:0;">🔗</div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Booles</div>
+            <div style="font-size:11px;color:var(--gray);margin-top:4px;line-height:1.5;">Gestor de canais · Motor de reservas · Site próprio · A partir de R$250/mês</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ DIAGNÓSTICO ════════ -->
+<section class="diagnostico" id="diagnostico">
+  <div class="container">
+    <div class="diag-inner">
+      <div class="tag fade-up">Primeiro passo</div>
+      <h2 class="fade-up">Descubra onde sua<br>hospedagem <span>está travada</span>.</h2>
+      <p class="fade-up">Responda 10 perguntas sobre sua operação. Em menos de 5 minutos, você recebe um diagnóstico completo com nota e recomendação personalizada.</p>
+
+      <div class="diag-steps fade-up">
+        <div class="diag-step">
+          <div class="diag-step-n">01</div>
+          <h4>Responda as perguntas</h4>
+          <p>Quartos, diária média, ocupação, tecnologia e maiores dores da sua hospedagem.</p>
+        </div>
+        <div class="diag-step">
+          <div class="diag-step-n">02</div>
+          <h4>A IA analisa sua operação</h4>
+          <p>Inteligência artificial lê suas respostas e identifica os principais pontos de melhoria.</p>
+        </div>
+        <div class="diag-step">
+          <div class="diag-step-n">03</div>
+          <h4>Receba o veredicto</h4>
+          <p>Nota, classificação HOT/WARM/COLD e próximos passos recomendados para o seu perfil.</p>
+        </div>
+      </div>
+
+      <a href="diagnostico.html" class="btn-primary fade-up">Fazer diagnóstico gratuito →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TREINAMENTO TEASER -->
+<section class="treinamento-teaser">
+  <div class="container">
+    <div class="teaser-inner fade-up">
+      <div class="teaser-text">
+        <div class="teaser-badge">Em breve</div>
+        <h3>Treinamento de Hoteleiros</h3>
+        <p>
+          Um programa de 12 a 18 meses para CEOs hoteleiros que querem desenvolver liderança, tornar o negócio autossustentável e encontrar paz ao empreender com hotelaria. Mais detalhes em breve.
+        </p>
+      </div>
+      <a href="https://wa.me/5541998251197?text=Quero+saber+mais+sobre+o+Treinamento+de+Hoteleiros" target="_blank" class="btn-teaser">
+        Entrar na lista de espera →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">HOTELEIRO<span>RICO</span></div>
+        <p>Democratizando a gestão profissional no turismo brasileiro desde 2009.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Soluções</h4>
+        <a href="mentoria-hoteleiro-rico.html">Mentoria de Implementação</a>
+        <a href="diagnostico.html">Diagnóstico Gratuito</a>
+        <a href="https://innsidehotelaria.com.br" target="_blank">Inn.Side Hotelaria</a>
+        <a href="https://redenamoa.com.br" target="_blank">Rede Namoa</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="https://wa.me/5541998251197" target="_blank">WhatsApp</a>
+        <a href="https://instagram.com/ohoteleirorico" target="_blank">Instagram</a>
+        <a href="https://youtube.com/@OHOTELEIRORICO" target="_blank">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Hoteleiro Rico · Todos os direitos reservados</p>
+      <p>Desenvolvido por <a href="#">Rudnick Digital</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Fade-up observer
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 90);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

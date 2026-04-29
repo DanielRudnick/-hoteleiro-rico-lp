@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Hoteleiro — Hoteleiro Rico</title>
+<meta name="description" content="Descubra onde sua hospedagem está travada. Responda 10 perguntas e receba um diagnóstico completo com IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0A;--bg2:#111111;--bg3:#181818;
+  --red:#8B1A1A;--red2:#B22222;--red3:#CC2929;
+  --cream:#F5EFE6;--gold:#C9A84C;--gold2:#E8C96A;
+  --white:#fff;--gray:#888;--gray2:#BBBBBB;
+  --green:#2E7D32;--green2:#43A047;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(139,26,26,0.2);padding:16px 0;position:sticky;top:0;z-index:100}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.06em;color:var(--cream);text-decoration:none}
+.nav-logo span{color:var(--red3)}
+.nav-back{font-size:12px;color:var(--gray);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--cream)}
+
+/* ── WRAPPER ── */
+.wrapper{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+
+/* ── HERO DO DIAGNÓSTICO ── */
+.diag-hero{text-align:center;margin-bottom:48px}
+.diag-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:5px 14px;margin-bottom:16px}
+.diag-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,56px);line-height:.95;color:var(--cream);letter-spacing:.02em;margin-bottom:14px}
+.diag-hero h1 span{color:var(--red3)}
+.diag-hero p{font-size:16px;color:var(--gray2);font-weight:300;line-height:1.6;max-width:520px;margin:0 auto}
+
+/* ── PROGRESS ── */
+.progress-bar-wrap{margin-bottom:36px}
+.progress-info{display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:8px}
+.progress-track{height:3px;background:#222;border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--red3));border-radius:2px;transition:width .4s ease}
+
+/* ── CARD DA PERGUNTA ── */
+.question-card{background:var(--bg3);border:1px solid rgba(139,26,26,.25);padding:40px 36px;position:relative;overflow:hidden}
+.question-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--red3))}
+.q-numero{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red3);margin-bottom:12px}
+.q-texto{font-family:'DM Serif Display',serif;font-size:clamp(18px,3vw,24px);color:var(--cream);line-height:1.35;margin-bottom:28px}
+
+/* ── OPÇÕES ── */
+.opcoes{display:flex;flex-direction:column;gap:10px}
+.opcao{background:var(--bg2);border:1px solid rgba(255,255,255,.07);padding:14px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:border-color .15s,background .15s;font-size:14px;color:var(--gray2);font-weight:400;text-align:left;width:100%}
+.opcao:hover{border-color:rgba(139,26,26,.5);background:rgba(139,26,26,.08);color:var(--cream)}
+.opcao.selected{border-color:var(--red2);background:rgba(139,26,26,.15);color:var(--cream)}
+.opcao-marker{width:18px;height:18px;border:1.5px solid rgba(255,255,255,.15);border-radius:50%;flex-shrink:0;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.opcao.selected .opcao-marker{background:var(--red2);border-color:var(--red2)}
+.opcao.selected .opcao-marker::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+
+/* OTAs — multi */
+.opcoes-multi{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.opcao-multi{background:var(--bg2);border:1px solid rgba(255,255,255,.07);padding:12px 16px;cursor:pointer;font-size:13px;color:var(--gray2);transition:border-color .15s,background .15s;display:flex;align-items:center;gap:10px;text-align:left}
+.opcao-multi:hover{border-color:rgba(139,26,26,.5);background:rgba(139,26,26,.08);color:var(--cream)}
+.opcao-multi.selected{border-color:var(--red2);background:rgba(139,26,26,.15);color:var(--cream)}
+.check-box{width:16px;height:16px;border:1.5px solid rgba(255,255,255,.15);flex-shrink:0;transition:all .15s;display:flex;align-items:center;justify-content:center;font-size:10px}
+.opcao-multi.selected .check-box{background:var(--red2);border-color:var(--red2);color:#fff}
+
+/* Textarea */
+.textarea-field{width:100%;background:var(--bg2);border:1px solid rgba(255,255,255,.1);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:14px;padding:16px;resize:vertical;min-height:100px;outline:none;transition:border-color .2s}
+.textarea-field:focus{border-color:var(--red2)}
+.textarea-field::placeholder{color:var(--gray)}
+
+/* Campos de texto */
+.input-group{display:flex;flex-direction:column;gap:8px}
+.input-label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.text-field{background:var(--bg2);border:1px solid rgba(255,255,255,.1);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:14px;padding:14px 16px;outline:none;transition:border-color .2s;width:100%}
+.text-field:focus{border-color:var(--red2)}
+
+/* ── NAVEGAÇÃO ── */
+.nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:16px}
+.btn-prev{background:none;border:1px solid rgba(255,255,255,.12);color:var(--gray2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:14px 28px;cursor:pointer;transition:all .2s;letter-spacing:.05em}
+.btn-prev:hover{border-color:var(--cream);color:var(--cream)}
+.btn-next{background:var(--red2);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 36px;border:none;cursor:pointer;transition:background .2s;margin-left:auto}
+.btn-next:hover:not(:disabled){background:var(--red3)}
+.btn-next:disabled{opacity:.35;cursor:not-allowed}
+
+/* ── LOADING ── */
+.loading-screen{display:none;text-align:center;padding:60px 0}
+.loading-screen.active{display:block}
+.loading-spinner{width:56px;height:56px;border:3px solid rgba(139,26,26,.2);border-top-color:var(--red2);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 24px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-family:'DM Serif Display',serif;font-style:italic;font-size:20px;color:var(--cream);margin-bottom:8px}
+.loading-sub{font-size:13px;color:var(--gray);font-weight:300}
+
+/* ── RESULTADO ── */
+.result-screen{display:none}
+.result-screen.active{display:block}
+
+.result-header{text-align:center;margin-bottom:40px}
+.result-saudacao{font-size:13px;color:var(--gray2);margin-bottom:6px;font-weight:300}
+.result-hotel{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,42px);color:var(--cream);letter-spacing:.03em}
+
+/* Score ring */
+.score-ring-wrap{display:flex;justify-content:center;margin:32px 0}
+.score-ring-svg{transform:rotate(-90deg)}
+.score-bg{fill:none;stroke:#1e1e1e;stroke-width:8}
+.score-arc{fill:none;stroke-width:8;stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset 1.5s ease}
+.score-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.score-ring-container{position:relative;display:inline-flex;align-items:center;justify-content:center}
+.score-num{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--cream)}
+.score-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray)}
+.tier-badge{display:inline-block;padding:6px 20px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-top:16px}
+
+/* Breakdown */
+.breakdown{background:var(--bg3);border:1px solid rgba(255,255,255,.06);padding:28px 28px;margin-bottom:24px}
+.breakdown h3{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-bottom:20px}
+.breakdown-item{margin-bottom:14px}
+.breakdown-header{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px}
+.breakdown-name{color:var(--gray2);font-weight:500}
+.breakdown-pts{color:var(--cream);font-weight:700}
+.breakdown-bar{height:4px;background:#222;border-radius:2px;overflow:hidden}
+.breakdown-fill{height:100%;border-radius:2px;transition:width 1s ease}
+
+/* Blocos IA */
+.ia-block{background:var(--bg3);border:1px solid rgba(255,255,255,.06);padding:28px;margin-bottom:16px;position:relative}
+.ia-block::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.ia-block.veredicto::before{background:var(--red2)}
+.ia-block.oportunidades::before{background:var(--gold)}
+.ia-block.proximo::before{background:var(--green2)}
+.ia-block-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
+.ia-block.veredicto .ia-block-label{color:var(--red3)}
+.ia-block.oportunidades .ia-block-label{color:var(--gold)}
+.ia-block.proximo .ia-block-label{color:var(--green2)}
+.ia-block-text{font-size:14px;color:var(--gray2);line-height:1.7;font-weight:300}
+
+/* CTA resultado */
+.cta-resultado{padding:32px;margin-top:24px;text-align:center;position:relative}
+.cta-hot{background:rgba(26,20,0,.8);border:1px solid rgba(201,168,76,.4)}
+.cta-warm{background:rgba(26,26,26,.8);border:1px solid rgba(139,26,26,.3)}
+.cta-cold{background:rgba(26,26,26,.8);border:1px solid rgba(46,125,50,.3)}
+.cta-eyebrow{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.cta-hot .cta-eyebrow{color:var(--gold)}
+.cta-warm .cta-eyebrow{color:var(--red3)}
+.cta-cold .cta-eyebrow{color:var(--green2)}
+.cta-resultado h3{font-family:'DM Serif Display',serif;font-size:22px;color:var(--cream);margin-bottom:10px;line-height:1.3}
+.cta-resultado p{font-size:13px;color:var(--gray2);font-weight:300;line-height:1.6;margin-bottom:24px}
+.btn-cta-hot{background:var(--gold);color:#1A1400;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:16px 36px;border:none;cursor:pointer;width:100%;transition:background .2s}
+.btn-cta-hot:hover{background:var(--gold2)}
+.btn-cta-warm{background:var(--red2);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:16px 36px;border:none;cursor:pointer;width:100%;transition:background .2s}
+.btn-cta-warm:hover{background:var(--red3)}
+.btn-cta-cold{background:transparent;color:var(--green2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:16px 36px;border:1px solid var(--green2);cursor:pointer;width:100%;transition:all .2s}
+.btn-cta-cold:hover{background:rgba(46,125,50,.15)}
+
+.btn-refazer{display:block;text-align:center;font-size:12px;color:var(--gray);cursor:pointer;margin-top:20px;background:none;border:none;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px}
+
+@media(max-width:600px){
+  .question-card{padding:28px 20px}
+  .opcoes-multi{grid-template-columns:1fr}
+  .wrapper{padding:32px 16px 80px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">HOTELEIRO<span>RICO</span></a>
+    <a href="index.html" class="nav-back">← Voltar ao início</a>
+  </div>
+</nav>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="diag-hero" id="diag-hero">
+    <div class="diag-tag">Diagnóstico Gratuito</div>
+    <h1>Descubra onde sua<br>hospedagem está <span>travada</span>.</h1>
+    <p>10 perguntas · menos de 5 minutos · diagnóstico personalizado com IA</p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar-wrap" id="progress-wrap" style="display:none">
+    <div class="progress-info">
+      <span id="progress-label">Pergunta 1 de 10</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO -->
+  <div id="form-area"></div>
+
+  <!-- LOADING -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Analisando sua operação...</div>
+    <div class="loading-sub">A IA está processando suas respostas</div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="result-screen" id="result-screen"></div>
+
+</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────
+const CONFIG = {
+  ANTHROPIC_KEY: '', // deixar vazio — a API já está configurada no ambiente
+  WA_NUMBER: '5541998251197',
+};
+
+// ── PERGUNTAS ─────────────────────────────────────────────────────
+const PERGUNTAS = [
+  {
+    id: 'nome',
+    texto: 'Antes de começar, como você se chama e qual é o nome da sua hospedagem?',
+    tipo: 'texto_duplo',
+    campos: ['Seu nome', 'Nome da hospedagem'],
+  },
+  {
+    id: 'quartos',
+    texto: 'Quantos quartos (UHs) sua hospedagem possui?',
+    tipo: 'unico',
+    opcoes: [
+      { label: 'Até 5 quartos', pts: 2 },
+      { label: '6 a 15 quartos', pts: 3 },
+      { label: '16 a 30 quartos', pts: 4 },
+      { label: 'Mais de 30 quartos', pts: 5 },
+    ],
+    criterio: 'Porte',
+    max: 5,
+  },
+  {
+    id: 'diaria',
+    texto: 'Qual é a sua diária média atual?',
+    tipo: 'unico',
+    opcoes: [
+      { label: 'Até R$ 100', pts: 0 },
+      { label: 'R$ 101 a R$ 200', pts: 3 },
+      { label: 'R$ 201 a R$ 400', pts: 7 },
+      { label: 'Acima de R$ 400', pts: 10 },
+    ],
+    criterio: 'Diária Média',
+    max: 10,
+  },
+  {
+    id: 'ocupacao',
+    texto: 'Qual é a sua taxa de ocupação média mensal?',
+    tipo: 'unico',
+    opcoes: [
+      { label: 'Abaixo de 40%', pts: 0 },
+      { label: '40% a 60%', pts: 5 },
+      { label: '61% a 80%', pts: 13 },
+      { label: 'Acima de 80%', pts: 20 },
+    ],
+    criterio: 'Ocupação',
+    max: 20,
+  },
+  {
+    id: 'otas',
+    texto: 'Em quais OTAs sua hospedagem está cadastrada? (pode marcar mais de uma)',
+    tipo: 'multiplo',
+    opcoes: [
+      { label: 'Booking.com', pts: 2 },
+      { label: 'Airbnb', pts: 2 },
+      { label: 'Expedia', pts: 2 },
+      { label: 'Hostelworld', pts: 1 },
+      { label: 'Decolar', pts: 1 },
+      { label: 'Não estou em nenhuma', pts: 0 },
+    ],
+    criterio: 'OTAs',
+    max: 10,
+  },
+  {
+    id: 'motor',
+    texto: 'Usa motor de reservas no seu site?',
+    tipo: 'unico',
+    opcoes: [
+      { label: 'Sim — motor próprio integrado', pts: 15 },
+      { label: 'Sim — plataforma de terceiro', pts: 10 },
+      { label: 'Não, mas tenho interesse', pts: 3 },
+      { label: 'Não uso', pts: 0 },
+    ],
+    criterio: 'Motor de Reservas',
+    max: 15,
+  },
+  {
+    id: 'channel',
+    texto: 'Utiliza Channel Manager?',
+    tipo: 'unico',
+    opcoes: [
+      { label: 'Sim — integrado e funcionando bem', pts: 15 },
+      { label: 'Sim — mas com problemas de sincronização', pts: 7 },
+      { label: 'Não, mas tenho interesse', pts: 3 },
+      { label: 'Não uso', pts: 0 },
+    ],
+    criterio: 'Channel Manager',
+    max: 15,
+  },
+  {
+    id: 'pms',
+    texto: 'Usa algum PMS (sistema de gestão de propriedade)?',
+    tipo: 'unico',
+    opcoes: [
+      { label: 'Sim — integrado com Channel e Motor', pts: 15 },
+      { label: 'Sim — mas não integrado', pts: 7 },
+      { label: 'Não, quero implementar', pts: 3 },
+      { label: 'Não uso PMS', pts: 0 },
+    ],
+    criterio: 'PMS',
+    max: 15,
+  },
+  {
+    id: 'dor',
+    texto: 'Qual é a sua maior dor hoje?',
+    tipo: 'unico',
+    opcoes: [
+      { label: 'Baixa ocupação / falta de reservas', pts: 0 },
+      { label: 'Pago muito de comissão às OTAs', pts: 0 },
+      { label: 'Pouca visibilidade online / site fraco', pts: 0 },
+      { label: 'Operação desorganizada, processos manuais', pts: 0 },
+      { label: 'Não sei precificar / revenue management', pts: 0 },
+      { label: 'Problemas com equipe ou atendimento', pts: 0 },
+    ],
+    criterio: null,
+  },
+  {
+    id: 'ambicao',
+    texto: 'Como você vê seu faturamento daqui a 1 ano?',
+    tipo: 'unico',
+    opcoes: [
+      { label: 'Manter estável — já estou satisfeito', pts: 2 },
+      { label: 'Crescer entre 20% e 30%', pts: 5 },
+      { label: 'Crescer mais de 50%', pts: 8 },
+      { label: 'Quero dobrar o faturamento', pts: 10 },
+    ],
+    criterio: 'Ambição',
+    max: 10,
+  },
+];
+
+// ── ESTADO ────────────────────────────────────────────────────────
+let step = 0;
+let answers = {};
+let contactData = { nome: '', hotel: '' };
+
+// ── RENDERIZAR PERGUNTA ───────────────────────────────────────────
+function render() {
+  const area = document.getElementById('form-area');
+  const pw = document.getElementById('progress-wrap');
+  const hero = document.getElementById('diag-hero');
+
+  if (step === 0) {
+    hero.style.display = 'block';
+    pw.style.display = 'none';
+  } else {
+    hero.style.display = 'none';
+    pw.style.display = 'block';
+  }
+
+  updateProgress();
+
+  const q = PERGUNTAS[step];
+  const saved = answers[q.id];
+
+  let html = `
+    <div class="question-card">
+      <div class="q-numero">Pergunta ${step + 1} de ${PERGUNTAS.length}</div>
+      <div class="q-texto">${q.texto}</div>
+  `;
+
+  if (q.tipo === 'texto_duplo') {
+    html += `<div class="input-group" style="gap:16px">`;
+    q.campos.forEach((label, i) => {
+      const val = saved ? saved[i] : '';
+      html += `
+        <div class="input-group">
+          <div class="input-label">${label}</div>
+          <input class="text-field" type="text" id="campo_${i}" placeholder="${label}" value="${val}" oninput="onTextInput()">
+        </div>`;
+    });
+    html += `</div>`;
+  } else if (q.tipo === 'multiplo') {
+    html += `<div class="opcoes-multi">`;
+    q.opcoes.forEach((op, i) => {
+      const sel = saved && saved.includes(i) ? 'selected' : '';
+      html += `
+        <button class="opcao-multi ${sel}" onclick="toggleMulti(${i})">
+          <div class="check-box">${sel ? '✓' : ''}</div>
+          ${op.label}
+        </button>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="opcoes">`;
+    q.opcoes.forEach((op, i) => {
+      const sel = saved === i ? 'selected' : '';
+      html += `
+        <button class="opcao ${sel}" onclick="selectUnico(${i})">
+          <div class="opcao-marker"></div>
+          ${op.label}
+        </button>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `</div>`;
+  html += `
+    <div class="nav-btns">
+      ${step > 0 ? '<button class="btn-prev" onclick="goBack()">← Voltar</button>' : '<div></div>'}
+      <button class="btn-next" id="btn-next" onclick="goNext()" ${!canAdvance() ? 'disabled' : ''}>
+        ${step === PERGUNTAS.length - 1 ? 'Ver diagnóstico →' : 'Próximo →'}
+      </button>
+    </div>`;
+
+  area.innerHTML = html;
+}
+
+function updateProgress() {
+  const pct = Math.round((step / PERGUNTAS.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-label').textContent = `Pergunta ${step + 1} de ${PERGUNTAS.length}`;
+}
+
+function canAdvance() {
+  const q = PERGUNTAS[step];
+  const saved = answers[q.id];
+  if (q.tipo === 'texto_duplo') {
+    const f0 = document.getElementById('campo_0');
+    const f1 = document.getElementById('campo_1');
+    if (!f0 || !f1) return saved && saved[0] && saved[1];
+    return f0.value.trim().length > 1 && f1.value.trim().length > 1;
+  }
+  if (q.tipo === 'multiplo') return saved && saved.length > 0;
+  return saved !== undefined;
+}
+
+function onTextInput() {
+  const btn = document.getElementById('btn-next');
+  if (btn) btn.disabled = !canAdvance();
+}
+
+function selectUnico(idx) {
+  answers[PERGUNTAS[step].id] = idx;
+  document.querySelectorAll('.opcao').forEach((el, i) => {
+    el.classList.toggle('selected', i === idx);
+  });
+  document.getElementById('btn-next').disabled = false;
+}
+
+function toggleMulti(idx) {
+  const q = PERGUNTAS[step];
+  if (!answers[q.id]) answers[q.id] = [];
+  const arr = answers[q.id];
+  const pos = arr.indexOf(idx);
+  if (pos > -1) arr.splice(pos, 1);
+  else arr.push(idx);
+  // Se "Não estou em nenhuma" selecionado, limpa os outros
+  const noneIdx = q.opcoes.findIndex(o => o.pts === 0);
+  if (idx === noneIdx && arr.includes(noneIdx)) {
+    answers[q.id] = [noneIdx];
+  } else if (idx !== noneIdx) {
+    answers[q.id] = arr.filter(i => i !== noneIdx);
+  }
+  render();
+}
+
+function goNext() {
+  const q = PERGUNTAS[step];
+  if (q.tipo === 'texto_duplo') {
+    const v0 = document.getElementById('campo_0').value.trim();
+    const v1 = document.getElementById('campo_1').value.trim();
+    answers[q.id] = [v0, v1];
+    contactData.nome = v0;
+    contactData.hotel = v1;
+  }
+  if (!canAdvance()) return;
+  if (step < PERGUNTAS.length - 1) {
+    step++;
+    render();
+    window.scrollTo(0, 0);
+  } else {
+    showLoading();
+  }
+}
+
+function goBack() {
+  if (step > 0) { step--; render(); window.scrollTo(0, 0); }
+}
+
+// ── CALCULAR SCORE ────────────────────────────────────────────────
+function calcScore() {
+  let total = 0;
+  const breakdown = [];
+
+  PERGUNTAS.forEach(q => {
+    if (!q.criterio) return;
+    const saved = answers[q.id];
+    let pts = 0;
+    if (q.tipo === 'multiplo' && saved) {
+      pts = saved.reduce((acc, i) => acc + Math.min(q.opcoes[i].pts, q.max), 0);
+      pts = Math.min(pts, q.max);
+    } else if (saved !== undefined) {
+      pts = q.opcoes[saved].pts;
+    }
+    total += pts;
+    breakdown.push({ criterio: q.criterio, pts, max: q.max });
+  });
+
+  return { total, breakdown };
+}
+
+// ── TIER ──────────────────────────────────────────────────────────
+function getTier(score) {
+  if (score <= 39) return { tipo: 'hot', label: 'Alto Potencial', cor: '#C9A84C' };
+  if (score <= 65) return { tipo: 'warm', label: 'Em Desenvolvimento', cor: '#9BB5D4' };
+  return { tipo: 'cold', label: 'Bem Estruturado', cor: '#7BC49A' };
+}
+
+// ── LOADING + IA ──────────────────────────────────────────────────
+async function showLoading() {
+  document.getElementById('form-area').innerHTML = '';
+  document.getElementById('progress-wrap').style.display = 'none';
+  document.getElementById('loading-screen').classList.add('active');
+
+  const { total, breakdown } = calcScore();
+  const tier = getTier(total);
+
+  // Montar resumo para IA
+  const resumo = PERGUNTAS.map((q, i) => {
+    if (q.tipo === 'texto_duplo') return null;
+    const saved = answers[q.id];
+    if (saved === undefined || saved === null) return null;
+    if (q.tipo === 'multiplo') {
+      const labels = saved.map(idx => q.opcoes[idx].label).join(', ');
+      return `${q.texto}: ${labels}`;
+    }
+    return `${q.texto}: ${q.opcoes[saved].label}`;
+  }).filter(Boolean).join('\n');
+
+  const prompt = `Você é um especialista em Revenue Management e gestão hoteleira. Analise o diagnóstico abaixo e responda em JSON com 3 campos: "veredicto" (2 parágrafos sobre a situação atual), "oportunidades" (3 oportunidades específicas identificadas, em lista), "proximo_passo" (1 recomendação direta e concisa de próximo passo).
+
+Hotel: ${contactData.hotel}
+Score: ${total}/100
+Perfil: ${tier.label}
+
+Respostas:
+${resumo}
+
+Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. Formato:
+{"veredicto":"...","oportunidades":"...","proximo_passo":"..."}`;
+
+  let iaResult = { veredicto: '', oportunidades: '', proximo_passo: '' };
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || '{}';
+    iaResult = JSON.parse(text.replace(/```json|```/g, '').trim());
+  } catch (e) {
+    iaResult = {
+      veredicto: `${contactData.hotel} apresenta um score de ${total}/100. Isso indica ${tier.label === 'Alto Potencial' ? 'grande margem para crescimento — vários pilares operacionais precisam de estruturação' : tier.label === 'Em Desenvolvimento' ? 'uma operação em transição — alguns pilares estão no lugar, mas há gaps importantes a resolver' : 'uma operação bem estruturada — o foco agora é em otimização e escala'}.`,
+      oportunidades: '• Estruturar o tarifário anual com base em sazonalidade\n• Integrar tecnologias de gestão (PMS + Channel Manager)\n• Aumentar reservas diretas reduzindo dependência de OTAs',
+      proximo_passo: 'Agendar uma conversa com nossa equipe para mapear as prioridades específicas do seu hotel.',
+    };
+  }
+
+  document.getElementById('loading-screen').classList.remove('active');
+  showResult(total, breakdown, tier, iaResult);
+}
+
+// ── MOSTRAR RESULTADO ─────────────────────────────────────────────
+function showResult(score, breakdown, tier, ia) {
+  const circunferencia = 327;
+  const offset = circunferencia - (score / 100) * circunferencia;
+
+  const ctaHtml = buildCTA(tier, score);
+
+  const breakdownHtml = breakdown.map(b => {
+    const pct = Math.round((b.pts / b.max) * 100);
+    return `
+      <div class="breakdown-item">
+        <div class="breakdown-header">
+          <span class="breakdown-name">${b.criterio}</span>
+          <span class="breakdown-pts">${b.pts}/${b.max}</span>
+        </div>
+        <div class="breakdown-bar">
+          <div class="breakdown-fill" style="width:${pct}%;background:${tier.cor}"></div>
+        </div>
+      </div>`;
+  }).join('');
+
+  const rs = document.getElementById('result-screen');
+  rs.innerHTML = `
+    <div class="result-header">
+      <div class="result-saudacao">Olá, ${contactData.nome}! Aqui está o diagnóstico de</div>
+      <div class="result-hotel">${contactData.hotel}</div>
+    </div>
+
+    <div class="score-ring-wrap">
+      <div class="score-ring-container">
+        <svg class="score-ring-svg" width="120" height="120" viewBox="0 0 120 120">
+          <circle class="score-bg" cx="60" cy="60" r="52"/>
+          <circle class="score-arc" id="score-arc" cx="60" cy="60" r="52"
+            stroke-dasharray="${circunferencia}" stroke-dashoffset="${circunferencia}"/>
+        </svg>
+        <div class="score-center">
+          <div class="score-num" id="score-num">0</div>
+          <div class="score-label">/ 100</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <span class="tier-badge" style="background:rgba(201,168,76,.1);color:${tier.cor};border:1px solid ${tier.cor}40">
+        ${tier.label}
+      </span>
+    </div>
+
+    <div style="height:32px"></div>
+
+    <div class="breakdown">
+      <h3>Análise por critério</h3>
+      ${breakdownHtml}
+    </div>
+
+    <div class="ia-block veredicto">
+      <div class="ia-block-label">🎯 Veredicto</div>
+      <div class="ia-block-text">${ia.veredicto.replace(/\n/g, '<br>')}</div>
+    </div>
+
+    <div class="ia-block oportunidades">
+      <div class="ia-block-label">💡 Oportunidades identificadas</div>
+      <div class="ia-block-text">${ia.oportunidades.replace(/\n/g, '<br>')}</div>
+    </div>
+
+    <div class="ia-block proximo">
+      <div class="ia-block-label">🚀 Próximo passo</div>
+      <div class="ia-block-text">${ia.proximo_passo}</div>
+    </div>
+
+    ${ctaHtml}
+
+    <button class="btn-refazer" onclick="resetDiag()">↺ Refazer diagnóstico</button>
+  `;
+
+  rs.classList.add('active');
+  window.scrollTo(0, 0);
+
+  // Animar score
+  setTimeout(() => animateScore(score, tier.cor), 200);
+}
+
+function buildCTA(tier, score) {
+  const msg = encodeURIComponent(`Olá! Acabei de fazer o diagnóstico do ${contactData.hotel} e quero entender como melhorar. Score: ${score}/100 — Perfil: ${tier.label}.`);
+  const waLink = `https://wa.me/${CONFIG.WA_NUMBER}?text=${msg}`;
+
+  if (tier.tipo === 'hot') return `
+    <div class="cta-resultado cta-hot">
+      <div class="cta-eyebrow">Oportunidade identificada</div>
+      <h3>Seu hotel tem alto potencial inexplorado</h3>
+      <p>Hotéis com perfil semelhante ao seu aumentaram o faturamento significativamente após estruturar tarifário e tecnologia. Vamos conversar?</p>
+      <button class="btn-cta-hot" onclick="window.open('${waLink}','_blank')">Falar com especialista agora →</button>
+    </div>`;
+
+  if (tier.tipo === 'warm') return `
+    <div class="cta-resultado cta-warm">
+      <div class="cta-eyebrow">Próximo passo</div>
+      <h3>Você está no caminho certo — mas pode ir mais longe</h3>
+      <p>Identificamos oportunidades específicas para o seu perfil. Uma conversa de 30 minutos pode revelar quanto você está deixando de ganhar.</p>
+      <button class="btn-cta-warm" onclick="window.open('${waLink}','_blank')">Agendar conversa gratuita →</button>
+    </div>`;
+
+  return `
+    <div class="cta-resultado cta-cold">
+      <div class="cta-eyebrow">Otimização avançada</div>
+      <h3>Você já está bem estruturado — foco em otimização</h3>
+      <p>Hotéis com seu nível de maturidade têm ganhos significativos em revenue management avançado e estratégia de distribuição.</p>
+      <button class="btn-cta-cold" onclick="window.open('${waLink}','_blank')">Conversar sobre otimização →</button>
+    </div>`;
+}
+
+function animateScore(target, color) {
+  let count = 0;
+  const el = document.getElementById('score-num');
+  const arc = document.getElementById('score-arc');
+  const circumference = 327;
+  const iv = setInterval(() => {
+    count = Math.min(count + 1, target);
+    el.textContent = count;
+    arc.style.strokeDashoffset = circumference - (count / 100) * circumference;
+    arc.style.stroke = color;
+    if (count >= target) clearInterval(iv);
+  }, 18);
+}
+
+function resetDiag() {
+  step = 0; answers = {}; contactData = { nome: '', hotel: '' };
+  document.getElementById('result-screen').classList.remove('active');
+  document.getElementById('result-screen').innerHTML = '';
+  document.getElementById('diag-hero').style.display = 'block';
+  render();
+  window.scrollTo(0, 0);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
