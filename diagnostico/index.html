@@ -560,7 +560,8 @@ Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. F
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
@@ -581,7 +582,8 @@ Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. F
   document.getElementById('loading-screen').classList.remove('active');
   fetch('https://script.google.com/macros/s/AKfycbxdb5TkYos7WWZDgpWDKLju8jq8iAuxU_Ffj3dPK1HC8nD6L6nxjNUh5veMiyyijIXDtg/exec', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify({
       nome:          contactData.nome,
       hotel:         contactData.hotel,
