@@ -580,6 +580,17 @@ Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. F
   }
 
   document.getElementById('loading-screen').classList.remove('active');
+
+  const resp = {};
+  PERGUNTAS.forEach(q => {
+    if (q.tipo === 'texto_duplo') return;
+    const s = answers[q.id];
+    if (s === undefined || s === null) { resp[q.id] = ''; return; }
+    resp[q.id] = q.tipo === 'multiplo'
+      ? s.map(i => q.opcoes[i].label).join(', ')
+      : q.opcoes[s].label;
+  });
+
   fetch('https://script.google.com/macros/s/AKfycbxdb5TkYos7WWZDgpWDKLju8jq8iAuxU_Ffj3dPK1HC8nD6L6nxjNUh5veMiyyijIXDtg/exec', {
     method: 'POST',
     mode: 'no-cors',
@@ -587,6 +598,15 @@ Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. F
     body: JSON.stringify({
       nome:          contactData.nome,
       hotel:         contactData.hotel,
+      quartos:       resp.quartos,
+      diaria:        resp.diaria,
+      ocupacao:      resp.ocupacao,
+      otas:          resp.otas,
+      motor:         resp.motor,
+      channel:       resp.channel,
+      pms:           resp.pms,
+      dor:           resp.dor,
+      ambicao:       resp.ambicao,
       score:         total,
       perfil:        tier.label,
       veredicto:     iaResult.veredicto,
