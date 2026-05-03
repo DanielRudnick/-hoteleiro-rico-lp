@@ -152,6 +152,8 @@ nav{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px 
 .btn-cta-warm:hover{background:var(--red3)}
 .btn-cta-cold{background:transparent;color:var(--green2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:16px 36px;border:1px solid var(--green2);cursor:pointer;width:100%;transition:all .2s}
 .btn-cta-cold:hover{background:rgba(46,125,50,.15)}
+.btn-cta-workshop{background:transparent;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:14px 36px;border:1px solid rgba(245,239,230,0.2);cursor:pointer;width:100%;transition:border-color .2s,color .2s;margin-top:10px;text-decoration:none;display:block;text-align:center}
+.btn-cta-workshop:hover{border-color:rgba(245,239,230,0.5)}
 
 .btn-refazer{display:block;text-align:center;font-size:12px;color:var(--gray);cursor:pointer;margin-top:20px;background:none;border:none;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px}
 
@@ -708,7 +710,8 @@ function buildCTA(tier, score) {
       <div class="cta-eyebrow">Oportunidade identificada</div>
       <h3>Seu hotel tem alto potencial inexplorado</h3>
       <p>Hotéis com perfil semelhante ao seu aumentaram o faturamento significativamente após estruturar tarifário e tecnologia. Vamos conversar?</p>
-      <button class="btn-cta-hot" onclick="window.open('${waLink}','_blank')">Falar com especialista agora →</button>
+      <button class="btn-cta-hot" onclick="window.open('','_blank')">Falar com especialista agora →</button>
+      <a href="../workshop" class="btn-cta-workshop">Conheça nosso Workshop de Revenue Management →</a>
     </div>`;
 
   if (tier.tipo === 'warm') return `
@@ -716,7 +719,8 @@ function buildCTA(tier, score) {
       <div class="cta-eyebrow">Próximo passo</div>
       <h3>Você está no caminho certo — mas pode ir mais longe</h3>
       <p>Identificamos oportunidades específicas para o seu perfil. Uma conversa de 30 minutos pode revelar quanto você está deixando de ganhar.</p>
-      <button class="btn-cta-warm" onclick="window.open('${waLink}','_blank')">Agendar conversa gratuita →</button>
+      <button class="btn-cta-warm" onclick="window.open('','_blank')">Agendar conversa gratuita →</button>
+      <a href="../workshop" class="btn-cta-workshop">Conheça nosso Workshop de Revenue Management →</a>
     </div>`;
 
   return `
@@ -724,7 +728,8 @@ function buildCTA(tier, score) {
       <div class="cta-eyebrow">Otimização avançada</div>
       <h3>Você já está bem estruturado — foco em otimização</h3>
       <p>Hotéis com seu nível de maturidade têm ganhos significativos em revenue management avançado e estratégia de distribuição.</p>
-      <button class="btn-cta-cold" onclick="window.open('${waLink}','_blank')">Conversar sobre otimização →</button>
+      <button class="btn-cta-cold" onclick="window.open('','_blank')">Conversar sobre otimização →</button>
+      <a href="../workshop" class="btn-cta-workshop">Conheça nosso Workshop de Revenue Management →</a>
     </div>`;
 }
 
