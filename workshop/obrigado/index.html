@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra Confirmada — Workshop Hoteleiro Rico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function()
+    {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID');
+    fbq('track', 'PageView');
+    fbq('track', 'Purchase', {
+      content_name: 'Workshop Hoteleiro Rico',
+      content_category: 'Workshop',
+      content_ids: ['workshop-11-maio'],
+      content_type: 'product',
+      value: 47.00,
+      currency: 'BRL'
+    });
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=Purchase&noscript=1"/></noscript>
+  <style>
+    :root{--black:#0A0A0A;--red:#B22222;--cream:#F5EFE6;--gold:#C9A84C;--white:#FFFFFF;--green-wa:#25D366;--green-wa-dark:#1da851}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%;background:var(--black);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    .bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+    .bg-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(255,255,255,0.018) 60px,rgba(255,255,255,0.018) 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(255,255,255,0.018) 60px,rgba(255,255,255,0.018) 61px)}
+    .bg-glow-red{position:absolute;top:-20%;right:-10%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(139,26,26,0.18) 0%,transparent 70%)}
+    .bg-glow-gold{position:absolute;bottom:-10%;left:-10%;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%)}
+    .page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px}
+    .logo{display:flex;flex-direction:column;align-items:center;line-height:1;margin-bottom:56px;opacity:0;animation:fadeDown .6s ease forwards;animation-delay:.1s}
+    .logo-hotel{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:8px;color:rgba(245,239,230,0.4)}
+    .logo-rico{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:8px;color:var(--red)}
+    .card{width:100%;max-width:600px;background:rgba(15,10,10,0.85);border:1px solid rgba(201,168,76,0.15);border-radius:3px;overflow:hidden;backdrop-filter:blur(12px);box-shadow:0 40px 80px rgba(0,0,0,0.6);opacity:0;animation:fadeUp .7s ease forwards;animation-delay:.3s}
+    .card-top-bar{height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+    .card-body{padding:52px 48px 48px;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .badge-confirmed{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:2px;padding:6px 16px;font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px}
+    .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite}
+    .heading-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,239,230,0.3);margin-bottom:16px;font-weight:300}
+    h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,80px);line-height:0.95;letter-spacing:2px;color:var(--white);margin-bottom:8px}
+    h1 .accent{color:var(--red)}
+    .subheading{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,3vw,28px);letter-spacing:4px;color:var(--gold);margin-bottom:28px}
+    .desc{font-size:15px;color:rgba(245,239,230,0.55);line-height:1.75;font-weight:300;max-width:440px;margin-bottom:44px}
+    .desc strong{color:var(--cream);font-weight:500}
+    .divider{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);margin:0 auto 44px}
+    .event-info{display:flex;width:100%;max-width:380px;border:1px solid rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;margin-bottom:44px}
+    .event-item{flex:1;padding:16px 20px;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02)}
+    .event-item:last-child{border-right:none}
+    .event-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,239,230,0.25);font-weight:400}
+    .event-value{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:var(--cream)}
+    .event-value span{color:var(--gold)}
+    .btn-wa{display:inline-flex;align-items:center;gap:14px;background:var(--green-wa);color:#fff;text-decoration:none;padding:20px 40px;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;transition:all .25s ease;width:100%;max-width:380px;justify-content:center;box-shadow:0 8px 32px rgba(37,211,102,0.25)}
+    .btn-wa:hover{background:var(--green-wa-dark);transform:translateY(-2px)}
+    .btn-wa svg{flex-shrink:0}
+    .btn-wa-text{display:flex;flex-direction:column;align-items:flex-start}
+    .btn-wa-main{font-size:15px;font-weight:500;line-height:1.2}
+    .btn-wa-sub{font-size:11px;font-weight:300;opacity:0.8}
+    .footer-note{margin-top:32px;font-size:11px;color:rgba(245,239,230,0.2);font-weight:300;font-style:italic;line-height:1.6}
+    .card-bottom{padding:16px 48px;border-top:1px solid rgba(255,255,255,0.04);background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .bottom-brand{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:4px;color:rgba(245,239,230,0.15)}
+    .bottom-brand span{color:rgba(178,34,34,0.4)}
+    .bottom-secure{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(245,239,230,0.15);letter-spacing:1px}
+    .confetti-wrap{position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden}
+    .confetti-piece{position:absolute;top:-10px;opacity:0;animation:confettiFall linear forwards}
+    @keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)}}
+    @keyframes confettiFall{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+    @media(max-width:540px){.card-body{padding:40px 28px 36px}.card-bottom{padding:14px 28px}.event-info{flex-direction:column}.event-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}.event-item:last-child{border-bottom:none}}
+  </style>
+</head>
+<body>
+<div class="bg"><div class="bg-grid"></div><div class="bg-glow-red"></div><div class="bg-glow-gold"></div></div>
+<div class="confetti-wrap" id="confetti"></div>
+<div class="page">
+  <div class="logo"><span class="logo-hotel">HOTELEIRO</span><span class="logo-rico">RICO</span></div>
+  <div class="card">
+    <div class="card-top-bar"></div>
+    <div class="card-body">
+      <div class="badge-confirmed"><span class="badge-dot"></span>Pagamento confirmado</div>
+      <p class="heading-tag">Bem-vindo ao</p>
+      <h1>WORKSHOP<br><span class="accent">HOTELEIRO</span></h1>
+      <p class="subheading">RICO</p>
+      <p class="desc">Sua vaga est&#225; <strong>garantida</strong>. Agora entre no grupo exclusivo do WhatsApp &#8212; &#233; l&#225; que voc&#234; vai receber o link da transmiss&#227;o, materiais e atualiza&#231;&#245;es importantes.</p>
+      <div class="divider"></div>
+      <div class="event-info">
+        <div class="event-item"><span class="event-label">Data</span><span class="event-value"><span>11</span> MAIO</span></div>
+        <div class="event-item"><span class="event-label">Formato</span><span class="event-value">AO <span>VIVO</span></span></div>
+        <div class="event-item"><span class="event-label">Investimento</span><span class="event-value">R$<span>47</span></span></div>
+      </div>
+      <a class="btn-wa" href="LINK_DO_GRUPO_AQUI" target="_blank" rel="noopener">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <div class="btn-wa-text"><span class="btn-wa-main">Entrar no grupo do WhatsApp</span><span class="btn-wa-sub">Acesso exclusivo para participantes</span></div>
+      </a>
+      <p class="footer-note">O link do grupo &#233; exclusivo e intransfer&#237;vel.<br>N&#227;o compartilhe com pessoas que n&#227;o adquiriram o workshop.</p>
+    </div>
+    <div class="card-bottom">
+      <span class="bottom-brand">HOTELEIRO <span>RICO</span></span>
+      <span class="bottom-secure">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        Compra segura
+      </span>
+    </div>
+  </div>
+</div>
+<script>
+  function launchConfetti() {
+    var container = document.getElementById('confetti');
+    var colors = ['#C9A84C','#B22222','#F5EFE6','#8B1A1A','#dfc078'];
+    var shapes = ['circle','square','rect'];
+    for (var i = 0; i < 80; i++) {
+      var piece = document.createElement('div');
+      piece.classList.add('confetti-piece');
+      var color = colors[Math.floor(Math.random() * colors.length)];
+      var shape = shapes[Math.floor(Math.random() * shapes.length)];
+      var size = Math.random() * 8 + 4;
+      var left = Math.random() * 100;
+      var delay = Math.random() * 1.5;
+      var duration = Math.random() * 2 + 2;
+      piece.style.left = left + '%';
+      piece.style.width = (shape === 'rect' ? size * 2 : size) + 'px';
+      piece.style.height = size + 'px';
+      piece.style.background = color;
+      piece.style.borderRadius = shape === 'circle' ? '50%' : '1px';
+      piece.style.animationDuration = duration + 's';
+      piece.style.animationDelay = delay + 's';
+      container.appendChild(piece);
+      (function(p, d, dr) { setTimeout(function(){ p.remove(); }, (d + dr) * 1000 + 500); })(piece, delay, duration);
+    }
+  }
+  window.addEventListener('load', function(){ setTimeout(launchConfetti, 600); });
+</script>
+</body>
+</html>

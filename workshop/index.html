@@ -166,6 +166,33 @@
   .reveal.visible{opacity:1;transform:translateY(0)}
   @media(max-width:680px){.bio-inner{grid-template-columns:1fr}.bio-photo{aspect-ratio:1;max-width:180px}.form-card{padding:32px 20px}.modules{grid-template-columns:1fr}.hero-meta{flex-direction:column;gap:0}.meta-item{border-right:none;border-bottom:1px solid var(--black-5)}}
 </style>
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function()
+    {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID');
+    
+fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=SEU_PIXEL_ID</head>ev=PageView</head>noscript=1"/></noscript>
+  <!-- Fim Facebook Pixel -->
+  <!-- Pixel: ViewContent -->
+  <script>
+    fbq('track', 'ViewContent', {
+      content_name: 'Workshop Hoteleiro Rico',
+      content_category: 'Workshop',
+      content_ids: ['workshop-11-maio'],
+      content_type: 'product',
+      value: 47.00,
+      currency: 'BRL'
+    });
+  </script>
 </head>
 <body>
 
@@ -354,7 +381,7 @@
           <div style="font-size:.82rem;color:var(--gray);display:flex;gap:8px;align-items:center;"><span style="color:var(--red-bright);">✦</span> Garantia de 7 dias ou devolvemos 100%</div>
         </div>
       </div>
-      <a href="https://pay.kiwify.com.br/tL7RzhE" class="btn form-cta" style="display:block;text-align:center;text-decoration:none;">Quero minha vaga por R$47</a>
+      <a href="https://pay.kiwify.com.br/tL7RzhE" class="btn form-cta" onclick="fbq('track','InitiateCheckout',{content_name:'Workshop Hoteleiro Rico',content_category:'Workshop',num_items:1,value:47.00,currency:'BRL'});" style="display:block;text-align:center;text-decoration:none;">Quero minha vaga por R$47</a>
       <p class="form-note" style="margin-top:14px;">🔒 Pagamento 100% seguro · Kiwify &nbsp;|&nbsp; Pix, cartão ou boleto<br/>Dúvidas? <a href="https://wa.me/5541998251197" target="_blank">Fale no WhatsApp</a></p>
       <div style="border-top:1px solid var(--black-5);margin-top:24px;padding-top:20px;text-align:center;">
         <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.2);padding:10px 20px;">

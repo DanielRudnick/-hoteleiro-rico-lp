@@ -722,6 +722,31 @@ footer a { color: var(--red2); text-decoration: none; }
   .hero { padding: 80px 0 48px; }
 }
 </style>
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function()
+    {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID');
+    
+fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=SEU_PIXEL_ID</head>ev=PageView</head>noscript=1"/></noscript>
+  <!-- Fim Facebook Pixel -->
+  <!-- Pixel: ViewContent -->
+  <script>
+    fbq('track', 'ViewContent', {
+      content_name: 'Mentoria Hoteleiro Rico',
+      content_category: 'Mentoria',
+      content_ids: ['mentoria-60-dias'],
+      content_type: 'product'
+    });
+  </script>
 </head>
 <body>
 
@@ -744,7 +769,7 @@ footer a { color: var(--red2); text-decoration: none; }
           8 encontros individuais para implementar Revenue Management, tarifário inteligente e automação de reservas — com acompanhamento personalizado do início ao fim.
         </p>
         <div class="hero-cta-group">
-          <a href="https://pay.kiwify.com.br/yXhKIRI" target="_blank" class="btn-primary">Quero garantir minha vaga</a>
+          <a href="https://pay.kiwify.com.br/yXhKIRI" target="_blank" class="btn-primary" onclick="fbq('track','InitiateCheckout',{content_name:'Mentoria Hoteleiro Rico',content_category:'Mentoria',value:0,currency:'BRL'});">Quero garantir minha vaga</a>
           <button class="btn-secondary" onclick="document.getElementById('preco').scrollIntoView({behavior:'smooth'})">Ver investimento ↓</button>
         </div>
         <div class="hero-provas">
@@ -1071,7 +1096,7 @@ footer a { color: var(--red2); text-decoration: none; }
             </div>
           </div>
         </div>
-        <a href="https://pay.kiwify.com.br/yXhKIRI" target="_blank" class="btn-primary" style="width:100%; text-align:center; display:block;">
+        <a href="https://pay.kiwify.com.br/yXhKIRI" target="_blank" class="btn-primary" style="width:100%; text-align:center; display:block;" onclick="fbq('track','InitiateCheckout',{content_name:'Mentoria Hoteleiro Rico',content_category:'Mentoria',value:0,currency:'BRL'});">
           Garantir minha vaga por R$ 3.470 →
         </a>
         <p style="font-size:12px; color:var(--gray); text-align:center; margin-top:14px;">
@@ -1089,7 +1114,7 @@ footer a { color: var(--red2); text-decoration: none; }
   <div class="container">
     <h2>Hora de decidir.</h2>
     <p>Sua hospedagem com método, tecnologia e previsibilidade em 60 dias. Enquanto você espera, sua concorrência está implementando.</p>
-    <a href="https://pay.kiwify.com.br/yXhKIRI" target="_blank" class="btn-primary">Quero transformar minha hospedagem →</a>
+    <a href="https://pay.kiwify.com.br/yXhKIRI" target="_blank" class="btn-primary" onclick="fbq('track','InitiateCheckout',{content_name:'Mentoria Hoteleiro Rico',content_category:'Mentoria',value:0,currency:'BRL'});">Quero transformar minha hospedagem →</a>
     <div class="cta-urgencia">A missão do Hoteleiro Rico é democratizar a gestão profissional na hotelaria brasileira.</div>
   </div>
 </section>
