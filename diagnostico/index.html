@@ -744,7 +744,7 @@ function showResult(score, breakdown, tier, ia) {
 
   rs.classList.add('active');
   window.scrollTo(0, 0);
-  history.pushState({ veredicto: true }, '', '/veredicto');
+  history.pushState({ veredicto: true }, '', '/diagnostico/veredicto');
 
   // Animar score
   setTimeout(() => animateScore(score, tier.cor), 200);
