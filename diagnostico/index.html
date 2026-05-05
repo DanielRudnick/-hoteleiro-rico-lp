@@ -173,24 +173,13 @@ nav{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px 
 
 .btn-refazer{display:block;text-align:center;font-size:12px;color:var(--gray);cursor:pointer;margin-top:20px;background:none;border:none;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px}
 
-/* ── MODAL AGENDAMENTO ── */
-.cal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:9999;align-items:center;justify-content:center;padding:16px}
-.cal-overlay.active{display:flex}
-.cal-modal{background:#141414;border:1px solid rgba(245,239,230,.1);width:100%;max-width:780px;max-height:90vh;display:flex;flex-direction:column;position:relative}
-.cal-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(245,239,230,.08)}
-.cal-modal-title{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cream)}
-.cal-modal-close{background:none;border:none;color:var(--gray);font-size:22px;cursor:pointer;line-height:1;padding:0 4px}
-.cal-modal-close:hover{color:var(--cream)}
-.cal-iframe-wrap{flex:1;overflow:hidden;min-height:520px;position:relative}
-.cal-iframe-wrap iframe{width:100%;height:100%;border:none;display:block}
-.cal-fallback{display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;height:100%;padding:40px;text-align:center}
-.cal-fallback p{font-size:13px;color:var(--gray2);line-height:1.6}
-.cal-fallback a{display:inline-block;background:var(--red2);color:var(--cream);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 32px;text-decoration:none}
+/* ── AGENDAMENTO INLINE ── */
+.cal-inline{margin-top:28px;background:#fff;border-radius:4px;overflow:hidden}
+.cal-inline-header{background:#f8f8f8;border-bottom:1px solid #e0e0e0;padding:14px 20px;display:flex;align-items:center;gap:10px}
+.cal-inline-header span{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#333}
+.cal-inline iframe{display:block;width:100%;border:none}
 
 @media(max-width:600px){
-  .cal-modal{max-height:95vh}
-  .cal-iframe-wrap{min-height:480px}
-}
   .question-card{padding:28px 20px}
   .opcoes-multi{grid-template-columns:1fr}
   .wrapper{padding:32px 16px 80px}
@@ -755,6 +744,7 @@ function showResult(score, breakdown, tier, ia) {
 
   rs.classList.add('active');
   window.scrollTo(0, 0);
+  history.pushState({ veredicto: true }, '', '/veredicto');
 
   // Animar score
   setTimeout(() => animateScore(score, tier.cor), 200);
@@ -764,31 +754,40 @@ function buildCTA(tier, score) {
   const msg = encodeURIComponent(`Olá! Acabei de fazer o diagnóstico do ${contactData.hotel} e quero entender como melhorar. Score: ${score}/100 — Perfil: ${tier.label}.`);
   const waLink = `https://wa.me/${CONFIG.WA_NUMBER}?text=${msg}`;
 
+  const calIframe = `
+    <div class="cal-inline">
+      <div class="cal-inline-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B22222" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Escolha o melhor horário para sua conversa gratuita</span>
+      </div>
+      <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0JRUX1rM55I8Fr4iGB-dNyAnDdsCKjM0g8iAOFBZU9tK-qg6XJLdu-HRWBzjrP05C07UvH_qfn?gv=true" height="680" frameborder="0" allowfullscreen></iframe>
+    </div>`;
+
   if (tier.tipo === 'hot') return `
     <div class="cta-resultado cta-hot">
       <div class="cta-eyebrow">Oportunidade identificada</div>
       <h3>Seu hotel tem alto potencial inexplorado</h3>
-      <p>Hotéis com perfil semelhante ao seu aumentaram o faturamento significativamente após estruturar tarifário e tecnologia. Vamos conversar?</p>
-      <button class="btn-cta-hot" onclick="abrirAgendamento()">Agendar conversa gratuita →</button>
-      <a href="../workshop" class="btn-cta-workshop">Cadastre-se no Workshop Planejamento de Vendas →</a>
+      <p>Hotéis com perfil semelhante ao seu aumentaram o faturamento significativamente após estruturar tarifário e tecnologia. Agende abaixo uma conversa gratuita de 30 minutos.</p>
+      ${calIframe}
+      <a href="../workshop" class="btn-cta-workshop" style="margin-top:16px;">Cadastre-se no Workshop Planejamento de Vendas →</a>
     </div>`;
 
   if (tier.tipo === 'warm') return `
     <div class="cta-resultado cta-warm">
       <div class="cta-eyebrow">Próximo passo</div>
       <h3>Você está no caminho certo — mas pode ir mais longe</h3>
-      <p>Identificamos oportunidades específicas para o seu perfil. Uma conversa de 30 minutos pode revelar quanto você está deixando de ganhar.</p>
-      <button class="btn-cta-warm" onclick="abrirAgendamento()">Agendar conversa gratuita →</button>
-      <a href="../workshop" class="btn-cta-workshop">Cadastre-se no Workshop Planejamento de Vendas →</a>
+      <p>Identificamos oportunidades específicas para o seu perfil. Agende abaixo uma conversa gratuita de 30 minutos.</p>
+      ${calIframe}
+      <a href="../workshop" class="btn-cta-workshop" style="margin-top:16px;">Cadastre-se no Workshop Planejamento de Vendas →</a>
     </div>`;
 
   return `
     <div class="cta-resultado cta-cold">
       <div class="cta-eyebrow">Otimização avançada</div>
       <h3>Você já está bem estruturado — foco em otimização</h3>
-      <p>Hotéis com seu nível de maturidade têm ganhos significativos em revenue management avançado e estratégia de distribuição.</p>
-      <button class="btn-cta-cold" onclick="abrirAgendamento()">Agendar conversa gratuita →</button>
-      <a href="../workshop" class="btn-cta-workshop">Cadastre-se no Workshop Planejamento de Vendas →</a>
+      <p>Hotéis com seu nível de maturidade têm ganhos em revenue management avançado e distribuição. Agende abaixo uma conversa gratuita.</p>
+      ${calIframe}
+      <a href="../workshop" class="btn-cta-workshop" style="margin-top:16px;">Cadastre-se no Workshop Planejamento de Vendas →</a>
     </div>`;
 }
 
@@ -811,6 +810,7 @@ function resetDiag() {
   document.getElementById('result-screen').classList.remove('active');
   document.getElementById('result-screen').innerHTML = '';
   document.getElementById('diag-hero').style.display = 'block';
+  history.pushState({}, '', '/diagnostico');
   render();
   window.scrollTo(0, 0);
 }
@@ -818,52 +818,6 @@ function resetDiag() {
 // ── INIT ──────────────────────────────────────────────────────────
 render();
 
-// ── MODAL AGENDAMENTO ─────────────────────────────────────────────
-const CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0JRUX1rM55I8Fr4iGB-dNyAnDdsCKjM0g8iAOFBZU9tK-qg6XJLdu-HRWBzjrP05C07UvH_qfn?gv=true';
-
-function abrirAgendamento() {
-  const overlay = document.getElementById('cal-overlay');
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function fecharAgendamento() {
-  document.getElementById('cal-overlay').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-// Fechar ao clicar fora do modal
-document.addEventListener('click', function(e) {
-  if (e.target.id === 'cal-overlay') fecharAgendamento();
-});
-
-// Detectar se iframe foi bloqueado
-document.addEventListener('DOMContentLoaded', function() {
-  const iframe = document.getElementById('cal-iframe');
-  if (!iframe) return;
-  iframe.addEventListener('error', function() {
-    document.querySelector('.cal-iframe-wrap iframe').style.display = 'none';
-    document.querySelector('.cal-fallback').style.display = 'flex';
-  });
-});
-</script>
-
-<!-- ── MODAL AGENDAMENTO ── -->
-<div class="cal-overlay" id="cal-overlay">
-  <div class="cal-modal">
-    <div class="cal-modal-header">
-      <span class="cal-modal-title">Agendar Conversa Gratuita</span>
-      <button class="cal-modal-close" onclick="fecharAgendamento()">×</button>
-    </div>
-    <div class="cal-iframe-wrap">
-      <iframe id="cal-iframe" src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0JRUX1rM55I8Fr4iGB-dNyAnDdsCKjM0g8iAOFBZU9tK-qg6XJLdu-HRWBzjrP05C07UvH_qfn?gv=true" style="border:0" frameborder="0" allowfullscreen></iframe>
-      <div class="cal-fallback">
-        <p>Escolha o melhor horário para sua conversa gratuita com a equipe do Hoteleiro Rico.</p>
-        <a href="https://calendar.app.google/WdRZfDg7RfacxZsFA" target="_blank" rel="noopener" onclick="fecharAgendamento()">Abrir agenda para agendar →</a>
-      </div>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
