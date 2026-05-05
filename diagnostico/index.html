@@ -184,11 +184,16 @@ nav{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px 
 
 .btn-refazer{display:block;text-align:center;font-size:12px;color:var(--gray);cursor:pointer;margin-top:20px;background:none;border:none;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px}
 
-/* ── AGENDAMENTO INLINE ── */
-.cal-inline{margin-top:28px;background:#fff;border-radius:4px;overflow:hidden}
-.cal-inline-header{background:#f8f8f8;border-bottom:1px solid #e0e0e0;padding:14px 20px;display:flex;align-items:center;gap:10px}
-.cal-inline-header span{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#333}
-.cal-inline iframe{display:block;width:100%;border:none}
+/* ── AGENDAMENTO DROPDOWN ── */
+.cal-section{margin-top:28px;text-align:center}
+.cal-section-copy{font-size:13px;color:var(--gray2);font-weight:300;margin-bottom:16px;line-height:1.6}
+.btn-cal-toggle{display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(245,239,230,.25);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:14px 32px;cursor:pointer;transition:border-color .2s,background .2s;width:100%;justify-content:center}
+.btn-cal-toggle:hover{border-color:rgba(245,239,230,.5);background:rgba(255,255,255,.04)}
+.btn-cal-toggle .toggle-arrow{transition:transform .3s;font-style:normal;font-size:11px}
+.btn-cal-toggle.open .toggle-arrow{transform:rotate(180deg)}
+.cal-dropdown{display:none;margin-top:16px;background:#fff;overflow:hidden}
+.cal-dropdown.open{display:block}
+.cal-dropdown iframe{display:block;width:100%;border:none}
 
 @media(max-width:600px){
   .question-card{padding:28px 20px}
@@ -765,13 +770,17 @@ function buildCTA(tier, score) {
   const msg = encodeURIComponent(`Olá! Acabei de fazer o diagnóstico do ${contactData.hotel} e quero entender como melhorar. Score: ${score}/100 — Perfil: ${tier.label}.`);
   const waLink = `https://wa.me/${CONFIG.WA_NUMBER}?text=${msg}`;
 
-  const calIframe = `
-    <div class="cal-inline">
-      <div class="cal-inline-header">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B22222" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        <span>Escolha o melhor horário para sua conversa gratuita</span>
+  const calDropdown = `
+    <div class="cal-section">
+      <p class="cal-section-copy">Se desejar marcar uma reunião com nossa equipe, clique no botão abaixo.</p>
+      <button class="btn-cal-toggle" onclick="toggleCal(this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Agendar conversa gratuita
+        <em class="toggle-arrow">▼</em>
+      </button>
+      <div class="cal-dropdown">
+        <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0JRUX1rM55I8Fr4iGB-dNyAnDdsCKjM0g8iAOFBZU9tK-qg6XJLdu-HRWBzjrP05C07UvH_qfn?gv=true" height="680" frameborder="0" allowfullscreen></iframe>
       </div>
-      <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0JRUX1rM55I8Fr4iGB-dNyAnDdsCKjM0g8iAOFBZU9tK-qg6XJLdu-HRWBzjrP05C07UvH_qfn?gv=true" height="680" frameborder="0" allowfullscreen></iframe>
     </div>`;
 
   const workshopBlock = `
@@ -785,28 +794,28 @@ function buildCTA(tier, score) {
     <div class="cta-resultado cta-hot">
       <div class="cta-eyebrow">Oportunidade identificada</div>
       <h3>Seu hotel tem alto potencial inexplorado</h3>
-      <p>Hotéis com perfil semelhante ao seu aumentaram o faturamento significativamente após estruturar tarifário e tecnologia. Agende abaixo uma conversa gratuita de 30 minutos.</p>
+      <p>Hotéis com perfil semelhante ao seu aumentaram o faturamento significativamente após estruturar tarifário e tecnologia.</p>
       ${workshopBlock}
-      ${calIframe}
-    </div>`;
+    </div>
+    ${calDropdown}`;
 
   if (tier.tipo === 'warm') return `
     <div class="cta-resultado cta-warm">
       <div class="cta-eyebrow">Próximo passo</div>
       <h3>Você está no caminho certo — mas pode ir mais longe</h3>
-      <p>Identificamos oportunidades específicas para o seu perfil. Agende abaixo uma conversa gratuita de 30 minutos.</p>
+      <p>Identificamos oportunidades específicas para o seu perfil. Uma conversa de 30 minutos pode revelar quanto você está deixando de ganhar.</p>
       ${workshopBlock}
-      ${calIframe}
-    </div>`;
+    </div>
+    ${calDropdown}`;
 
   return `
     <div class="cta-resultado cta-cold">
       <div class="cta-eyebrow">Otimização avançada</div>
       <h3>Você já está bem estruturado — foco em otimização</h3>
-      <p>Hotéis com seu nível de maturidade têm ganhos em revenue management avançado e distribuição. Agende abaixo uma conversa gratuita.</p>
+      <p>Hotéis com seu nível de maturidade têm ganhos em revenue management avançado e estratégia de distribuição.</p>
       ${workshopBlock}
-      ${calIframe}
-    </div>`;
+    </div>
+    ${calDropdown}`;
 }
 
 function animateScore(target, color) {
@@ -831,6 +840,17 @@ function resetDiag() {
   history.pushState({}, '', '/diagnostico');
   render();
   window.scrollTo(0, 0);
+}
+
+// ── TOGGLE AGENDA ─────────────────────────────────────────────────
+function toggleCal(btn) {
+  const dropdown = btn.nextElementSibling;
+  const isOpen = dropdown.classList.contains('open');
+  dropdown.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  if (!isOpen) {
+    setTimeout(() => dropdown.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
 }
 
 // ── INIT ──────────────────────────────────────────────────────────
