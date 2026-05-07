@@ -486,7 +486,7 @@ function render() {
     if (rsaved && rsaved.quer === true) {
       html += `<div class="input-group" style="margin-top:20px">
         <div class="input-label">Coloque seu WhatsApp abaixo</div>
-        <input class="text-field" type="tel" id="campo_wa" placeholder="(00) 00000-0000" value="${waVal}" oninput="onWaInput()">
+        <input class="text-field" type="tel" id="campo_wa" placeholder="(00) 00000-0000" value="${waVal}" oninput="onWaInput()" onchange="onWaInput()" onkeyup="onWaInput()">
       </div>`;
     }
   } else {
@@ -536,7 +536,11 @@ function canAdvance() {
   if (q.tipo === 'reuniao') {
     if (!saved) return false;
     if (saved.quer === false) return true;
-    if (saved.quer === true) return !!(saved.whatsapp && saved.whatsapp.trim().length > 5);
+    if (saved.quer === true) {
+      const waField = document.getElementById('campo_wa');
+      const waVal = waField ? waField.value.trim() : (saved.whatsapp || '');
+      return waVal.length > 0;
+    }
     return false;
   }
   return saved !== undefined;
