@@ -406,6 +406,12 @@ const PERGUNTAS = [
     criterio: 'Ambição',
     max: 10,
   },
+  {
+    id: 'reuniao',
+    texto: 'Dependendo do resultado, você gostaria de marcar uma reunião com nossa equipe para falarmos sobre melhorias de resultados para sua propriedade?',
+    tipo: 'reuniao',
+    criterio: null,
+  },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────────────
@@ -432,9 +438,11 @@ function render() {
   const q = PERGUNTAS[step];
   const saved = answers[q.id];
 
+  const diagCount = PERGUNTAS.filter(p => p.tipo !== 'reuniao').length;
+  const isReuniaoStep = q.tipo === 'reuniao';
   let html = `
     <div class="question-card">
-      <div class="q-numero">Pergunta ${step + 1} de ${PERGUNTAS.length}</div>
+      <div class="q-numero">${isReuniaoStep ? 'Último passo' : `Pergunta ${step + 1} de ${diagCount}`}</div>
       <div class="q-texto">${q.texto}</div>
   `;
 
@@ -460,6 +468,27 @@ function render() {
         </button>`;
     });
     html += `</div>`;
+  } else if (q.tipo === 'reuniao') {
+    const rsaved = answers[q.id];
+    const simSel = rsaved && rsaved.quer === true ? 'selected' : '';
+    const naoSel = rsaved && rsaved.quer === false ? 'selected' : '';
+    const waVal = (rsaved && rsaved.whatsapp) ? rsaved.whatsapp : '';
+    html += `<div class="opcoes">
+      <button class="opcao ${simSel}" onclick="selectReuniao(true)">
+        <div class="opcao-marker"></div>
+        Sim, quero marcar uma conversa com a equipe
+      </button>
+      <button class="opcao ${naoSel}" onclick="selectReuniao(false)">
+        <div class="opcao-marker"></div>
+        Não, obrigado
+      </button>
+    </div>`;
+    if (rsaved && rsaved.quer === true) {
+      html += `<div class="input-group" style="margin-top:20px">
+        <div class="input-label">Coloque seu WhatsApp abaixo</div>
+        <input class="text-field" type="tel" id="campo_wa" placeholder="(00) 00000-0000" value="${waVal}" oninput="onWaInput()">
+      </div>`;
+    }
   } else {
     html += `<div class="opcoes">`;
     q.opcoes.forEach((op, i) => {
@@ -486,10 +515,12 @@ function render() {
 }
 
 function updateProgress() {
-  const pct = Math.round((step / PERGUNTAS.length) * 100);
+  const diagCount = PERGUNTAS.filter(p => p.tipo !== 'reuniao').length;
+  const isReuniaoStep = PERGUNTAS[step].tipo === 'reuniao';
+  const pct = isReuniaoStep ? 100 : Math.round((step / diagCount) * 100);
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-pct').textContent = pct + '%';
-  document.getElementById('progress-label').textContent = `Pergunta ${step + 1} de ${PERGUNTAS.length}`;
+  document.getElementById('progress-label').textContent = isReuniaoStep ? 'Último passo' : `Pergunta ${step + 1} de ${diagCount}`;
 }
 
 function canAdvance() {
@@ -502,6 +533,12 @@ function canAdvance() {
     return f0.value.trim().length > 1 && f1.value.trim().length > 1;
   }
   if (q.tipo === 'multiplo') return saved && saved.length > 0;
+  if (q.tipo === 'reuniao') {
+    if (!saved) return false;
+    if (saved.quer === false) return true;
+    if (saved.quer === true) return !!(saved.whatsapp && saved.whatsapp.trim().length > 5);
+    return false;
+  }
   return saved !== undefined;
 }
 
@@ -543,6 +580,12 @@ function goNext() {
     answers[q.id] = [v0, v1];
     contactData.nome = v0;
     contactData.hotel = v1;
+  }
+  if (q.tipo === 'reuniao') {
+    const waField = document.getElementById('campo_wa');
+    if (waField && answers[q.id]) {
+      answers[q.id].whatsapp = waField.value.trim();
+    }
   }
   if (!canAdvance()) return;
   if (step < PERGUNTAS.length - 1) {
@@ -662,22 +705,24 @@ Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. F
     mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify({
-      nome:          contactData.nome,
-      hotel:         contactData.hotel,
-      quartos:       resp.quartos,
-      diaria:        resp.diaria,
-      ocupacao:      resp.ocupacao,
-      otas:          resp.otas,
-      motor:         resp.motor,
-      channel:       resp.channel,
-      pms:           resp.pms,
-      dor:           resp.dor,
-      ambicao:       resp.ambicao,
-      score:         total,
-      perfil:        tier.label,
-      veredicto:     iaResult.veredicto,
-      oportunidades: iaResult.oportunidades,
-      proximo_passo: iaResult.proximo_passo
+      nome:           contactData.nome,
+      hotel:          contactData.hotel,
+      quartos:        resp.quartos,
+      diaria:         resp.diaria,
+      ocupacao:       resp.ocupacao,
+      otas:           resp.otas,
+      motor:          resp.motor,
+      channel:        resp.channel,
+      pms:            resp.pms,
+      dor:            resp.dor,
+      ambicao:        resp.ambicao,
+      score:          total,
+      perfil:         tier.label,
+      veredicto:      iaResult.veredicto,
+      oportunidades:  iaResult.oportunidades,
+      proximo_passo:  iaResult.proximo_passo,
+      quer_reuniao:   answers.reuniao ? (answers.reuniao.quer ? 'Sim' : 'Não') : '',
+      whatsapp:       (answers.reuniao && answers.reuniao.quer) ? (answers.reuniao.whatsapp || '') : ''
     })
   }).catch(() => {});
 
@@ -840,6 +885,24 @@ function resetDiag() {
   history.pushState({}, '', '/diagnostico');
   render();
   window.scrollTo(0, 0);
+}
+
+// ── REUNIÃO ───────────────────────────────────────────────────────
+function selectReuniao(quer) {
+  const q = PERGUNTAS[step];
+  const prev = answers[q.id];
+  answers[q.id] = { quer, whatsapp: (quer && prev) ? (prev.whatsapp || '') : '' };
+  render();
+}
+
+function onWaInput() {
+  const field = document.getElementById('campo_wa');
+  const q = PERGUNTAS[step];
+  if (field && answers[q.id]) {
+    answers[q.id].whatsapp = field.value.trim();
+  }
+  const btn = document.getElementById('btn-next');
+  if (btn) btn.disabled = !canAdvance();
 }
 
 // ── TOGGLE AGENDA ─────────────────────────────────────────────────
