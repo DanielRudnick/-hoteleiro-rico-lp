@@ -646,7 +646,7 @@ async function showLoading() {
 
   // Montar resumo para IA
   const resumo = PERGUNTAS.map((q, i) => {
-    if (q.tipo === 'texto_duplo') return null;
+    if (q.tipo === 'texto_duplo' || q.tipo === 'reuniao') return null;
     const saved = answers[q.id];
     if (saved === undefined || saved === null) return null;
     if (q.tipo === 'multiplo') {
@@ -696,7 +696,7 @@ Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. F
 
   const resp = {};
   PERGUNTAS.forEach(q => {
-    if (q.tipo === 'texto_duplo') return;
+    if (q.tipo === 'texto_duplo' || q.tipo === 'reuniao') return;
     const s = answers[q.id];
     if (s === undefined || s === null) { resp[q.id] = ''; return; }
     resp[q.id] = q.tipo === 'multiplo'
