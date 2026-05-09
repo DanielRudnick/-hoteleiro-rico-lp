@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hoteleiro.rico.com.br/sitemap.xml
+Sitemap: https://ohoteleirorico.com.br/sitemap.xml
