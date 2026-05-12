@@ -23,7 +23,8 @@
 <meta name="twitter:image" content="https://ohoteleirorico.com.br/og/workshop.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"></noscript>
 <style>
   :root {
     --red:#C41A1A;--red-bright:#E02020;--red-dim:#8B1212;
@@ -166,33 +167,6 @@
   .reveal.visible{opacity:1;transform:translateY(0)}
   @media(max-width:680px){.bio-inner{grid-template-columns:1fr}.bio-photo{aspect-ratio:1;max-width:180px}.form-card{padding:32px 20px}.modules{grid-template-columns:1fr}.hero-meta{flex-direction:column;gap:0}.meta-item{border-right:none;border-bottom:1px solid var(--black-5)}}
 </style>
-  <!-- Facebook Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function()
-    {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1543142607331163');
-    
-fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163</head>ev=PageView</head>noscript=1"/></noscript>
-  <!-- Fim Facebook Pixel -->
-  <!-- Pixel: ViewContent -->
-  <script>
-    fbq('track', 'ViewContent', {
-      content_name: 'Workshop Hoteleiro Rico',
-      content_category: 'Workshop',
-      content_ids: ['workshop-18-maio'],
-      content_type: 'product',
-      value: 47.00,
-      currency: 'BRL'
-    });
-  </script>
 </head>
 <body>
 
@@ -433,5 +407,27 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   });
 });
 </script>
+<!-- Facebook Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function()
+  {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1543142607331163');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', {
+    content_name: 'Workshop Hoteleiro Rico',
+    content_category: 'Workshop',
+    content_ids: ['workshop-18-maio'],
+    content_type: 'product',
+    value: 47.00,
+    currency: 'BRL'
+  });
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163&ev=PageView&noscript=1"/></noscript>
 </body>
 </html>

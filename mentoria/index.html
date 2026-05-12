@@ -23,7 +23,8 @@
 <meta name="twitter:image" content="https://ohoteleirorico.com.br/og/mentoria.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"></noscript>
 
 <style>
 /* ── RESET & BASE ──────────────────────────────────────────────── */
@@ -722,31 +723,6 @@ footer a { color: var(--red2); text-decoration: none; }
   .hero { padding: 80px 0 48px; }
 }
 </style>
-  <!-- Facebook Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function()
-    {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1543142607331163');
-    
-fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163</head>ev=PageView</head>noscript=1"/></noscript>
-  <!-- Fim Facebook Pixel -->
-  <!-- Pixel: ViewContent -->
-  <script>
-    fbq('track', 'ViewContent', {
-      content_name: 'Mentoria Hoteleiro Rico',
-      content_category: 'Mentoria',
-      content_ids: ['mentoria-60-dias'],
-      content_type: 'product'
-    });
-  </script>
 </head>
 <body>
 
@@ -1175,5 +1151,25 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
+<!-- Facebook Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function()
+  {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1543142607331163');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', {
+    content_name: 'Mentoria Hoteleiro Rico',
+    content_category: 'Mentoria',
+    content_ids: ['mentoria-60-dias'],
+    content_type: 'product'
+  });
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163&ev=PageView&noscript=1"/></noscript>
 </body>
 </html>
