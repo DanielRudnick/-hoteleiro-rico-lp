@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /workshop/obrigado
+
+Sitemap: https://ohoteleirorico.com.br/sitemap.xml
