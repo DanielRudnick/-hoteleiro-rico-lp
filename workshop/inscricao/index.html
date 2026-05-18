@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscrição — Workshop Hoteleiro Rico · 18 de Maio</title>
+<meta name="description" content="Garanta sua vaga no Workshop Hoteleiro Rico. Preencha o formulário e complete sua inscrição.">
+<link rel="canonical" href="https://ohoteleirorico.com.br/workshop/inscricao">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"></noscript>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#C41A1A;--red-bright:#E02020;--red-dim:#8B1212;
+  --black:#080808;--black-2:#0F0F0F;--black-3:#171717;--black-4:#222222;--black-5:#2E2E2E;
+  --white:#FFFFFF;--off-white:#F4F4F4;--gray:#AAAAAA;--gray-dim:#555555;
+  --green:#2ECC71;--gold:#C9A84C;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--off-white);font-family:'Barlow',sans-serif;font-size:16px;line-height:1.6;min-height:100vh}
+
+/* NAV */
+nav{background:var(--black-2);border-bottom:1px solid var(--black-5);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;color:var(--off-white);text-decoration:none}
+.nav-logo span{color:var(--red-bright)}
+.nav-back{font-size:12px;color:var(--gray);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--off-white)}
+
+/* LAYOUT */
+.page{max-width:1000px;margin:0 auto;padding:48px 20px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:720px){.page{grid-template-columns:1fr;gap:32px;padding:32px 16px 60px}}
+
+/* LADO ESQUERDO — RESUMO */
+.info-side{}
+.badge{display:inline-block;border:1px solid var(--red-dim);background:rgba(196,26,26,.08);color:var(--red-bright);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;margin-bottom:20px}
+.info-side h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,3.6rem);line-height:.95;letter-spacing:.02em;color:var(--white);margin-bottom:16px;text-transform:uppercase}
+.info-side h1 em{font-style:normal;color:var(--red-bright);display:block}
+.info-side p{color:var(--gray);font-size:.95rem;font-weight:300;margin-bottom:28px;max-width:400px}
+
+.meta-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--black-5);margin-bottom:28px}
+.meta-row{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--black-5);background:var(--black-2)}
+.meta-row:last-child{border-bottom:none}
+.meta-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
+.meta-text{font-size:.88rem;color:var(--off-white);font-weight:500}
+.meta-text span{color:var(--gray);font-weight:400;margin-left:4px}
+
+.topics{margin-bottom:28px}
+.topics-title{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-dim);margin-bottom:14px}
+.topic{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:.88rem;color:var(--gray)}
+.topic-dot{width:6px;height:6px;background:var(--red-bright);border-radius:50%;flex-shrink:0;margin-top:7px}
+.topic strong{color:var(--off-white);display:block;font-weight:600;font-size:.9rem}
+
+.price-box{background:var(--black-3);border:1px solid var(--black-5);border-left:4px solid var(--red);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.price-label-text{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-dim);margin-bottom:4px}
+.price-value{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--green);line-height:1;letter-spacing:.04em}
+.price-note{font-size:.75rem;color:var(--gray-dim)}
+.guarantee{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.8rem;color:var(--gray-dim)}
+.guarantee span{color:var(--green)}
+
+/* LADO DIREITO — FORMULÁRIO */
+.form-side{}
+.form-card{background:var(--black-3);border:1px solid var(--black-5);padding:36px 32px}
+@media(max-width:480px){.form-card{padding:24px 16px}}
+.form-card h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.03em;color:var(--white);margin-bottom:6px;text-transform:uppercase}
+.form-subtitle{font-size:.85rem;color:var(--gray);margin-bottom:28px}
+
+.field{margin-bottom:18px}
+.field label{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:7px}
+.field input,.field select{width:100%;background:var(--black-2);border:1px solid var(--black-5);color:var(--off-white);font-family:'Barlow',sans-serif;font-size:.92rem;padding:13px 14px;outline:none;transition:border-color .2s;appearance:none;-webkit-appearance:none}
+.field input::placeholder{color:var(--gray-dim)}
+.field input:focus,.field select:focus{border-color:var(--red)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23555' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+.field select option{background:var(--black-3)}
+
+.btn-submit{width:100%;background:var(--red);color:var(--white);font-family:'Barlow',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:17px;border:none;cursor:pointer;transition:background .18s,transform .12s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%);margin-top:8px}
+.btn-submit:hover:not(:disabled){background:var(--red-bright);transform:translateY(-1px)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+
+.form-security{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;font-size:.78rem;color:var(--gray-dim)}
+.form-security svg{flex-shrink:0}
+
+/* SUCCESS */
+.success-msg{display:none;text-align:center;padding:32px 0}
+.success-msg.active{display:block}
+.success-icon{font-size:2.4rem;margin-bottom:12px}
+.success-msg h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--white);margin-bottom:8px}
+.success-msg p{color:var(--gray);font-size:.92rem}
+
+/* ERROR */
+.error-msg{background:rgba(196,26,26,.12);border:1px solid var(--red-dim);color:var(--red-bright);font-size:.82rem;padding:10px 14px;margin-top:12px;display:none}
+.error-msg.active{display:block}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/workshop" class="nav-logo">HOTELEIRO<span>RICO</span></a>
+  <a href="/workshop" class="nav-back">← Voltar ao Workshop</a>
+</nav>
+
+<div class="page">
+
+  <!-- RESUMO -->
+  <div class="info-side">
+    <div class="badge">Workshop · 2º Lote</div>
+    <h1>Planejamento de<em>Vendas para</em>Hospedagem</h1>
+    <p>Uma imersão prática ao vivo sobre como estruturar a operação, vender mais direto e usar tecnologia e IA na sua hospedagem.</p>
+
+    <div class="meta-list">
+      <div class="meta-row">
+        <div class="meta-icon">📅</div>
+        <div class="meta-text">18 de Maio <span>· Domingo</span></div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-icon">🕕</div>
+        <div class="meta-text">19h (horário de Brasília)</div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-icon">💻</div>
+        <div class="meta-text">100% Online <span>· Google Meet</span></div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-icon">⏱</div>
+        <div class="meta-text">~4 horas <span>de imersão ao vivo</span></div>
+      </div>
+    </div>
+
+    <div class="topics">
+      <div class="topics-title">O que você vai aprender</div>
+      <div class="topic"><div class="topic-dot"></div><div><strong>Revenue Management na prática</strong>Como definir tarifas, gerir sazonalidade e aumentar o RevPAR.</div></div>
+      <div class="topic"><div class="topic-dot"></div><div><strong>Reduzir dependência de OTAs</strong>Estratégias para aumentar reservas diretas e cortar comissão.</div></div>
+      <div class="topic"><div class="topic-dot"></div><div><strong>Tecnologia e IA para hoteleiros</strong>Ferramentas acessíveis que automatizam e escalam a operação.</div></div>
+      <div class="topic"><div class="topic-dot"></div><div><strong>Diagnóstico ao vivo</strong>Análise da operação com João Gallucci e plano de ação.</div></div>
+    </div>
+
+    <div class="price-box">
+      <div>
+        <div class="price-label-text">2º Lote · Vagas limitadas</div>
+        <div class="price-value">R$67</div>
+        <div class="price-note">Pix, cartão ou boleto</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:.78rem;color:var(--gray-dim)">🔒 Pagamento<br>100% seguro</div>
+      </div>
+    </div>
+    <div class="guarantee"><span>✓</span> Garantia incondicional de 7 dias</div>
+  </div>
+
+  <!-- FORMULÁRIO -->
+  <div class="form-side">
+    <div class="form-card">
+      <h2>Garantir Minha Vaga</h2>
+      <p class="form-subtitle">Preencha os dados abaixo para reservar sua inscrição</p>
+
+      <form id="form-inscricao" novalidate>
+        <div class="field">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+        </div>
+        <div class="field">
+          <label for="telefone">WhatsApp / Telefone</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+        </div>
+        <div class="field">
+          <label for="hotel">Nome da hospedagem</label>
+          <input type="text" id="hotel" name="hotel" placeholder="Nome do seu hotel, pousada ou airbnb" required>
+        </div>
+        <div class="field">
+          <label for="quartos">Quantidade de quartos / unidades</label>
+          <select id="quartos" name="quartos" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="1-5">1 a 5 quartos</option>
+            <option value="6-15">6 a 15 quartos</option>
+            <option value="16-30">16 a 30 quartos</option>
+            <option value="31-60">31 a 60 quartos</option>
+            <option value="61+">Mais de 60 quartos</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btn-submit">
+          Reservar minha vaga →
+        </button>
+        <div class="error-msg" id="error-msg">Ocorreu um erro. Tente novamente ou entre em contato pelo WhatsApp.</div>
+      </form>
+
+      <div class="success-msg" id="success-msg">
+        <div class="success-icon">✅</div>
+        <h3>Inscrição confirmada!</h3>
+        <p>Você será redirecionado para concluir o pagamento...</p>
+      </div>
+
+      <div class="form-security">
+        <svg width="13" height="15" viewBox="0 0 13 15" fill="none"><path d="M6.5 0L0 2.5v4.167C0 10.208 2.783 13.892 6.5 15 10.217 13.892 13 10.208 13 6.667V2.5L6.5 0z" fill="#555"/></svg>
+        Pagamento seguro via Kiwify · Pix, cartão ou boleto
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const WEBHOOK = 'COLE_AQUI_O_URL_DO_APPS_SCRIPT';
+const REDIRECT = '/workshop/obrigado';
+
+const form = document.getElementById('form-inscricao');
+const btn  = document.getElementById('btn-submit');
+const errMsg = document.getElementById('error-msg');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errMsg.classList.remove('active');
+
+  const nome     = document.getElementById('nome').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const telefone = document.getElementById('telefone').value.trim();
+  const hotel    = document.getElementById('hotel').value.trim();
+  const quartos  = document.getElementById('quartos').value;
+
+  if (!nome || !email || !telefone || !hotel || !quartos) {
+    errMsg.textContent = 'Preencha todos os campos antes de continuar.';
+    errMsg.classList.add('active');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  try {
+    await fetch(WEBHOOK, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ nome, email, telefone, hotel, quartos, origem: 'inscricao-workshop', data: new Date().toISOString() })
+    });
+  } catch(err) {
+    // no-cors pode lançar mesmo com sucesso; segue o fluxo
+  }
+
+  // Pixel
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Lead', { content_name: 'Inscrição Workshop', content_category: 'Workshop' });
+  }
+
+  document.getElementById('success-msg').classList.add('active');
+  form.style.display = 'none';
+
+  setTimeout(() => { window.location.href = '/workshop/obrigado'; }, 1800);
+});
+</script>
+
+<!-- Facebook Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function()
+  {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1543142607331163');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163&ev=PageView&noscript=1"/></noscript>
+</body>
+</html>
