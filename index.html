@@ -157,7 +157,7 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
 .eco-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,58px);color:var(--cream);line-height:0.95;letter-spacing:0.02em;margin-bottom:16px}
 .eco-header p{font-size:16px;color:var(--gray);font-weight:300;line-height:1.65}
 
-.eco-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.eco-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
 .eco-card{
   background:var(--bg3);
   padding:44px 36px;
@@ -186,6 +186,11 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
 .eco-feat::before{content:'→';color:var(--red3);flex-shrink:0;font-size:11px;margin-top:1px}
 .eco-card.gold .eco-feat::before{color:var(--gold)}
 .eco-card.green .eco-feat::before{color:var(--green2)}
+.eco-card.blue::before{background:linear-gradient(90deg,#1A5C8B,#2980B9)}
+.eco-card.blue .eco-tipo{color:#5BA8D4}
+.eco-card.blue .eco-feat::before{color:#5BA8D4}
+.eco-card.blue .eco-cta{background:rgba(26,92,139,0.15);color:#5BA8D4;border:1px solid rgba(26,92,139,0.4)}
+.eco-card.blue .eco-cta:hover{background:rgba(26,92,139,0.28)}
 .eco-cta{
   display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.08em;
   text-transform:uppercase;padding:12px 24px;text-decoration:none;
@@ -312,7 +317,7 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
   .numeros-grid{grid-template-columns:repeat(2,1fr)}
   .numero-item{border-bottom:1px solid rgba(255,255,255,0.1)}
   .sobre-grid{grid-template-columns:1fr}
-  .eco-cards{grid-template-columns:1fr}
+  .eco-cards{grid-template-columns:repeat(2,1fr)}
   .diag-steps{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .teaser-inner{padding:36px 28px}
@@ -405,6 +410,7 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
         <a href="#sobre">Sobre</a>
         <a href="#ecossistema">Soluções</a>
         <a href="#diagnostico">Diagnóstico</a>
+        <a href="comunidade">Comunidade</a>
         <a href="mentoria" class="nav-cta">Ver Mentoria</a>
       </div>
     </div>
@@ -542,7 +548,7 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
   <div class="container">
     <div class="eco-header fade-up">
       <div class="tag">O ecossistema</div>
-      <h2>Três frentes.<br>Uma missão.</h2>
+      <h2>Quatro frentes.<br>Uma missão.</h2>
       <p>Cada empresa do ecossistema resolve um problema específico do hoteleiro — e juntas formam a operação completa que seu negócio precisa.</p>
     </div>
 
@@ -597,6 +603,23 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
           <div class="eco-feat">Acompanhamento mensal recorrente</div>
         </div>
         <a href="https://innsidehotelaria.com.br" target="_blank" class="eco-cta">Conhecer Inn.Side →</a>
+      </div>
+
+      <!-- COMUNIDADE -->
+      <div class="eco-card blue fade-up">
+        <div class="eco-icon">📅</div>
+        <div class="eco-nome">Comunidade</div>
+        <div class="eco-tipo">Aulas ao vivo · Toda quarta · Gratuito</div>
+        <p class="eco-desc">
+          Toda semana João Gallucci entra ao vivo para falar sobre operação, vendas, precificação, gestão de equipe e liderança. Sem enrolação, sem teoria.
+        </p>
+        <div class="eco-features">
+          <div class="eco-feat">Aulas ao vivo toda quarta-feira</div>
+          <div class="eco-feat">Conteúdo prático e aplicável</div>
+          <div class="eco-feat">Grupo exclusivo de hoteleiros</div>
+          <div class="eco-feat">100% gratuito</div>
+        </div>
+        <a href="comunidade" class="eco-cta">Entrar na comunidade →</a>
       </div>
 
     </div>
