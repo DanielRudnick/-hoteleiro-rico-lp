@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Comunidade Hoteleiro Rico | Aulas Ao Vivo Toda Quarta — Gratuito</title>
+<meta name="description" content="Entre na comunidade e participe das aulas ao vivo toda quarta-feira com João Gallucci. Conteúdo prático para hoteleiros que querem crescer de verdade. Gratuito.">
+<link rel="canonical" href="https://ohoteleirorico.com.br/comunidade">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ohoteleirorico.com.br/comunidade">
+<meta property="og:title" content="Comunidade Hoteleiro Rico — Aulas Toda Quarta, Gratuito">
+<meta property="og:description" content="João Gallucci ao vivo toda quarta-feira. Operação, vendas, IA e gestão para hoteleiros sérios. Acesso gratuito.">
+<meta property="og:image" content="https://ohoteleirorico.com.br/og/comunidade.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Hoteleiro Rico">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Comunidade Hoteleiro Rico — Aulas Toda Quarta">
+<meta name="twitter:description" content="Ao vivo toda quarta com João Gallucci. Gratuito.">
+<meta name="twitter:image" content="https://ohoteleirorico.com.br/og/comunidade.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --red:#C41A1A;--red-bright:#E02020;--red-dim:#8B1212;
+    --red-glow:rgba(196,26,26,0.18);
+    --black:#080808;--black-2:#0F0F0F;--black-3:#171717;
+    --black-4:#222222;--black-5:#2E2E2E;
+    --white:#FFFFFF;--off-white:#F4F4F4;
+    --gray:#AAAAAA;--gray-dim:#555555;--green:#2ECC71;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--off-white);font-family:'Barlow',sans-serif;font-size:17px;line-height:1.65;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E");opacity:.55;pointer-events:none;z-index:0}
+
+  /* TOPBAR */
+  .topbar{background:var(--red);color:var(--white);text-align:center;padding:11px 20px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:10}
+
+  /* HERO */
+  .hero{position:relative;z-index:1;padding:80px 20px 100px;text-align:center;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse at center,var(--red-glow) 0%,transparent 65%);pointer-events:none;z-index:0}
+  .hero::after{content:'';position:absolute;top:0;left:-5%;width:110%;height:4px;background:linear-gradient(90deg,transparent 0%,var(--red) 30%,var(--red-bright) 50%,var(--red) 70%,transparent 100%);z-index:2}
+  .hero-inner{position:relative;z-index:1;max-width:860px;margin:0 auto}
+  .badge{display:inline-block;border:1px solid var(--red-dim);background:rgba(196,26,26,.08);color:var(--red-bright);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:7px 18px;margin-bottom:36px;animation:fadeUp .5s ease both}
+  .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.2rem,9vw,6.4rem);font-weight:400;line-height:.95;letter-spacing:.02em;margin-bottom:28px;color:var(--white);animation:fadeUp .6s .08s ease both;text-transform:uppercase}
+  .hero h1 em{font-style:normal;color:var(--red-bright)}
+  .hero h1 span{display:block}
+  .hero-sub{font-size:1.1rem;color:var(--gray);max-width:580px;margin:0 auto 52px;font-weight:300;animation:fadeUp .6s .16s ease both}
+  .hero-bullets{display:flex;justify-content:center;gap:0;flex-wrap:wrap;margin-bottom:56px;animation:fadeUp .6s .22s ease both;border:1px solid var(--black-5);max-width:640px;margin-left:auto;margin-right:auto}
+  .bullet-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:18px 24px;flex:1;border-right:1px solid var(--black-5);background:var(--black-2)}
+  .bullet-item:last-child{border-right:none}
+  .bullet-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-dim)}
+  .bullet-value{font-size:.92rem;font-weight:600;color:var(--off-white)}
+
+  /* FORM */
+  .form-section{position:relative;z-index:1;padding:0 20px 100px}
+  .form-card{max-width:540px;margin:0 auto;background:var(--black-2);border:1px solid var(--black-5);border-top:3px solid var(--red);padding:52px 48px}
+  .form-header{text-align:center;margin-bottom:40px}
+  .form-header h2{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:10px}
+  .form-header p{font-size:.9rem;color:var(--gray);line-height:1.6}
+  .form-group{margin-bottom:20px}
+  .form-group label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:8px}
+  .form-group input,
+  .form-group select{
+    width:100%;
+    background:var(--black-3);
+    border:1px solid var(--black-5);
+    border-radius:0;
+    color:var(--off-white);
+    font-family:'Barlow',sans-serif;
+    font-size:.95rem;
+    padding:14px 16px;
+    outline:none;
+    transition:border-color .2s;
+    appearance:none;
+    -webkit-appearance:none;
+  }
+  .form-group input::placeholder{color:var(--gray-dim)}
+  .form-group input:focus,
+  .form-group select:focus{border-color:var(--red)}
+  .form-group select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 16px center;
+    padding-right:40px;
+    cursor:pointer;
+  }
+  .form-group select option{background:var(--black-3);color:var(--off-white)}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .btn{display:inline-block;background:var(--red);color:var(--white);font-family:'Barlow',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:18px 52px;border:none;cursor:pointer;text-decoration:none;transition:background .18s,transform .12s,box-shadow .18s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 100%,12px 100%)}
+  .btn:hover{background:var(--red-bright);transform:translateY(-2px);box-shadow:0 8px 40px rgba(196,26,26,.45)}
+  .btn:disabled{background:var(--gray-dim);cursor:not-allowed;transform:none;box-shadow:none}
+  .btn-full{width:100%;text-align:center;clip-path:none;padding:18px;font-size:1rem}
+  .form-note{text-align:center;font-size:.78rem;color:var(--gray-dim);margin-top:14px}
+  .form-success{display:none;text-align:center;padding:40px 0}
+  .form-success-icon{font-size:2.5rem;margin-bottom:16px}
+  .form-success h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;font-weight:400;letter-spacing:.04em;color:var(--white);margin-bottom:10px}
+  .form-success p{font-size:.9rem;color:var(--gray)}
+  .form-success .green{color:var(--green)}
+
+  /* O QUE VEM NAS AULAS */
+  section{position:relative;z-index:1}
+  .container{max-width:860px;margin:0 auto;padding:0 20px}
+  .temas{padding:100px 20px;background:var(--black-2);border-top:1px solid var(--black-5);border-bottom:1px solid var(--black-5)}
+  .section-tag{display:inline-block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-bright);margin-bottom:14px;font-weight:600}
+  h2.sec{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:400;line-height:1.05;margin-bottom:16px;letter-spacing:.02em;text-transform:uppercase;color:var(--white)}
+  h2.sec em{font-style:normal;color:var(--red-bright)}
+  .temas-intro{text-align:center;margin-bottom:56px}
+  .temas-intro p{color:var(--gray);max-width:540px;margin:0 auto}
+  .temas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--black-5);border:1px solid var(--black-5)}
+  .tema{background:var(--black-3);padding:36px 28px;transition:background .2s;position:relative;overflow:hidden}
+  .tema::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+  .tema:hover{background:var(--black-4)}
+  .tema:hover::before{transform:scaleX(1)}
+  .tema-icon{font-size:1.4rem;margin-bottom:14px}
+  .tema h3{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;font-weight:400;margin-bottom:8px;color:var(--white);letter-spacing:.04em;text-transform:uppercase}
+  .tema p{font-size:.85rem;color:var(--gray);line-height:1.55}
+
+  /* PARA QUEM */
+  .forwho{padding:100px 20px;text-align:center}
+  .forwho .intro{max-width:580px;margin:0 auto 52px}
+  .forwho .intro p{color:var(--gray);font-size:1rem}
+  .check-list{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px;text-align:left}
+  .check-item{display:flex;align-items:flex-start;gap:14px;font-size:.92rem;color:var(--gray)}
+  .check-dot{width:18px;height:18px;background:var(--red);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .check-dot svg{width:10px;height:10px;stroke:var(--white);stroke-width:2.5;fill:none}
+
+  /* BIO */
+  .bio{padding:100px 20px;background:var(--black-2);border-top:1px solid var(--black-5);border-bottom:1px solid var(--black-5)}
+  .bio-inner{display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start;max-width:760px;margin:0 auto}
+  .bio-photo{background:var(--black-3);border:1px solid var(--black-5);border-top:3px solid var(--red);aspect-ratio:3/4;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+  .bio-photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
+  .bio-tag{display:inline-block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-bright);margin-bottom:10px;font-weight:600}
+  .bio h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;font-weight:400;letter-spacing:.04em;color:var(--white);margin-bottom:6px}
+  .bio-subtitle{font-size:.95rem;font-style:italic;color:var(--gray);margin-bottom:20px;font-weight:300}
+  .bio p{color:var(--gray);margin-bottom:14px;font-size:.9rem;line-height:1.7}
+  .bio-creds{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+  .bio-cred{display:flex;align-items:center;gap:12px;font-size:.85rem;color:var(--gray)}
+  .bio-cred-dot{width:4px;height:4px;background:var(--red-bright);flex-shrink:0;transform:rotate(45deg)}
+
+  /* FINAL CTA */
+  .final-cta{padding:100px 20px;text-align:center;position:relative;overflow:hidden}
+  .final-cta::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse,var(--red-glow) 0%,transparent 65%);pointer-events:none}
+  .final-cta h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,6vw,4rem);margin-bottom:16px;letter-spacing:.02em;text-transform:uppercase}
+  .final-cta h2 em{font-style:normal;color:var(--red-bright)}
+  .final-cta p{color:var(--gray);max-width:500px;margin:0 auto 48px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--black-5);padding:40px 20px;text-align:center;font-size:.78rem;color:var(--gray-dim);position:relative;z-index:1;line-height:1.8}
+  footer a{color:var(--red-dim);text-decoration:none}
+  footer a:hover{color:var(--red-bright)}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  @media(max-width:680px){
+    .hero{padding:60px 20px 80px}
+    .hero-bullets{flex-direction:column;gap:0}
+    .bullet-item{border-right:none;border-bottom:1px solid var(--black-5)}
+    .bullet-item:last-child{border-bottom:none}
+    .form-card{padding:32px 20px}
+    .form-row{grid-template-columns:1fr}
+    .bio-inner{grid-template-columns:1fr}
+    .bio-photo{aspect-ratio:1;max-width:160px}
+    .temas-grid{grid-template-columns:1fr}
+  }
+</style>
+
+<!-- Facebook Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function()
+  {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1543142607331163');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163&ev=PageView&noscript=1"/></noscript>
+<!-- Fim Facebook Pixel -->
+</head>
+<body>
+
+<div class="topbar">Toda quarta-feira &nbsp;·&nbsp; Ao vivo &nbsp;·&nbsp; <strong>100% gratuito</strong></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="badge">Comunidade Hoteleiro Rico</div>
+    <h1>
+      <span>Aulas ao vivo</span>
+      <span>toda quarta</span>
+      <em>para hoteleiros</em>
+    </h1>
+    <p class="hero-sub">Toda semana João Gallucci entra ao vivo pra falar sobre o que realmente move o resultado de uma hospedagem — operação, vendas, precificação e IA. Sem enrolação.</p>
+
+    <div class="hero-bullets">
+      <div class="bullet-item">
+        <span class="bullet-label">Frequência</span>
+        <span class="bullet-value">Toda quarta</span>
+      </div>
+      <div class="bullet-item">
+        <span class="bullet-label">Formato</span>
+        <span class="bullet-value">Ao vivo · Online</span>
+      </div>
+      <div class="bullet-item">
+        <span class="bullet-label">Investimento</span>
+        <span class="bullet-value" style="color:var(--green)">Gratuito</span>
+      </div>
+      <div class="bullet-item">
+        <span class="bullet-label">Acesso</span>
+        <span class="bullet-value">Via grupo exclusivo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section">
+  <div class="form-card reveal">
+    <div class="form-header">
+      <h2>Quero entrar na comunidade</h2>
+      <p>Preencha abaixo e garanta seu acesso às aulas de quarta-feira</p>
+    </div>
+
+    <form id="form-comunidade" novalidate>
+      <div class="form-group">
+        <label for="nome">Seu nome</label>
+        <input type="text" id="nome" name="nome" placeholder="Como você se chama?" autocomplete="name" required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" autocomplete="email" required />
+        </div>
+        <div class="form-group">
+          <label for="telefone">WhatsApp</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" autocomplete="tel" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="propriedade">Nome da propriedade</label>
+        <input type="text" id="propriedade" name="propriedade" placeholder="Ex: Pousada do Vale" required />
+      </div>
+
+      <div class="form-group">
+        <label for="quartos">Número de quartos / unidades</label>
+        <select id="quartos" name="quartos" required>
+          <option value="" disabled selected>Selecione</option>
+          <option value="1-5">1 a 5 quartos</option>
+          <option value="6-15">6 a 15 quartos</option>
+          <option value="16-30">16 a 30 quartos</option>
+          <option value="31-60">31 a 60 quartos</option>
+          <option value="61+">Mais de 60 quartos</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-full" id="btn-submit">
+        Quero participar gratuitamente
+      </button>
+      <p class="form-note">Seus dados são protegidos. Sem spam, prometido.</p>
+    </form>
+
+    <div class="form-success" id="form-success">
+      <div class="form-success-icon">🎯</div>
+      <h3>Você está dentro!</h3>
+      <p>Em breve você vai receber as informações de acesso.<br>Fique de olho no seu WhatsApp e e-mail.</p>
+      <p style="margin-top:16px;font-size:.82rem;color:var(--gray-dim)">Próxima aula: <span class="green">quarta-feira</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- TEMAS DAS AULAS -->
+<section class="temas">
+  <div class="container">
+    <div class="temas-intro reveal">
+      <span class="section-tag">O que você vai aprender</span>
+      <h2 class="sec">Conteúdo que <em>move resultado</em></h2>
+      <p>Cada aula foca em um tema diferente — sempre prático, sempre aplicável na semana seguinte.</p>
+    </div>
+    <div class="temas-grid reveal">
+      <div class="tema">
+        <div class="tema-icon">📈</div>
+        <h3>Precificação inteligente</h3>
+        <p>Como definir o preço certo em cada período sem perder margem nem ficar com quarto vazio.</p>
+      </div>
+      <div class="tema">
+        <div class="tema-icon">🤝</div>
+        <h3>Vendas diretas</h3>
+        <p>Estratégias para reduzir a dependência das OTAs e aumentar a receita sem pagar comissão.</p>
+      </div>
+      <div class="tema">
+        <div class="tema-icon">⚙️</div>
+        <h3>Operação sem caos</h3>
+        <p>Processos, checklist e rotinas para a equipe funcionar mesmo quando você não está presente.</p>
+      </div>
+      <div class="tema">
+        <div class="tema-icon">🤖</div>
+        <h3>IA na hotelaria</h3>
+        <p>Ferramentas de inteligência artificial que já estão sendo usadas por hoteleiros para ganhar tempo e dinheiro.</p>
+      </div>
+      <div class="tema">
+        <div class="tema-icon">⭐</div>
+        <h3>Reputação e avaliações</h3>
+        <p>Como transformar reviews em receita e usar o feedback do hóspede a seu favor.</p>
+      </div>
+      <div class="tema">
+        <div class="tema-icon">💡</div>
+        <h3>Gestão financeira</h3>
+        <p>Indicadores essenciais, controle de custos e como enxergar o número real do seu negócio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="forwho">
+  <div class="container">
+    <div class="intro reveal">
+      <span class="section-tag">Para quem é</span>
+      <h2 class="sec">Feito para quem <em>opera</em></h2>
+      <p>Se você está no dia a dia da sua hospedagem e quer crescer com método, esse espaço é seu.</p>
+    </div>
+    <div class="check-list reveal">
+      <div class="check-item">
+        <div class="check-dot"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
+        <span>Proprietários de pousadas, hotéis boutique, apart-hotéis e hospedagens independentes</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
+        <span>Quem sente que está apagando incêndio todo dia e quer construir uma operação de verdade</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
+        <span>Gestores que querem entender melhor os números e tomar decisões com mais segurança</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
+        <span>Hoteleiros que querem crescer, mas sem contratar mais gente ou trabalhar mais horas</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
+        <span>Qualquer pessoa séria sobre o setor de hospitalidade que quer evoluir toda semana</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section class="bio">
+  <div class="bio-inner reveal">
+    <div class="bio-photo">
+      <img src="/JOAO.jpg" alt="João Gallucci" />
+    </div>
+    <div>
+      <span class="bio-tag">Seu professor</span>
+      <h3>João Gallucci</h3>
+      <p class="bio-subtitle">De R$1.000 e um sonho a 16 empresas em 8 anos.</p>
+      <p>Empreendedor serial do setor de hospitalidade, João construiu um ecossistema de negócios partindo do zero. Hoje ele ensina outros hoteleiros a replicar o método que usou para escalar.</p>
+      <p>Nas aulas de quarta, ele compartilha o que está funcionando agora — sem teoria, só prática de quem está operando.</p>
+      <div class="bio-creds">
+        <div class="bio-cred"><div class="bio-cred-dot"></div><span>+16 empresas fundadas no setor de hospitalidade</span></div>
+        <div class="bio-cred"><div class="bio-cred-dot"></div><span>+8 anos operando e escalando negócios hoteleiros</span></div>
+        <div class="bio-cred"><div class="bio-cred-dot"></div><span>Referência em IA aplicada à hotelaria no Brasil</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <div class="reveal">
+      <h2>Sua próxima aula é <em>quarta-feira</em></h2>
+      <p>Entre na comunidade agora e não perca nenhum encontro. É gratuito.</p>
+      <a href="#form-comunidade" class="btn" onclick="document.getElementById('nome').focus();return false;">
+        Garantir meu acesso gratuito
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><a href="https://ohoteleirorico.com.br">Hoteleiro Rico</a> &nbsp;·&nbsp; João Gallucci &nbsp;·&nbsp; Todos os direitos reservados</p>
+  <p style="margin-top:6px"><a href="https://ohoteleirorico.com.br/mentoria">Mentoria</a> &nbsp;·&nbsp; <a href="https://ohoteleirorico.com.br/workshop">Workshop</a></p>
+</footer>
+
+<script>
+  // ─── CONFIGURAÇÃO ───────────────────────────────────────────────────────────
+  // Cole aqui a URL do seu Google Apps Script ou webhook (Zapier / Make)
+  const SHEETS_URL = "";
+  // ────────────────────────────────────────────────────────────────────────────
+
+  const form   = document.getElementById("form-comunidade");
+  const btn    = document.getElementById("btn-submit");
+  const success = document.getElementById("form-success");
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const nome        = document.getElementById("nome").value.trim();
+    const email       = document.getElementById("email").value.trim();
+    const telefone    = document.getElementById("telefone").value.trim();
+    const propriedade = document.getElementById("propriedade").value.trim();
+    const quartos     = document.getElementById("quartos").value;
+
+    if (!nome || !email || !telefone || !propriedade || !quartos) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Enviando...";
+
+    const payload = { nome, email, telefone, propriedade, quartos };
+
+    if (SHEETS_URL) {
+      try {
+        await fetch(SHEETS_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      } catch (_) {}
+    }
+
+    // Pixel: lead
+    if (typeof fbq !== "undefined") {
+      fbq("track", "Lead", { content_name: "comunidade" });
+    }
+
+    form.style.display = "none";
+    success.style.display = "block";
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => { if (el.isIntersecting) el.target.classList.add("visible"); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+  // Scroll suave para o formulário
+  document.querySelectorAll('a[href="#form-comunidade"]').forEach(a => {
+    a.addEventListener("click", e => {
+      e.preventDefault();
+      document.querySelector(".form-section").scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => document.getElementById("nome").focus(), 600);
+    });
+  });
+</script>
+</body>
+</html>
