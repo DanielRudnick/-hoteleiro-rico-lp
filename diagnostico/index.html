@@ -186,11 +186,14 @@ nav{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px 
 .btn-refazer{display:block;text-align:center;font-size:12px;color:var(--gray);cursor:pointer;margin-top:20px;background:none;border:none;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px}
 
 /* ── AGENDAMENTO DROPDOWN ── */
-.cal-section{margin-top:28px;text-align:center}
-.cal-section-copy{font-size:13px;color:var(--gray2);font-weight:300;margin-bottom:16px;line-height:1.6}
-.btn-cal-toggle{display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(245,239,230,.25);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:14px 32px;cursor:pointer;transition:border-color .2s,background .2s;width:100%;justify-content:center}
-.btn-cal-toggle:hover{border-color:rgba(245,239,230,.5);background:rgba(255,255,255,.04)}
-.btn-cal-toggle .toggle-arrow{transition:transform .3s;font-style:normal;font-size:11px}
+.cal-section{margin-top:0;text-align:center}
+.cal-cta-block{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.3);padding:24px 28px;margin-top:12px;text-align:center;position:relative;overflow:hidden}
+.cal-cta-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.7),transparent)}
+.cal-cta-eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cal-cta-text{font-size:13px;color:var(--gray2);font-weight:300;line-height:1.6;margin-bottom:18px}
+.btn-cal-toggle{display:block;width:100%;padding:16px 36px;background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s;position:relative}
+.btn-cal-toggle:hover{background:rgba(201,168,76,.12)}
+.btn-cal-toggle .toggle-arrow{transition:transform .3s;font-style:normal;font-size:11px;margin-left:8px}
 .btn-cal-toggle.open .toggle-arrow{transform:rotate(180deg)}
 .cal-dropdown{display:none;margin-top:16px;background:#fff;overflow:hidden}
 .cal-dropdown.open{display:block}
@@ -797,22 +800,24 @@ function buildCTA(tier, score) {
 
   const calDropdown = `
     <div class="cal-section">
-      <p class="cal-section-copy">Se desejar marcar uma reunião com nossa equipe, clique no botão abaixo.</p>
-      <button class="btn-cal-toggle" onclick="toggleCal(this)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Agendar conversa gratuita
-        <em class="toggle-arrow">▼</em>
-      </button>
-      <div class="cal-dropdown">
-        <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0JRUX1rM55I8Fr4iGB-dNyAnDdsCKjM0g8iAOFBZU9tK-qg6XJLdu-HRWBzjrP05C07UvH_qfn?gv=true" height="680" frameborder="0" allowfullscreen></iframe>
+      <div class="cal-cta-block">
+        <div class="cal-cta-eyebrow">Conversa gratuita · 30 minutos</div>
+        <p class="cal-cta-text">30 minutos com nossa equipe podem revelar exatamente quanto você está deixando de faturar — e o que fazer para mudar isso agora.</p>
+        <button class="btn-cal-toggle" onclick="toggleCal(this)">
+          Quero essa conversa
+          <em class="toggle-arrow">▼</em>
+        </button>
+        <div class="cal-dropdown">
+          <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0JRUX1rM55I8Fr4iGB-dNyAnDdsCKjM0g8iAOFBZU9tK-qg6XJLdu-HRWBzjrP05C07UvH_qfn?gv=true" height="680" frameborder="0" allowfullscreen></iframe>
+        </div>
       </div>
     </div>`;
 
   const workshopBlock = `
     <div class="workshop-cta-block">
       <div class="workshop-cta-eyebrow">Próximo passo</div>
-      <p class="workshop-cta-text">O diagnóstico mostrou onde está o problema. O Workshop mostra como resolver.</p>
-      <a href="/workshop" class="btn-workshop-shine">Ver o Workshop — R$27 →</a>
+      <p class="workshop-cta-text">A maioria dos hoteleiros faz o diagnóstico, descobre exatamente o que está errado, fecha a aba e não muda nada. Se você quer ser diferente, o próximo passo está aqui.</p>
+      <a href="/workshop" class="btn-workshop-shine">Ver o próximo passo →</a>
     </div>`;
 
   if (tier.tipo === 'hot') return `
