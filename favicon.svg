@@ -1,4 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <rect width="512" height="512" fill="#C41A1A"/>
-  <text x="256" y="340" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="230" fill="#F5EFE6" text-anchor="middle" letter-spacing="-8">HR</text>
+  <!-- H -->
+  <rect x="20" y="96" width="52" height="320" fill="#F5EFE6"/>
+  <rect x="188" y="96" width="52" height="320" fill="#F5EFE6"/>
+  <rect x="20" y="230" width="220" height="52" fill="#F5EFE6"/>
+  <!-- R -->
+  <rect x="272" y="96" width="52" height="320" fill="#F5EFE6"/>
+  <rect x="272" y="96" width="220" height="52" fill="#F5EFE6"/>
+  <rect x="440" y="96" width="52" height="168" fill="#F5EFE6"/>
+  <rect x="272" y="212" width="220" height="52" fill="#F5EFE6"/>
+  <polygon points="378,264 492,264 492,416 430,416" fill="#F5EFE6"/>
 </svg>
