@@ -401,13 +401,11 @@
 </footer>
 
 <script>
-  // ─── CONFIGURAÇÃO ───────────────────────────────────────────────────────────
-  // Cole aqui a URL do seu Google Apps Script ou webhook (Zapier / Make)
-  const SHEETS_URL = "https://script.google.com/macros/s/AKfycbwu4JJG_ljodQHsBxZtmDhj2_uaItGYIhv8ebbLT7yp0xWwj-cVeBebssdFF-M-SamdyA/exec";
-  // ────────────────────────────────────────────────────────────────────────────
+  const SHEETS_URL   = "https://script.google.com/macros/s/AKfycbwu4JJG_ljodQHsBxZtmDhj2_uaItGYIhv8ebbLT7yp0xWwj-cVeBebssdFF-M-SamdyA/exec";
+  const SELLFLUX_URL = "https://webhook.sellflux.app/v2/webhook/sellflux/83a96dabe23ac6b68e65edc23e176787";
 
-  const form   = document.getElementById("form-comunidade");
-  const btn    = document.getElementById("btn-submit");
+  const form    = document.getElementById("form-comunidade");
+  const btn     = document.getElementById("btn-submit");
   const success = document.getElementById("form-success");
 
   form.addEventListener("submit", async function(e) {
@@ -427,18 +425,31 @@
     btn.disabled = true;
     btn.textContent = "Enviando...";
 
-    const payload = { nome, email, telefone, propriedade, quartos };
+    // Formata telefone: remove tudo que não é dígito e adiciona DDI 55
+    const phoneDigits = telefone.replace(/\D/g, "");
+    const phone = phoneDigits.startsWith("55") ? phoneDigits : "55" + phoneDigits;
 
-    if (SHEETS_URL) {
-      try {
-        await fetch(SHEETS_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      } catch (_) {}
-    }
+    // Envia para Google Sheets e SellFlux em paralelo
+    await Promise.allSettled([
+      fetch(SHEETS_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, telefone, propriedade, quartos }),
+      }),
+      fetch(SELLFLUX_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: nome,
+          email: email,
+          phone: phone,
+          gateway: "sellflux",
+          propriedade: propriedade,
+          quartos: quartos,
+        }),
+      }),
+    ]);
 
     // Pixel: lead
     if (typeof fbq !== "undefined") {
