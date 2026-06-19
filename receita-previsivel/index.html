@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Receita Previsível | Curso Completo de Gestão de Receitas para Hotel e Pousada</title>
+<meta name="description" content="3 módulos gravados + 3 reuniões de validação com a equipe. O sistema completo para precificar, distribuir e gerenciar a receita da sua hospedagem.">
+<link rel="canonical" href="https://ohoteleirorico.com.br/receita-previsivel">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ohoteleirorico.com.br/receita-previsivel">
+<meta property="og:title" content="Receita Previsível — O Sistema Completo para Hotel e Pousada">
+<meta property="og:description" content="3 módulos gravados + 3 reuniões de validação com a equipe de João Gallucci. Assista, implemente e valide.">
+<meta property="og:image" content="https://ohoteleirorico.com.br/og/receita-previsivel.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Hoteleiro Rico">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Receita Previsível — O Sistema Completo para Hotel e Pousada">
+<meta name="twitter:description" content="3 módulos gravados + 3 reuniões de validação com a equipe. Implemente o sistema do zero.">
+<meta name="twitter:image" content="https://ohoteleirorico.com.br/og/receita-previsivel.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"></noscript>
+<style>
+  :root {
+    --red:#C41A1A;--red-bright:#E02020;--red-dim:#8B1212;
+    --red-glow:rgba(196,26,26,0.18);
+    --black:#080808;--black-2:#0F0F0F;--black-3:#171717;
+    --black-4:#222222;--black-5:#2E2E2E;
+    --white:#FFFFFF;--off-white:#F4F4F4;
+    --gray:#AAAAAA;--gray-dim:#555555;--green:#2ECC71;--gold:#C9A84C;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--off-white);font-family:'Barlow',sans-serif;font-size:17px;line-height:1.65;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E");opacity:.55;pointer-events:none;z-index:0}
+  .topbar{background:var(--red);color:var(--white);text-align:center;padding:11px 20px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:10}
+  .topbar strong{color:var(--white);font-weight:800}
+  .hero{position:relative;z-index:1;padding:90px 20px 110px;text-align:center;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse at center,var(--red-glow) 0%,transparent 65%);pointer-events:none;z-index:0}
+  .hero::after{content:'';position:absolute;top:0;left:-5%;width:110%;height:4px;background:linear-gradient(90deg,transparent 0%,var(--red) 30%,var(--red-bright) 50%,var(--red) 70%,transparent 100%);z-index:2}
+  .hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
+  .badge{display:inline-block;border:1px solid var(--red-dim);background:rgba(196,26,26,.08);color:var(--red-bright);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:7px 18px;margin-bottom:36px;animation:fadeUp .5s ease both}
+  .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.2rem,9vw,6.5rem);font-weight:400;line-height:.95;letter-spacing:.02em;margin-bottom:32px;color:var(--white);animation:fadeUp .6s .08s ease both;text-transform:uppercase}
+  .hero h1 em{font-style:normal;color:var(--red-bright);display:block}
+  .hero-sub{font-size:1.1rem;color:var(--gray);max-width:640px;margin:0 auto 52px;font-weight:300;animation:fadeUp .6s .16s ease both}
+  .hero-meta{display:flex;justify-content:center;gap:0;flex-wrap:wrap;margin-bottom:48px;animation:fadeUp .6s .24s ease both;border:1px solid var(--black-5);max-width:780px;margin-left:auto;margin-right:auto}
+  .meta-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:18px 22px;flex:1;border-right:1px solid var(--black-5);background:var(--black-2)}
+  .meta-item:last-child{border-right:none}
+  .meta-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-dim)}
+  .meta-value{font-size:.9rem;font-weight:600;color:var(--off-white);text-align:center}
+  .price-tag{display:inline-flex;align-items:center;gap:20px;background:var(--black-3);border:1px solid var(--black-5);border-left:4px solid var(--red);padding:16px 28px;margin-bottom:40px;animation:fadeUp .6s .3s ease both}
+  .price-old{font-size:.9rem;color:var(--gray-dim);text-decoration:line-through}
+  .price-new{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;font-weight:400;color:var(--green);letter-spacing:.04em;line-height:1}
+  .price-label{font-size:10px;color:var(--gray-dim);letter-spacing:.1em;text-transform:uppercase}
+  .btn{display:inline-block;background:var(--red);color:var(--white);font-family:'Barlow',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:18px 52px;border:none;cursor:pointer;text-decoration:none;transition:background .18s,transform .12s,box-shadow .18s;position:relative;overflow:hidden;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 100%,12px 100%)}
+  .btn:hover{background:var(--red-bright);transform:translateY(-2px);box-shadow:0 8px 40px rgba(196,26,26,.45)}
+  .btn-sub{display:block;font-size:10px;font-weight:400;letter-spacing:.04em;margin-top:6px;opacity:.65;text-transform:none}
+  .cta-wrap{animation:fadeUp .6s .36s ease both}
+  section{position:relative;z-index:1}
+  .container{max-width:880px;margin:0 auto;padding:0 20px}
+  .section-tag{display:inline-block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-bright);margin-bottom:14px;font-weight:600}
+  h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:400;line-height:1.05;margin-bottom:16px;letter-spacing:.02em;text-transform:uppercase;color:var(--white)}
+  h2 em{font-style:normal;color:var(--red-bright)}
+
+  /* HOW IT WORKS */
+  .how{padding:100px 20px;background:var(--black-2);border-top:1px solid var(--black-5);border-bottom:1px solid var(--black-5)}
+  .how-intro{text-align:center;margin-bottom:64px}
+  .how-intro p{color:var(--gray);max-width:560px;margin:0 auto}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--black-5);border:1px solid var(--black-5)}
+  .step{background:var(--black-3);padding:44px 32px;position:relative;text-align:center}
+  .step-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(196,26,26,.12);line-height:1;margin-bottom:12px;letter-spacing:.04em}
+  .step h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;font-weight:400;color:var(--white);letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px}
+  .step p{font-size:.9rem;color:var(--gray);line-height:1.6}
+  .step-arrow{position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--red-dim);font-size:1.2rem;z-index:2;display:none}
+
+  /* VALIDATION HIGHLIGHT */
+  .validation{padding:100px 20px;text-align:center}
+  .validation-inner{max-width:780px;margin:0 auto}
+  .validation-box{background:var(--black-2);border:1px solid var(--black-5);border-top:3px solid var(--gold);padding:52px 48px;margin-top:48px;text-align:left}
+  .validation-box h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+  .validation-box .val-sub{font-size:.95rem;color:var(--gray);margin-bottom:32px}
+  .val-items{display:flex;flex-direction:column;gap:20px}
+  .val-item{display:flex;gap:20px;align-items:flex-start}
+  .val-icon{width:36px;height:36px;background:rgba(196,26,26,.12);border:1px solid var(--red-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem;color:var(--red-bright)}
+  .val-item h4{font-size:.95rem;font-weight:600;color:var(--off-white);margin-bottom:4px}
+  .val-item p{font-size:.85rem;color:var(--gray);line-height:1.55}
+
+  /* CURRICULUM */
+  .curriculum{padding:100px 20px;background:var(--black-2);border-top:1px solid var(--black-5);border-bottom:1px solid var(--black-5)}
+  .curriculum-intro{text-align:center;margin-bottom:64px}
+  .curriculum-intro p{color:var(--gray);max-width:560px;margin:0 auto}
+  .modules{display:flex;flex-direction:column;gap:1px;background:var(--black-5)}
+  .module{background:var(--black-3);padding:48px 44px;transition:background .2s;position:relative;overflow:hidden;display:grid;grid-template-columns:120px 1fr;gap:40px;align-items:start}
+  .module::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--red);transition:height .4s}
+  .module:hover{background:var(--black-4)}
+  .module:hover::before{height:100%}
+  .module-left{text-align:center}
+  .module-num{font-family:'Bebas Neue',sans-serif;font-size:5.5rem;font-weight:400;color:var(--black-5);line-height:1;letter-spacing:.04em;display:block}
+  .module-tag{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--red-bright);font-weight:600;margin-top:4px;border:1px solid var(--red-dim);padding:3px 10px}
+  .module h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;font-weight:400;margin-bottom:12px;color:var(--white);letter-spacing:.04em;text-transform:uppercase}
+  .module-desc{font-size:.92rem;color:var(--gray);margin-bottom:24px;line-height:1.6}
+  .module ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .module ul li{font-size:.88rem;color:var(--gray);padding-left:20px;position:relative;line-height:1.5}
+  .module ul li::before{content:'—';position:absolute;left:0;color:var(--red-dim);font-size:.8rem}
+  .module-validation{margin-top:28px;background:rgba(196,26,26,.06);border:1px solid var(--red-dim);padding:16px 20px;display:flex;align-items:center;gap:14px}
+  .module-validation span{font-size:.82rem;color:var(--gray);line-height:1.5}
+  .module-validation strong{color:var(--off-white)}
+
+  /* FOR WHO */
+  .forwho{padding:100px 20px;text-align:center}
+  .forwho .intro{max-width:600px;margin:0 auto 64px}
+  .forwho .intro p{color:var(--gray)}
+  .personas{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;margin-bottom:48px;background:var(--black-5);border:1px solid var(--black-5)}
+  .persona{background:var(--black-2);padding:36px 28px;text-align:left;transition:background .2s;position:relative}
+  .persona::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+  .persona:hover{background:var(--black-3)}
+  .persona:hover::before{transform:scaleX(1)}
+  .persona-icon{font-size:1.6rem;margin-bottom:14px}
+  .persona h3{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;font-weight:400;margin-bottom:10px;color:var(--white);letter-spacing:.04em;text-transform:uppercase}
+  .persona p{font-size:.88rem;color:var(--gray);line-height:1.55}
+  .not-for{background:var(--black-2);border:1px solid var(--black-5);border-left:3px solid var(--red-dim);padding:22px 28px;text-align:left;font-size:.88rem;color:var(--gray);max-width:700px;margin:0 auto}
+  .not-for strong{color:var(--off-white)}
+
+  /* VALUE STACK */
+  .value-stack{padding:100px 20px;background:var(--black-2);border-top:1px solid var(--black-5);border-bottom:1px solid var(--black-5)}
+  .value-stack-intro{text-align:center;margin-bottom:64px}
+  .value-stack-intro p{color:var(--gray);max-width:520px;margin:0 auto}
+  .stack-items{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:1px;background:var(--black-5);border:1px solid var(--black-5);margin-bottom:40px}
+  .stack-item{background:var(--black-3);padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:background .2s}
+  .stack-item:hover{background:var(--black-4)}
+  .stack-label{display:flex;align-items:center;gap:14px}
+  .stack-icon{color:var(--red-bright);font-size:1rem;flex-shrink:0}
+  .stack-name{font-size:.92rem;color:var(--off-white);font-weight:500}
+  .stack-name span{display:block;font-size:.8rem;color:var(--gray);font-weight:400;margin-top:2px}
+  .stack-value{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--gray-dim);letter-spacing:.04em;white-space:nowrap;text-decoration:line-through}
+  .stack-total{max-width:680px;margin:0 auto;background:var(--black-3);border:1px solid var(--black-5);border-top:3px solid var(--red);padding:28px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:48px}
+  .stack-total-label{font-size:.85rem;color:var(--gray);letter-spacing:.08em;text-transform:uppercase}
+  .stack-total-price{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+  .stack-total-old{font-size:.82rem;color:var(--gray-dim);letter-spacing:.06em}
+  .stack-total-new{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--green);line-height:1;letter-spacing:.04em}
+
+  /* TESTIMONIALS */
+  .testimonials{padding:100px 20px}
+  .testimonials-intro{text-align:center;margin-bottom:56px}
+  .testimonials-intro p{color:var(--gray);max-width:500px;margin:0 auto}
+  .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--black-5)}
+  .testi{background:var(--black-3);padding:40px 32px;position:relative;transition:background .2s}
+  .testi:hover{background:var(--black-4)}
+  .testi::before{content:'"';font-family:'Bebas Neue',sans-serif;font-size:6rem;color:var(--red);opacity:.12;position:absolute;top:8px;left:20px;line-height:1}
+  .testi-text{font-size:.95rem;color:var(--off-white);line-height:1.7;margin-bottom:28px;font-style:italic;font-weight:300}
+  .testi-author{display:flex;align-items:center;gap:14px}
+  .testi-avatar{width:42px;height:42px;background:var(--black-5);border:1px solid var(--red-dim);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--red-bright);flex-shrink:0}
+  .testi-name{font-size:.88rem;font-weight:600;color:var(--white)}
+  .testi-role{font-size:.78rem;color:var(--gray-dim)}
+
+  /* BIO */
+  .bio{padding:100px 20px;background:var(--black-2);border-top:1px solid var(--black-5)}
+  .bio-inner{display:grid;grid-template-columns:260px 1fr;gap:64px;align-items:start}
+  .bio-photo{background:var(--black-3);border:1px solid var(--black-5);border-top:3px solid var(--red);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .bio-photo img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .bio-tag{display:inline-block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-bright);margin-bottom:12px;font-weight:600}
+  .bio-subtitle{font-size:1.05rem;font-style:italic;color:var(--gray);margin-bottom:28px;font-weight:300}
+  .bio p{color:var(--gray);margin-bottom:16px;font-size:.95rem}
+  .bio-creds{display:flex;flex-direction:column;gap:10px;margin-top:28px}
+  .bio-cred{display:flex;align-items:center;gap:14px;font-size:.88rem;color:var(--gray)}
+  .bio-cred-dot{width:4px;height:4px;background:var(--red-bright);flex-shrink:0;transform:rotate(45deg)}
+
+  /* FAQ */
+  .faq{padding:100px 20px;border-top:1px solid var(--black-5)}
+  .faq-intro{text-align:center;margin-bottom:56px}
+  .faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:1px;background:var(--black-5);border:1px solid var(--black-5)}
+  .faq-item{background:var(--black-3)}
+  .faq-q{width:100%;background:none;border:none;color:var(--off-white);font-family:'Barlow',sans-serif;font-size:.95rem;font-weight:500;text-align:left;padding:22px 28px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .2s}
+  .faq-q:hover{color:var(--red-bright)}
+  .faq-icon{color:var(--red-dim);font-size:1.2rem;transition:transform .3s;flex-shrink:0}
+  .faq-item.open .faq-icon{transform:rotate(45deg);color:var(--red-bright)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .faq-a-inner{padding:0 28px 24px;font-size:.9rem;color:var(--gray);line-height:1.7}
+  .faq-item.open .faq-a{max-height:400px}
+
+  /* FINAL CTA */
+  .final-cta{padding:120px 20px;text-align:center;position:relative;overflow:hidden;background:var(--black-2);border-top:1px solid var(--black-5)}
+  .final-cta::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse,var(--red-glow) 0%,transparent 65%);pointer-events:none}
+  .final-cta h2{font-size:clamp(2.4rem,6vw,4.2rem);margin-bottom:16px}
+  .final-cta p{color:var(--gray);max-width:520px;margin:0 auto 48px}
+  .form-section{padding:0 20px 120px}
+  .form-card{max-width:560px;margin:0 auto;background:var(--black-2);border:1px solid var(--black-5);border-top:3px solid var(--red);padding:48px 44px}
+  .form-header{text-align:center;margin-bottom:40px}
+  .form-header h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:8px}
+  .form-header p{font-size:.88rem;color:var(--gray)}
+  .form-cta{width:100%;text-align:center;padding:20px;font-size:1rem;clip-path:none}
+  .form-note{text-align:center;font-size:.78rem;color:var(--gray-dim);margin-top:16px}
+  .form-note a{color:var(--red-dim);text-decoration:none}
+  .form-note a:hover{color:var(--red-bright)}
+  footer{border-top:1px solid var(--black-5);padding:40px 20px;text-align:center;font-size:.78rem;color:var(--gray-dim);position:relative;z-index:1;line-height:1.8}
+  footer a{color:var(--red-dim);text-decoration:none}
+  footer a:hover{color:var(--red-bright)}
+  .sticky-cta{position:fixed;bottom:24px;right:24px;z-index:100;opacity:0;transform:translateY(16px);transition:opacity .4s,transform .4s;pointer-events:none}
+  .sticky-cta.visible{opacity:1;transform:translateY(0);pointer-events:all}
+  .sticky-cta .btn{box-shadow:0 8px 40px rgba(196,26,26,.5);font-size:.82rem;padding:14px 28px}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media(max-width:720px){
+    .steps{grid-template-columns:1fr}
+    .module{grid-template-columns:1fr}
+    .module-left{text-align:left;display:flex;align-items:center;gap:16px}
+    .module-num{font-size:3.5rem}
+    .bio-inner{grid-template-columns:1fr}
+    .bio-photo{aspect-ratio:1;max-width:180px}
+    .form-card{padding:32px 20px}
+    .hero-meta{flex-direction:column}
+    .meta-item{border-right:none;border-bottom:1px solid var(--black-5)}
+    .validation-box{padding:32px 24px}
+    .stack-total{flex-direction:column;align-items:flex-start}
+    .stack-total-price{align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  Curso gravado + validação da equipe &nbsp;·&nbsp; <strong>3 módulos · 3 reuniões · resultado real</strong>
+</div>
+
+<div class="sticky-cta" id="stickyCta">
+  <a href="#inscricao" class="btn">Quero acesso ao Receita Previsível</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="badge">Curso Completo · Gravado · Com Validação da Equipe</div>
+    <h1>Pare de adivinhar.<br/>Comece a gerenciar<br/><em>receita de verdade.</em></h1>
+    <p class="hero-sub">O sistema completo de gestão de receitas para hotel e pousada — você assiste as aulas, preenche as ferramentas e valida com a equipe do João Gallucci. Sem achismo. Sem improviso.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><span class="meta-label">Formato</span><span class="meta-value">100% Gravado</span></div>
+      <div class="meta-item"><span class="meta-label">Módulos</span><span class="meta-value">3 Módulos Completos</span></div>
+      <div class="meta-item"><span class="meta-label">Reuniões</span><span class="meta-value">3 Sessões de Validação</span></div>
+      <div class="meta-item"><span class="meta-label">Acesso</span><span class="meta-value">Imediato · Para Sempre</span></div>
+    </div>
+    <div class="price-tag">
+      <div>
+        <span class="price-label">Investimento</span>
+        <span class="price-new">R$ [VALOR]</span>
+        <div style="font-size:10px;color:var(--gray-dim);margin-top:4px;letter-spacing:.06em;">Menos que 1 mês de comissão pro Booking</div>
+      </div>
+      <div style="border-left:1px solid var(--black-5);padding-left:20px;"><span class="price-label">Parcelamento</span><span style="font-size:.85rem;font-weight:600;color:var(--off-white);">em até 12x no cartão</span></div>
+    </div>
+    <div class="cta-wrap">
+      <a href="#inscricao" class="btn">Quero acesso ao Receita Previsível<span class="btn-sub">Acesso imediato · 3 módulos + 3 reuniões de validação</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="how reveal">
+  <div class="container">
+    <div class="how-intro">
+      <span class="section-tag">Como funciona</span>
+      <h2>Não é só curso.<br/><em>É implementação guiada.</em></h2>
+      <p>A diferença entre saber e aplicar é a validação. Por isso cada módulo termina com uma reunião real com a equipe — você não fica sozinho na execução.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>Assista</h3>
+        <p>Acesse as aulas gravadas no seu ritmo. Conteúdo direto ao ponto — sem enrolação, sem teoria vazia.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h3>Implemente</h3>
+        <p>Preencha as ferramentas e planilhas de cada módulo aplicadas à realidade da sua hospedagem.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h3>Valide</h3>
+        <p>Agende a reunião de validação com a equipe. Ajustes, dúvidas e confirmação de que você está no caminho certo antes de avançar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="validation reveal">
+  <div class="container">
+    <div class="validation-inner">
+      <span class="section-tag">O diferencial do programa</span>
+      <h2>Por que as 3 reuniões de<br/><em>validação mudam tudo</em></h2>
+      <p style="color:var(--gray);max-width:580px;margin:0 auto">A maioria dos cursos te deixa sozinho na aplicação. Aqui, a cada módulo concluído, você senta com a equipe para garantir que o que você aprendeu está sendo aplicado corretamente na sua hospedagem.</p>
+      <div class="validation-box">
+        <h3>O que acontece em cada reunião</h3>
+        <p class="val-sub">Uma sessão por módulo — ao final do conteúdo gravado, antes de avançar.</p>
+        <div class="val-items">
+          <div class="val-item">
+            <div class="val-icon">✦</div>
+            <div>
+              <h4>Revisão do que você preencheu</h4>
+              <p>A equipe analisa as ferramentas que você completou — preços, categorias, metas, canais — e identifica o que está certo e o que precisa de ajuste.</p>
+            </div>
+          </div>
+          <div class="val-item">
+            <div class="val-icon">✦</div>
+            <div>
+              <h4>Adaptação para a sua realidade</h4>
+              <p>Não existe uma fórmula única para todos os hotéis. A reunião serve para calibrar o sistema para o seu contexto específico — localização, porte, sazonalidade.</p>
+            </div>
+          </div>
+          <div class="val-item">
+            <div class="val-icon">✦</div>
+            <div>
+              <h4>Liberação para o próximo módulo</h4>
+              <p>Você avança somente quando o módulo anterior está implementado corretamente. Sem pular etapa. Sem construir em cima de base errada.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="curriculum">
+  <div class="container">
+    <div class="curriculum-intro reveal">
+      <span class="section-tag">O que você vai aprender</span>
+      <h2>3 módulos que cobrem o sistema<br/><em>do zero ao relatório semanal</em></h2>
+      <p>Do entendimento do seu produto até a gestão ativa de receita — cada módulo entrega um bloco completo do sistema.</p>
+    </div>
+    <div class="modules">
+
+      <div class="module reveal">
+        <div class="module-left">
+          <span class="module-num">01</span>
+          <span class="module-tag">Fundamentos</span>
+        </div>
+        <div>
+          <h3>Você não pode precificar o que não entende</h3>
+          <p class="module-desc">Antes de qualquer estratégia de preço ou canal, você precisa entender a matemática da sua hospedagem — do custo do quarto vazio até o limite do seu faturamento máximo. A maioria dos donos de pousada nunca calculou isso. Você vai calcular.</p>
+          <ul>
+            <li>Como categorizar corretamente seus quartos e o impacto direto na receita</li>
+            <li>Como pesquisar demanda turística da sua cidade e identificar os concorrentes que realmente importam</li>
+            <li>O custo real do quarto vazio — o número que muda como você pensa em desconto</li>
+            <li>Como definir por qual preço vender e quando usar baixa, média e alta temporada</li>
+            <li>Qual o seu faturamento máximo — e o que fazer se quiser ultrapassá-lo</li>
+          </ul>
+          <div class="module-validation">
+            <div style="color:var(--red-bright);font-size:1rem;flex-shrink:0">✦</div>
+            <span><strong>Reunião de Validação 1</strong> — ao final do módulo, a equipe revisa sua categorização, pesquisa de mercado e estrutura de preços antes de você avançar.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module reveal">
+        <div class="module-left">
+          <span class="module-num">02</span>
+          <span class="module-tag">Distribuição</span>
+        </div>
+        <div>
+          <h3>Use as OTAs a seu favor — não o contrário</h3>
+          <p class="module-desc">Booking, Airbnb, Decolar — cada uma tem um perfil diferente, uma comissão diferente e um tipo de hóspede diferente. Você vai aprender a montar uma estratégia de distribuição que usa as plataformas sem ser refém delas.</p>
+          <ul>
+            <li>O papel estratégico de cada OTA — e qual combinação faz sentido para sua hospedagem</li>
+            <li>Channel manager: quando usar, qual escolher e quanto custa</li>
+            <li>Passo a passo de configuração das principais plataformas</li>
+            <li>Como configurar sua conta para maximizar visibilidade sem comprometer margem</li>
+          </ul>
+          <div class="module-validation">
+            <div style="color:var(--red-bright);font-size:1rem;flex-shrink:0">✦</div>
+            <span><strong>Reunião de Validação 2</strong> — a equipe revisa sua estratégia de canais e configuração das plataformas, garantindo que a distribuição está alinhada com seus objetivos de margem e ocupação.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module reveal">
+        <div class="module-left">
+          <span class="module-num">03</span>
+          <span class="module-tag">Gestão Ativa</span>
+        </div>
+        <div>
+          <h3>Do feeling para os números — para sempre</h3>
+          <p class="module-desc">Metas sem base são sonhos. Aqui você aprende a criar metas reais a partir dos seus próprios indicadores — e quando não tem indicadores, aprende a calcular do zero. Depois, aprende a monitorar, analisar e reagir com estratégias para cada horizonte de tempo.</p>
+          <ul>
+            <li>Como criar metas de vendas com base em dados reais — e sem dados, do zero</li>
+            <li>Diária Média, RevPar e Taxa de Ocupação: o que cada número significa e o que fazer com ele</li>
+            <li>Como montar seu Relatório de Vendas Semanal e usá-lo para tomar decisões</li>
+            <li>Estratégias de Revenue Management para curto, médio e longo prazo</li>
+            <li>O que fazer quando o hotel está vazio — sem entrar em pânico e sem queimar preço</li>
+          </ul>
+          <div class="module-validation">
+            <div style="color:var(--red-bright);font-size:1rem;flex-shrink:0">✦</div>
+            <span><strong>Reunião de Validação 3</strong> — a equipe revisa suas metas, seu relatório semanal e valida o plano de ação para os próximos 30, 60 e 90 dias.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="forwho reveal">
+  <div class="container">
+    <div class="intro">
+      <span class="section-tag">Para quem é este curso</span>
+      <h2>Se você tem uma hospedagem e<br/><em>quer parar de improvisar...</em></h2>
+      <p>O Receita Previsível foi construído para um perfil específico. Veja se você se encaixa.</p>
+    </div>
+    <div class="personas">
+      <div class="persona"><div class="persona-icon">📉</div><h3>O refém da sazonalidade</h3><p>Lotado no feriado, vazio no meio do ano. Quer uma estrutura que gere receita o ano inteiro — não só quando a demanda empurra.</p></div>
+      <div class="persona"><div class="persona-icon">💸</div><h3>O que vive no desconto</h3><p>Baixa o preço toda vez que sente a ocupação cair. Quer aprender a precificar com lógica — não com medo.</p></div>
+      <div class="persona"><div class="persona-icon">📱</div><h3>O dependente das OTAs</h3><p>O Booking manda na sua ocupação. Quer entender como usar as plataformas de forma estratégica sem perder margem.</p></div>
+      <div class="persona"><div class="persona-icon">🔢</div><h3>O que decide no feeling</h3><p>Nunca calculou o custo do quarto vazio, nunca montou uma meta de vendas. Quer finalmente operar com números reais.</p></div>
+      <div class="persona"><div class="persona-icon">📚</div><h3>O que já assistiu cursos</h3><p>Consumiu conteúdo mas não implementou — porque ficou sozinho na execução. Quer uma estrutura com validação real.</p></div>
+      <div class="persona"><div class="persona-icon">🚀</div><h3>O que quer escalar</h3><p>Tem um negócio funcionando mas sem sistema. Quer crescer com previsibilidade — não no improviso.</p></div>
+    </div>
+    <div class="not-for"><strong>Este curso não é para você se:</strong> você quer uma fórmula mágica que funciona sozinha sem que você precise implementar nada. O Receita Previsível é um sistema de implementação guiada — você vai trabalhar, preencher as ferramentas e validar com a equipe. Se você quer resultado sem esforço, este não é o lugar.</div>
+  </div>
+</section>
+
+<section class="value-stack">
+  <div class="container">
+    <div class="value-stack-intro reveal">
+      <span class="section-tag">O que está incluído</span>
+      <h2>Tudo que você recebe<br/><em>em um único acesso</em></h2>
+      <p>Não é só vídeo. É um programa completo de implementação com acompanhamento real.</p>
+    </div>
+    <div class="stack-items">
+      <div class="stack-item reveal">
+        <div class="stack-label"><span class="stack-icon">✦</span><div class="stack-name">Módulo 1 — Fundamentos de Receita<span>Precificação, categorização, pesquisa de mercado, custo do quarto</span></div></div>
+        <span class="stack-value">R$497</span>
+      </div>
+      <div class="stack-item reveal">
+        <div class="stack-label"><span class="stack-icon">✦</span><div class="stack-name">Módulo 2 — Distribuição Estratégica<span>OTAs, channel manager, configuração das plataformas</span></div></div>
+        <span class="stack-value">R$497</span>
+      </div>
+      <div class="stack-item reveal">
+        <div class="stack-label"><span class="stack-icon">✦</span><div class="stack-name">Módulo 3 — Gestão Ativa de Receita<span>Metas, indicadores, relatório semanal, estratégias de RM</span></div></div>
+        <span class="stack-value">R$497</span>
+      </div>
+      <div class="stack-item reveal">
+        <div class="stack-label"><span class="stack-icon">✦</span><div class="stack-name">Ferramentas e planilhas práticas<span>Prontas para preencher com os dados da sua hospedagem</span></div></div>
+        <span class="stack-value">R$297</span>
+      </div>
+      <div class="stack-item reveal">
+        <div class="stack-label"><span class="stack-icon" style="color:var(--gold)">✦</span><div class="stack-name" style="color:var(--gold)">3 Reuniões de Validação com a Equipe<span style="color:var(--gray)">1 por módulo — revisão, ajuste e validação antes de avançar</span></div></div>
+        <span class="stack-value" style="color:var(--gold-dim,#8B6914)">R$891</span>
+      </div>
+      <div class="stack-item reveal">
+        <div class="stack-label"><span class="stack-icon">✦</span><div class="stack-name">Acesso para sempre<span>Reassista quando quiser, em qualquer dispositivo</span></div></div>
+        <span class="stack-value">—</span>
+      </div>
+    </div>
+    <div class="stack-total reveal">
+      <div>
+        <div class="stack-total-label">Valor total do programa</div>
+        <div style="font-size:.88rem;color:var(--gray);margin-top:6px;max-width:400px">Tudo isso por um único investimento — sem mensalidade, sem renovação, sem surpresa.</div>
+      </div>
+      <div class="stack-total-price">
+        <span class="stack-total-old">De <span style="text-decoration:line-through">R$2.679</span> por apenas</span>
+        <span class="stack-total-new">R$ [VALOR]</span>
+        <span style="font-size:.75rem;color:var(--gray-dim);margin-top:4px">em até 12x no cartão</span>
+      </div>
+    </div>
+    <div style="text-align:center"><a href="#inscricao" class="btn">Quero acesso ao Receita Previsível<span class="btn-sub">Acesso imediato · 3 módulos + 3 reuniões de validação</span></a></div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-intro reveal">
+      <span class="section-tag">Resultados reais</span>
+      <h2>O que dizem quem já<br/><em>aplicou a metodologia</em></h2>
+      <p>Hoteleiros reais. Resultados verificáveis.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal"><p class="testi-text">Só de aprender a calcular o custo do meu quarto e entender a precificação, já consigo projetar quanto vou faturar nos próximos meses. Nunca tive isso antes.</p><div class="testi-author"><div class="testi-avatar">F</div><div><div class="testi-name">Felipe</div><div class="testi-role">Dono de pousada · Interior de SP</div></div></div></div>
+      <div class="testi reveal"><p class="testi-text">Hoje é quarta-feira e estou com 50% dos meus quartos vendidos. Antes de conhecer a metodologia, eu mal vendia fins de semana. A diferença é brutal.</p><div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Rodrigo</div><div class="testi-role">Proprietário de hotel · Litoral Norte</div></div></div></div>
+      <div class="testi reveal"><p class="testi-text">A metodologia me ensinou que baixa temporada não é um problema a ser suportado — é uma oportunidade a ser aproveitada. Mudou completamente minha cabeça.</p><div class="testi-author"><div class="testi-avatar">P</div><div><div class="testi-name">Paula</div><div class="testi-role">Gestora de chalés · Serra Gaúcha</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="bio reveal">
+  <div class="container">
+    <div class="bio-inner">
+      <div class="bio-photo">
+        <img src="/JOAO.jpg" alt="João Gallucci">
+      </div>
+      <div class="bio-content">
+        <span class="bio-tag">Quem criou o sistema</span>
+        <h2>João Gallucci</h2>
+        <p class="bio-subtitle">De R$1.000 e um sonho a 16 empresas em 8 anos.</p>
+        <p>Hoteleiro, empreendedor desde 2004 e educador empresarial. João construiu não uma, mas duas redes hoteleiras do zero — e hoje dedica seu tempo a ajudar outros donos de hospedagem a fazer o mesmo.</p>
+        <p>O Receita Previsível não é teoria. É o mesmo sistema que ele usou para precificar, distribuir e gerenciar a receita das suas próprias propriedades — estruturado em 3 módulos para que você implemente com acompanhamento real.</p>
+        <div class="bio-creds">
+          <div class="bio-cred"><div class="bio-cred-dot"></div>Palestrante na Expotel — maior feira hoteleira do Brasil</div>
+          <div class="bio-cred"><div class="bio-cred-dot"></div>Palestrante no EMPRETEC (programa do Sebrae)</div>
+          <div class="bio-cred"><div class="bio-cred-dot"></div>Treinamento para diretores da ACCOR Hotels</div>
+          <div class="bio-cred"><div class="bio-cred-dot"></div>Fundador de duas redes hoteleiras nacionais</div>
+          <div class="bio-cred"><div class="bio-cred-dot"></div>Mais de 20 anos de operação hoteleira</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="container">
+    <div class="faq-intro reveal">
+      <span class="section-tag">Dúvidas frequentes</span>
+      <h2>Antes de sair sem se<br/><em>inscrever...</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q">Qual a diferença entre este curso e o Workshop?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">O Workshop é uma introdução ao planejamento de vendas — conteúdo mais curto, sem validação, preço de entrada. O Receita Previsível é o sistema completo: 3 módulos aprofundados, ferramentas para preencher e 3 reuniões de validação com a equipe. São produtos diferentes em nível de profundidade e de acompanhamento.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Qual a diferença entre este curso e a Mentoria?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Na Mentoria, a equipe do João executa junto com você — diagnóstico personalizado, plano de ação e acompanhamento semanal direto. No Receita Previsível, você implementa o sistema guiado pelas aulas e valida com a equipe ao final de cada módulo. É a opção para quem quer autonomia na implementação com suporte garantido nos pontos críticos.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Como funcionam as reuniões de validação?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Após concluir cada módulo e preencher as ferramentas correspondentes, você agenda uma reunião com a equipe — via videoconferência. Na reunião, a equipe revisa o que você implementou, faz ajustes conforme a realidade da sua hospedagem e confirma que você está pronto para avançar ao próximo módulo.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Preciso assistir tudo antes de agendar a reunião?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Sim. A reunião de validação acontece após você assistir as aulas do módulo e preencher as ferramentas. O objetivo é validar a implementação — não substituir o conteúdo. Quanto mais você fizer antes, mais produtiva a reunião vai ser.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Funciona para pousadas pequenas também?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Sim. O sistema foi desenvolvido para hospedagens de todos os tamanhos — de chalés com 4 unidades a hotéis com 60 quartos. O que muda é a escala, não o princípio. As ferramentas e ferramentas se adaptam ao seu contexto.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Quanto tempo tenho acesso ao conteúdo?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Para sempre. Você pode reassistir quantas vezes quiser, em qualquer dispositivo, sem limite de tempo.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Tem garantia?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Sim. Garantia incondicional de 7 dias a partir da data da compra. Se você acessar o conteúdo e sentir que o programa não é para você, é só mandar um e-mail que devolvemos 100% do valor, sem perguntas.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta reveal">
+  <div class="container">
+    <span class="section-tag">Última chamada</span>
+    <h2>Você pode continuar<br/>no improviso.<br/><em>Ou pode implementar.</em></h2>
+    <p>A diferença entre uma hospedagem com receita previsível e uma que depende de feriado não é sorte. É sistema.</p>
+    <a href="#inscricao" class="btn">Quero acesso ao Receita Previsível<span class="btn-sub">3 módulos + 3 reuniões de validação · Acesso imediato</span></a>
+  </div>
+</section>
+
+<section class="form-section" id="inscricao">
+  <div class="container">
+    <div class="form-card">
+      <div class="form-header">
+        <h3>Garanta seu acesso agora</h3>
+        <p>Clique abaixo para acessar o checkout seguro</p>
+      </div>
+      <div style="background:var(--black-3);border:1px solid var(--black-5);padding:24px 28px;margin-bottom:28px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <div>
+            <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-dim);margin-bottom:4px;">Curso Gravado · Acesso Imediato</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--white);">Receita Previsível — Sistema Completo</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:.75rem;color:var(--gray-dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;">Investimento</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--green);line-height:1;">R$ [VALOR]</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--black-5);margin-top:16px;padding-top:16px;display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:.82rem;color:var(--gray);display:flex;gap:8px;align-items:center;"><span style="color:var(--red-bright);">✦</span> 3 módulos gravados · acesso para sempre</div>
+          <div style="font-size:.82rem;color:var(--gray);display:flex;gap:8px;align-items:center;"><span style="color:var(--gold);">✦</span> 3 reuniões de validação com a equipe</div>
+          <div style="font-size:.82rem;color:var(--gray);display:flex;gap:8px;align-items:center;"><span style="color:var(--red-bright);">✦</span> Ferramentas e planilhas práticas</div>
+          <div style="font-size:.82rem;color:var(--gray);display:flex;gap:8px;align-items:center;"><span style="color:var(--red-bright);">✦</span> Garantia de 7 dias ou devolvemos 100%</div>
+        </div>
+      </div>
+      <a href="[LINK_KIWIFY]" class="btn form-cta" onclick="fbq('track','InitiateCheckout',{content_name:'Receita Previsível',content_category:'Curso',value:[VALOR_NUMERICO],currency:'BRL'});" style="display:block;text-align:center;text-decoration:none;">Quero acesso ao Receita Previsível</a>
+      <p class="form-note" style="margin-top:14px;">🔒 Pagamento 100% seguro · Kiwify &nbsp;|&nbsp; Pix, cartão ou boleto<br/>Dúvidas? <a href="https://wa.me/5541998251197" target="_blank">Fale no WhatsApp</a></p>
+      <div style="border-top:1px solid var(--black-5);margin-top:24px;padding-top:20px;text-align:center;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.2);padding:10px 20px;">
+          <span style="color:var(--green);font-size:1rem;">✓</span>
+          <span style="font-size:.82rem;color:var(--gray-dim);">Garantia incondicional de <strong style="color:var(--off-white);">7 dias</strong> — devolução sem perguntas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Copyright 2025 · O Hoteleiro Rico · Todos os direitos reservados</p>
+  <p style="margin-top:8px">Produzido por <a href="https://www.instagram.com/rudnick_digital/" target="_blank">@rudnick_digital</a></p>
+  <p style="margin-top:16px;max-width:640px;margin-left:auto;margin-right:auto;font-size:.72rem;opacity:.6">Os resultados apresentados são de alunos reais e podem variar de pessoa para pessoa. Não garantimos resultados idênticos.</p>
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.1});
+reveals.forEach(r=>observer.observe(r));
+
+const stickyCta=document.getElementById('stickyCta');
+window.addEventListener('scroll',()=>{stickyCta.classList.toggle('visible',window.scrollY>600)});
+
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+</script>
+
+<!-- Facebook Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function()
+  {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1543142607331163');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', {
+    content_name: 'Receita Previsível',
+    content_category: 'Curso',
+  });
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163&ev=PageView&noscript=1"/></noscript>
+
+</body>
+</html>
