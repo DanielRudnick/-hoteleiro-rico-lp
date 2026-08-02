@@ -344,7 +344,7 @@ function openModal() {
   document.getElementById('modal').classList.add('active');
   document.body.style.overflow = 'hidden';
   if (typeof fbq !== 'undefined') {
-    fbq('track', 'InitiateCheckout', {content_name: 'Workshop Gratuito 26/08', content_category: 'Workshop'});
+    fbq('track', 'ViewContent', {content_name: 'Workshop Gratuito 26/08', content_category: 'Workshop'});
   }
 }
 function closeModal() {
