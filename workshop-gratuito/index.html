@@ -385,8 +385,7 @@ async function submitForm(e) {
     fbq('track', 'Lead', {content_name: 'Workshop Gratuito 26/08', content_category: 'Workshop'});
   }
 
-  document.getElementById('form-state').style.display = 'none';
-  document.getElementById('success-state').style.display = 'block';
+  window.location.href = '/workshop-gratuito/obrigado/';
 }
 
 // Countdown to Aug 26 2026 20:00 BRT (UTC-3)
