@@ -64,6 +64,11 @@
     .btn-replay-main{font-size:14px;font-weight:500;line-height:1.2}
     .btn-replay-sub{font-size:11px;font-weight:300;opacity:0.65}
     .footer-note{margin-top:28px;font-size:11px;color:rgba(245,239,230,0.2);font-weight:300;font-style:italic;line-height:1.6}
+    .countdown{display:flex;gap:12px;justify-content:center;width:100%;max-width:380px;margin-bottom:44px}
+    .cd-unit{flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.12);border-radius:2px;padding:14px 8px 10px;display:flex;flex-direction:column;align-items:center;gap:4px}
+    .cd-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,44px);line-height:1;color:var(--gold);letter-spacing:2px}
+    .cd-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,239,230,0.2);font-weight:400}
+    .cd-ended{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--gold);text-align:center;padding:16px 0}
     .card-bottom{padding:16px 48px;border-top:1px solid rgba(255,255,255,0.04);background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:space-between;gap:16px}
     .bottom-brand{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:4px;color:rgba(245,239,230,0.15)}
     .bottom-brand span{color:rgba(178,34,34,0.4)}
@@ -91,6 +96,12 @@
       <p class="subheading">PREVISÍVEL</p>
       <p class="desc">Sua vaga está <strong>confirmada</strong>. Agora entre no grupo exclusivo do WhatsApp — é lá que você vai receber o link da transmissão e as informações importantes antes do evento.</p>
       <div class="divider"></div>
+      <div class="countdown" id="countdown">
+        <div class="cd-unit"><span class="cd-num" id="cd-dias">--</span><span class="cd-label">dias</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-horas">--</span><span class="cd-label">horas</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-min">--</span><span class="cd-label">minutos</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-seg">--</span><span class="cd-label">segundos</span></div>
+      </div>
       <div class="event-info">
         <div class="event-item"><span class="event-label">Data</span><span class="event-value"><span>26</span> AGO</span></div>
         <div class="event-item"><span class="event-label">Horário</span><span class="event-value"><span>20</span>H</span></div>
@@ -141,6 +152,29 @@
     }
   }
   window.addEventListener('load', function(){ setTimeout(launchConfetti, 600); });
+
+  (function() {
+    var target = new Date('2026-08-26T23:00:00Z').getTime();
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      var now = Date.now();
+      var diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = '<p class="cd-ended">O workshop já começou!</p>';
+        return;
+      }
+      var dias  = Math.floor(diff / 86400000);
+      var horas = Math.floor((diff % 86400000) / 3600000);
+      var min   = Math.floor((diff % 3600000) / 60000);
+      var seg   = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-dias').textContent  = pad(dias);
+      document.getElementById('cd-horas').textContent = pad(horas);
+      document.getElementById('cd-min').textContent   = pad(min);
+      document.getElementById('cd-seg').textContent   = pad(seg);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 </body>
 </html>
