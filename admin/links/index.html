@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links UTM — Hoteleiro Rico</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:#080808;color:#F5EFE6;font-family:'Poppins',sans-serif;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+
+    /* topbar */
+    .topbar{background:#0A0A0A;border-bottom:1px solid #171717;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .topbar-logo{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:6px;color:#2a2a2a}
+    .topbar-logo span{color:#4a1a1a}
+    .topbar-right{display:flex;align-items:center;gap:20px}
+    .topbar-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#555;transition:color .2s}
+    .topbar-link:hover{color:#C9A84C}
+    .topbar-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C9A84C}
+
+    /* main */
+    .main{max-width:1200px;margin:0 auto;padding:36px 32px}
+
+    /* page header */
+    .page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;gap:16px}
+    .section-title{font-family:'Anton',sans-serif;font-size:1.3rem;letter-spacing:3px;color:#C9A84C;margin-bottom:4px}
+    .page-sub{font-size:.83rem;color:#666;font-weight:300}
+
+    /* tabs */
+    .tabs{display:flex;gap:0;border-bottom:1px solid #1A1A1A;margin-bottom:28px}
+    .tab{background:none;border:none;border-bottom:2px solid transparent;color:#666;font-family:'Poppins',sans-serif;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;padding:10px 20px;cursor:pointer;transition:all .2s;margin-bottom:-1px}
+    .tab:hover{color:#aaa}
+    .tab.active{color:#C9A84C;border-bottom-color:#C9A84C}
+
+    /* stats */
+    .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px}
+    .stat-card{background:#0F0F0F;border:1px solid #1A1A1A;padding:18px 22px}
+    .stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:6px}
+    .stat-value{font-family:'Anton',sans-serif;font-size:2rem;letter-spacing:2px;color:#F5EFE6}
+
+    /* table */
+    .table-wrap{overflow-x:auto;border:1px solid #1A1A1A}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    thead tr{background:#0D0D0D;border-bottom:1px solid #1A1A1A}
+    thead th{text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#555;padding:11px 14px;font-weight:600;white-space:nowrap}
+    tbody tr{border-bottom:1px solid #111;transition:background .15s}
+    tbody tr:hover{background:#0D0D0D}
+    tbody td{padding:12px 14px;color:#888;font-weight:300;vertical-align:middle}
+    tbody td:first-child{color:#F5EFE6;font-weight:400}
+    .empty{padding:48px;text-align:center;color:#2a2a2a;font-size:14px}
+
+    /* short url cell */
+    .short-url{display:flex;align-items:center;gap:8px;white-space:nowrap}
+    .short-url a{color:#C9A84C;font-size:12px;letter-spacing:.02em}
+    .short-url a:hover{text-decoration:underline}
+    .btn-copy{background:none;border:1px solid #222;color:#555;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .btn-copy:hover{border-color:#C9A84C;color:#C9A84C}
+    .btn-copy.copied{border-color:#2ECC71;color:#2ECC71}
+
+    /* destination cell */
+    .dest-cell{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+
+    /* utm tags cell */
+    .utm-tags{display:flex;flex-wrap:wrap;gap:4px}
+    .utm-tag{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);color:#C9A84C;font-size:10px;letter-spacing:.5px;padding:2px 6px;white-space:nowrap}
+
+    /* status badge */
+    .badge{display:inline-block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px}
+    .badge-active{background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.2);color:#2ECC71}
+    .badge-inactive{background:rgba(255,255,255,0.03);border:1px solid #222;color:#555}
+
+    /* action buttons */
+    .actions{display:flex;gap:8px;white-space:nowrap}
+    .btn-edit,.btn-del{background:none;border:1px solid #222;color:#666;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;cursor:pointer;transition:all .2s}
+    .btn-edit:hover{border-color:#C9A84C;color:#C9A84C}
+    .btn-del:hover{border-color:#C41A1A;color:#C41A1A}
+
+    /* primary button */
+    .btn-primary{background:#C9A84C;color:#080808;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:12px 22px;border:none;cursor:pointer;transition:opacity .18s;white-space:nowrap}
+    .btn-primary:hover{opacity:.88}
+    .btn-primary:disabled{opacity:.4;cursor:not-allowed}
+
+    /* presets panel */
+    .presets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:28px}
+    .preset-card{background:#0F0F0F;border:1px solid #1A1A1A;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .preset-info{flex:1;min-width:0}
+    .preset-name{font-size:13px;font-weight:500;color:#F5EFE6;margin-bottom:4px}
+    .preset-utms{font-size:11px;color:#666;letter-spacing:.3px}
+    .preset-icon{font-family:'Anton',sans-serif;font-size:11px;letter-spacing:2px;color:#C9A84C;border:1px solid rgba(201,168,76,0.3);padding:4px 8px;flex-shrink:0}
+    .preset-actions{display:flex;gap:6px}
+
+    /* modal */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+    .modal-overlay.open{display:flex}
+    .modal{background:#0D0D0D;border:1px solid #1E1E1E;border-top:3px solid #C9A84C;width:100%;max-width:620px;padding:0}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:24px 28px;border-bottom:1px solid #1A1A1A}
+    .modal-title{font-family:'Anton',sans-serif;font-size:1.2rem;letter-spacing:2px;color:#F5EFE6}
+    .modal-close{background:none;border:none;color:#555;font-size:18px;cursor:pointer;transition:color .2s;padding:4px}
+    .modal-close:hover{color:#F5EFE6}
+    .modal-body{padding:28px}
+    .modal-footer{display:flex;gap:12px;justify-content:flex-end;padding:20px 28px;border-top:1px solid #1A1A1A}
+
+    /* form */
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;font-weight:600}
+    .label-note{font-size:10px;color:#444;font-weight:300;letter-spacing:0;text-transform:none;margin-left:6px}
+    input,select{background:#141414;border:1px solid #252525;color:#F5EFE6;font-family:'Poppins',sans-serif;font-size:13px;padding:11px 13px;outline:none;transition:border-color .2s;width:100%;border-radius:0;-webkit-appearance:none}
+    input:focus,select:focus{border-color:rgba(201,168,76,0.4)}
+    input::placeholder{color:#333}
+    input.error{border-color:rgba(196,26,26,0.5)}
+
+    /* slug preview */
+    .slug-preview{font-size:11px;color:#555;margin-top:5px;word-break:break-all}
+    .slug-preview span{color:#888}
+
+    /* UTM divider */
+    .utm-divider{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .utm-divider-line{flex:1;border-top:1px solid #1A1A1A}
+    .utm-divider-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#444}
+
+    /* preset chips */
+    .preset-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .preset-chip{background:rgba(255,255,255,0.03);border:1px solid #222;color:#777;font-size:11px;letter-spacing:1px;padding:6px 12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+    .preset-chip:hover,.preset-chip.selected{background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.3);color:#C9A84C}
+    .chip-icon{font-family:'Anton',sans-serif;font-size:9px;letter-spacing:1.5px;color:inherit;opacity:.8}
+
+    /* URL preview */
+    .url-preview{background:#111;border:1px solid #1E1E1E;padding:12px 14px;margin-bottom:0;margin-top:4px}
+    .url-preview-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#444;margin-bottom:6px}
+    .url-preview-value{font-size:11px;color:#666;word-break:break-all;line-height:1.6}
+    .url-preview-value .utm-part{color:#C9A84C}
+
+    /* alert */
+    .alert{padding:12px 14px;font-size:13px;margin-bottom:16px;border:1px solid}
+    .alert-error{background:rgba(196,26,26,0.06);border-color:rgba(196,26,26,0.2);color:#d96060}
+    .alert-success{background:rgba(46,204,113,0.06);border-color:rgba(46,204,113,0.2);color:#2ECC71}
+
+    /* cancel btn */
+    .btn-cancel{background:none;border:1px solid #222;color:#666;font-family:'Poppins',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;cursor:pointer;transition:all .2s}
+    .btn-cancel:hover{border-color:#555;color:#aaa}
+
+    /* btn-secondary */
+    .btn-secondary{background:none;border:1px solid #C9A84C;color:#C9A84C;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:12px 22px;cursor:pointer;transition:all .2s}
+    .btn-secondary:hover{background:rgba(201,168,76,0.08)}
+
+    @media(max-width:640px){
+      .main{padding:24px 16px}
+      .page-header{flex-direction:column;gap:12px}
+      .field-row{grid-template-columns:1fr}
+      .modal-overlay{padding:0}
+      .modal{border-top:none;border-left:none;border-right:none;min-height:100vh}
+      .topbar{padding:0 16px}
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">HOTELEIRO <span>RICO</span></div>
+  <div class="topbar-right">
+    <a href="/admin" class="topbar-link">← Painel</a>
+    <span class="topbar-tag">Links UTM</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="page-header">
+    <div>
+      <div class="section-title">Links UTM</div>
+      <p class="page-sub">Crie links rastreados com parâmetros UTM para suas campanhas.</p>
+    </div>
+    <button class="btn-primary" onclick="openModal()">+ Novo Link</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" id="tab-btn-links" onclick="showTab('links')">Links</button>
+    <button class="tab" id="tab-btn-presets" onclick="showTab('presets')">Presets UTM</button>
+  </div>
+
+  <!-- LINKS TAB -->
+  <div id="tab-links">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total de links</div>
+        <div class="stat-value" id="stat-total">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Cliques totais</div>
+        <div class="stat-value" id="stat-clicks">—</div>
+      </div>
+    </div>
+
+    <div id="links-alert"></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Link curto</th>
+            <th>Destino</th>
+            <th>UTMs</th>
+            <th style="text-align:center">Cliques</th>
+            <th style="text-align:center">Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="links-body">
+          <tr><td colspan="7" class="empty">Carregando…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PRESETS TAB -->
+  <div id="tab-presets" style="display:none">
+    <div style="display:flex;justify-content:flex-end;margin-bottom:20px">
+      <button class="btn-secondary" onclick="openPresetModal()">+ Novo Preset</button>
+    </div>
+    <div id="presets-alert"></div>
+    <div class="presets-grid" id="presets-grid">
+      <div class="empty" style="grid-column:1/-1;padding:40px">Carregando…</div>
+    </div>
+  </div>
+</div>
+
+<!-- LINK MODAL -->
+<div class="modal-overlay" id="link-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Novo Link</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="modal-alert"></div>
+
+      <div class="field">
+        <label>Título <span class="label-note">identificação interna</span></label>
+        <input type="text" id="f-title" placeholder="Ex: Workshop — Instagram Pago" oninput="autoSlug()">
+      </div>
+
+      <div class="field">
+        <label>Slug <span class="label-note">parte final do link curto</span></label>
+        <input type="text" id="f-slug" placeholder="workshop-ig-pago" oninput="updatePreview()">
+        <div class="slug-preview">ohoteleirorico.com.br/go/<span id="slug-preview-val">—</span></div>
+      </div>
+
+      <div class="field">
+        <label>URL de destino</label>
+        <input type="url" id="f-destination" placeholder="https://ohoteleirorico.com.br/workshop" oninput="updatePreview()">
+      </div>
+
+      <div class="utm-divider">
+        <div class="utm-divider-line"></div>
+        <div class="utm-divider-label">Parâmetros UTM</div>
+        <div class="utm-divider-line"></div>
+      </div>
+
+      <div id="preset-chips" class="preset-chips"></div>
+
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0">
+          <label>utm_source</label>
+          <input type="text" id="f-source" placeholder="youtube" oninput="clearPresetSelection();updatePreview()">
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>utm_medium</label>
+          <input type="text" id="f-medium" placeholder="organico" oninput="clearPresetSelection();updatePreview()">
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0">
+          <label>utm_campaign</label>
+          <input type="text" id="f-campaign" placeholder="wrp_ago" oninput="updatePreview()">
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>utm_content</label>
+          <input type="text" id="f-content" placeholder="criativo_01" oninput="updatePreview()">
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="field">
+        <label>utm_term <span class="label-note">opcional</span></label>
+        <input type="text" id="f-term" placeholder="hotel_litoral" oninput="updatePreview()">
+      </div>
+
+      <div class="url-preview">
+        <div class="url-preview-label">URL final gerada</div>
+        <div class="url-preview-value" id="url-preview">—</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-primary" id="modal-save-btn" onclick="saveLink()">Salvar link</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRESET MODAL -->
+<div class="modal-overlay" id="preset-modal">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-header">
+      <div class="modal-title" id="preset-modal-title">Novo Preset</div>
+      <button class="modal-close" onclick="closePresetModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="preset-modal-alert"></div>
+      <div class="field">
+        <label>Nome</label>
+        <input type="text" id="pf-name" placeholder="Instagram Pago">
+      </div>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0">
+          <label>Ícone / rótulo</label>
+          <input type="text" id="pf-icon" placeholder="IG+" maxlength="6">
+        </div>
+        <div style="height:0"></div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0">
+          <label>utm_source *</label>
+          <input type="text" id="pf-source" placeholder="instagram">
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>utm_medium *</label>
+          <input type="text" id="pf-medium" placeholder="pago">
+        </div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0">
+          <label>utm_campaign</label>
+          <input type="text" id="pf-campaign" placeholder="">
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>utm_content</label>
+          <input type="text" id="pf-content" placeholder="">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closePresetModal()">Cancelar</button>
+      <button class="btn-primary" id="preset-save-btn" onclick="savePreset()">Salvar preset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const BASE = window.location.origin;
+let allLinks   = [];
+let allPresets = [];
+let editingLinkId   = null;
+let editingPresetId = null;
+let autoSlugActive  = true;
+let selectedPresetId = null;
+
+// ── Auth ──────────────────────────────────────────────────────
+async function checkAuth() {
+  const res = await fetch('/api/links');
+  if (res.status === 401) {
+    window.location.href = '/admin';
+  }
+}
+
+// ── Data loading ──────────────────────────────────────────────
+async function loadLinks() {
+  const res = await fetch('/api/links');
+  if (res.status === 401) { window.location.href = '/admin'; return; }
+  const data = await res.json();
+  allLinks = data.links || [];
+  document.getElementById('stat-total').textContent  = data.total  ?? '—';
+  document.getElementById('stat-clicks').textContent = data.clicks ?? '—';
+  renderLinks();
+}
+
+async function loadPresets() {
+  const res = await fetch('/api/presets');
+  if (!res.ok) return;
+  const data = await res.json();
+  allPresets = data.presets || [];
+  renderPresets();
+  renderPresetChips();
+}
+
+// ── Render ────────────────────────────────────────────────────
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function shortUrl(slug) {
+  return `${BASE}/go/${slug}`;
+}
+
+function buildUtmUrl(link) {
+  try {
+    const url = new URL(link.destination);
+    if (link.utm_source)   url.searchParams.set('utm_source',   link.utm_source);
+    if (link.utm_medium)   url.searchParams.set('utm_medium',   link.utm_medium);
+    if (link.utm_campaign) url.searchParams.set('utm_campaign', link.utm_campaign);
+    if (link.utm_content)  url.searchParams.set('utm_content',  link.utm_content);
+    if (link.utm_term)     url.searchParams.set('utm_term',     link.utm_term);
+    return url.toString();
+  } catch { return link.destination; }
+}
+
+function renderLinks() {
+  const tbody = document.getElementById('links-body');
+  if (!allLinks.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty">Nenhum link criado ainda. Clique em "+ Novo Link" para começar.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = allLinks.map(link => {
+    const short = shortUrl(link.slug);
+    const utmTags = [
+      link.utm_source   ? `<span class="utm-tag">${esc(link.utm_source)}</span>` : '',
+      link.utm_medium   ? `<span class="utm-tag">${esc(link.utm_medium)}</span>` : '',
+      link.utm_campaign ? `<span class="utm-tag">${esc(link.utm_campaign)}</span>` : '',
+      link.utm_content  ? `<span class="utm-tag">${esc(link.utm_content)}</span>` : '',
+    ].filter(Boolean).join('');
+
+    const destShort = link.destination.length > 40
+      ? link.destination.slice(0, 40) + '…'
+      : link.destination;
+
+    return `<tr>
+      <td style="font-size:13px">${esc(link.title)}</td>
+      <td>
+        <div class="short-url">
+          <a href="${esc(short)}" target="_blank">/go/${esc(link.slug)}</a>
+          <button class="btn-copy" onclick="copyUrl('${esc(short)}', this)">Copiar</button>
+        </div>
+      </td>
+      <td>
+        <div class="dest-cell" title="${esc(link.destination)}">
+          <a href="${esc(link.destination)}" target="_blank" style="color:#666;font-size:12px">${esc(destShort)}</a>
+        </div>
+      </td>
+      <td><div class="utm-tags">${utmTags || '<span style="color:#2a2a2a;font-size:12px">—</span>'}</div></td>
+      <td style="text-align:center;color:#F5EFE6;font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:1px">${link.click_count}</td>
+      <td style="text-align:center">
+        <span class="badge ${link.status === 'active' ? 'badge-active' : 'badge-inactive'}">
+          ${link.status === 'active' ? 'Ativo' : 'Inativo'}
+        </span>
+      </td>
+      <td>
+        <div class="actions">
+          <button class="btn-edit" onclick='editLink(${JSON.stringify(link)})'>Editar</button>
+          <button class="btn-del"  onclick="deleteLink(${link.id}, '${esc(link.title)}')">Excluir</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function renderPresets() {
+  const grid = document.getElementById('presets-grid');
+  if (!allPresets.length) {
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1;padding:40px">Nenhum preset cadastrado.</div>';
+    return;
+  }
+  grid.innerHTML = allPresets.map(p => {
+    const parts = [p.source, p.medium, p.campaign].filter(Boolean).join(' · ');
+    return `<div class="preset-card">
+      <div class="preset-icon">${esc(p.icon || '—')}</div>
+      <div class="preset-info">
+        <div class="preset-name">${esc(p.name)}</div>
+        <div class="preset-utms">${esc(parts)}</div>
+      </div>
+      <div class="preset-actions">
+        <button class="btn-edit" onclick='editPreset(${JSON.stringify(p)})'>Editar</button>
+        <button class="btn-del"  onclick="deletePreset(${p.id}, '${esc(p.name)}')">×</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderPresetChips() {
+  const container = document.getElementById('preset-chips');
+  if (!allPresets.length) { container.innerHTML = ''; return; }
+  container.innerHTML = allPresets.map(p =>
+    `<button type="button" class="preset-chip" id="chip-${p.id}" onclick='applyPreset(${JSON.stringify(p)})'>
+      <span class="chip-icon">${esc(p.icon || '')}</span>${esc(p.name)}
+    </button>`
+  ).join('');
+}
+
+// ── Tabs ──────────────────────────────────────────────────────
+function showTab(name) {
+  document.getElementById('tab-links').style.display   = name === 'links'   ? '' : 'none';
+  document.getElementById('tab-presets').style.display = name === 'presets' ? '' : 'none';
+  document.getElementById('tab-btn-links').classList.toggle('active',   name === 'links');
+  document.getElementById('tab-btn-presets').classList.toggle('active', name === 'presets');
+  if (name === 'presets' && !allPresets.length) loadPresets();
+}
+
+// ── Link modal ────────────────────────────────────────────────
+function openModal(link) {
+  editingLinkId  = link?.id || null;
+  autoSlugActive = !link;
+  selectedPresetId = null;
+
+  document.getElementById('modal-title').textContent = link ? 'Editar Link' : 'Novo Link';
+  document.getElementById('modal-save-btn').textContent = link ? 'Salvar alterações' : 'Salvar link';
+  document.getElementById('modal-alert').innerHTML = '';
+
+  document.getElementById('f-title').value       = link?.title       || '';
+  document.getElementById('f-slug').value        = link?.slug        || '';
+  document.getElementById('f-destination').value = link?.destination || '';
+  document.getElementById('f-source').value      = link?.utm_source  || '';
+  document.getElementById('f-medium').value      = link?.utm_medium  || '';
+  document.getElementById('f-campaign').value    = link?.utm_campaign|| '';
+  document.getElementById('f-content').value     = link?.utm_content || '';
+  document.getElementById('f-term').value        = link?.utm_term    || '';
+
+  updatePreview();
+  document.getElementById('link-modal').classList.add('open');
+  setTimeout(() => document.getElementById('f-title').focus(), 50);
+}
+
+function closeModal() {
+  document.getElementById('link-modal').classList.remove('open');
+  editingLinkId = null;
+}
+
+function autoSlug() {
+  if (!autoSlugActive) return;
+  const title = document.getElementById('f-title').value;
+  const slug = title.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  document.getElementById('f-slug').value = slug;
+  updatePreview();
+}
+
+function updatePreview() {
+  const slug = document.getElementById('f-slug').value.trim();
+  document.getElementById('slug-preview-val').textContent = slug || '—';
+
+  const dest    = document.getElementById('f-destination').value.trim();
+  const source  = document.getElementById('f-source').value.trim();
+  const medium  = document.getElementById('f-medium').value.trim();
+  const campaign= document.getElementById('f-campaign').value.trim();
+  const content = document.getElementById('f-content').value.trim();
+  const term    = document.getElementById('f-term').value.trim();
+
+  const previewEl = document.getElementById('url-preview');
+
+  if (!dest) { previewEl.innerHTML = '<span style="color:#2a2a2a">Preencha a URL de destino…</span>'; return; }
+
+  try {
+    const url = new URL(dest);
+    const baseStr = esc(url.origin + url.pathname);
+    const params = [];
+    if (source)   params.push(['utm_source',   source]);
+    if (medium)   params.push(['utm_medium',   medium]);
+    if (campaign) params.push(['utm_campaign', campaign]);
+    if (content)  params.push(['utm_content',  content]);
+    if (term)     params.push(['utm_term',     term]);
+
+    // existing params from dest
+    url.searchParams.forEach((v, k) => {
+      if (!k.startsWith('utm_')) params.unshift([k, v]);
+    });
+
+    const utmPart = params
+      .filter(([k]) => k.startsWith('utm_'))
+      .map(([k,v]) => `<span class="utm-part">${esc(k)}=${esc(v)}</span>`)
+      .join('&');
+    const nonUtm = params
+      .filter(([k]) => !k.startsWith('utm_'))
+      .map(([k,v]) => esc(`${k}=${v}`))
+      .join('&');
+
+    const qs = [nonUtm, utmPart].filter(Boolean).join('&');
+    previewEl.innerHTML = baseStr + (qs ? '?' + qs : '');
+  } catch {
+    previewEl.innerHTML = '<span style="color:#555">URL inválida</span>';
+  }
+}
+
+function applyPreset(preset) {
+  document.getElementById('f-source').value   = preset.source   || '';
+  document.getElementById('f-medium').value   = preset.medium   || '';
+  document.getElementById('f-campaign').value = preset.campaign || '';
+  document.getElementById('f-content').value  = preset.content  || '';
+  document.getElementById('f-term').value     = preset.term     || '';
+  // Mark selected chip
+  document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('selected'));
+  const chip = document.getElementById(`chip-${preset.id}`);
+  if (chip) chip.classList.add('selected');
+  selectedPresetId = preset.id;
+  updatePreview();
+}
+
+function clearPresetSelection() {
+  document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('selected'));
+  selectedPresetId = null;
+}
+
+async function saveLink() {
+  const btn = document.getElementById('modal-save-btn');
+  btn.disabled = true;
+
+  const payload = {
+    title:        document.getElementById('f-title').value.trim(),
+    slug:         document.getElementById('f-slug').value.trim(),
+    destination:  document.getElementById('f-destination').value.trim(),
+    utm_source:   document.getElementById('f-source').value.trim(),
+    utm_medium:   document.getElementById('f-medium').value.trim(),
+    utm_campaign: document.getElementById('f-campaign').value.trim(),
+    utm_content:  document.getElementById('f-content').value.trim(),
+    utm_term:     document.getElementById('f-term').value.trim(),
+  };
+
+  const url    = editingLinkId ? `/api/links/${editingLinkId}` : '/api/links';
+  const method = editingLinkId ? 'PUT' : 'POST';
+
+  try {
+    const res  = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    const data = await res.json();
+
+    if (!res.ok) {
+      showAlert('modal-alert', data.error || 'Erro ao salvar.', 'error');
+      btn.disabled = false;
+      return;
+    }
+
+    closeModal();
+    await loadLinks();
+    showAlert('links-alert', editingLinkId ? 'Link atualizado.' : `Link criado: ${shortUrl(data.link.slug)}`, 'success');
+  } catch {
+    showAlert('modal-alert', 'Erro de conexão.', 'error');
+    btn.disabled = false;
+  }
+}
+
+function editLink(link) {
+  openModal(link);
+  autoSlugActive = false;
+}
+
+async function deleteLink(id, title) {
+  if (!confirm(`Excluir "${title}"? Esta ação não pode ser desfeita.`)) return;
+  const res = await fetch(`/api/links/${id}`, { method: 'DELETE' });
+  if (res.ok) {
+    await loadLinks();
+    showAlert('links-alert', 'Link excluído.', 'success');
+  }
+}
+
+// ── Copy to clipboard ─────────────────────────────────────────
+async function copyUrl(url, btn) {
+  try {
+    await navigator.clipboard.writeText(url);
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+  } catch {
+    prompt('Copie o link:', url);
+  }
+}
+
+// ── Preset modal ──────────────────────────────────────────────
+function openPresetModal(preset) {
+  editingPresetId = preset?.id || null;
+  document.getElementById('preset-modal-title').textContent = preset ? 'Editar Preset' : 'Novo Preset';
+  document.getElementById('preset-modal-alert').innerHTML = '';
+  document.getElementById('preset-save-btn').textContent = preset ? 'Salvar alterações' : 'Salvar preset';
+
+  document.getElementById('pf-name').value     = preset?.name     || '';
+  document.getElementById('pf-icon').value     = preset?.icon     || '';
+  document.getElementById('pf-source').value   = preset?.source   || '';
+  document.getElementById('pf-medium').value   = preset?.medium   || '';
+  document.getElementById('pf-campaign').value = preset?.campaign || '';
+  document.getElementById('pf-content').value  = preset?.content  || '';
+
+  document.getElementById('preset-modal').classList.add('open');
+  setTimeout(() => document.getElementById('pf-name').focus(), 50);
+}
+
+function closePresetModal() {
+  document.getElementById('preset-modal').classList.remove('open');
+  editingPresetId = null;
+}
+
+function editPreset(preset) { openPresetModal(preset); }
+
+async function savePreset() {
+  const btn = document.getElementById('preset-save-btn');
+  btn.disabled = true;
+
+  const payload = {
+    name:     document.getElementById('pf-name').value.trim(),
+    icon:     document.getElementById('pf-icon').value.trim(),
+    source:   document.getElementById('pf-source').value.trim(),
+    medium:   document.getElementById('pf-medium').value.trim(),
+    campaign: document.getElementById('pf-campaign').value.trim(),
+    content:  document.getElementById('pf-content').value.trim(),
+  };
+
+  const url    = editingPresetId ? `/api/presets/${editingPresetId}` : '/api/presets';
+  const method = editingPresetId ? 'PUT' : 'POST';
+
+  try {
+    const res  = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    const data = await res.json();
+
+    if (!res.ok) {
+      showAlert('preset-modal-alert', data.error || 'Erro ao salvar.', 'error');
+      btn.disabled = false;
+      return;
+    }
+
+    closePresetModal();
+    await loadPresets();
+    showAlert('presets-alert', editingPresetId ? 'Preset atualizado.' : 'Preset criado.', 'success');
+  } catch {
+    showAlert('preset-modal-alert', 'Erro de conexão.', 'error');
+    btn.disabled = false;
+  }
+}
+
+async function deletePreset(id, name) {
+  if (!confirm(`Excluir preset "${name}"?`)) return;
+  const res = await fetch(`/api/presets/${id}`, { method: 'DELETE' });
+  if (res.ok) {
+    await loadPresets();
+    showAlert('presets-alert', 'Preset excluído.', 'success');
+  }
+}
+
+// ── Alert helper ──────────────────────────────────────────────
+function showAlert(containerId, msg, type) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = `<div class="alert alert-${type}">${esc(msg)}</div>`;
+  setTimeout(() => { el.innerHTML = ''; }, 5000);
+}
+
+// ── Close modal on overlay click ──────────────────────────────
+document.getElementById('link-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+document.getElementById('preset-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closePresetModal();
+});
+
+// ── Keyboard shortcuts ────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closePresetModal(); }
+});
+
+// ── Init ──────────────────────────────────────────────────────
+(async () => {
+  await loadLinks();
+  await loadPresets();
+})();
+</script>
+</body>
+</html>
