@@ -44,8 +44,8 @@
   --gold:#C9A84C;
   --gold2:#E8C96A;
   --white:#FFFFFF;
-  --gray:#888888;
-  --gray2:#BBBBBB;
+  --gray:#AAAAAA;
+  --gray2:#CCCCCC;
   --green:#2ECC71;
   --green2:#43A047;
 }
@@ -304,12 +304,21 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
 .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;margin-bottom:48px}
 .footer-brand .logo{font-family:'Anton',sans-serif;font-size:24px;letter-spacing:0.06em;color:var(--cream);margin-bottom:12px}
 .footer-brand .logo span{color:var(--red3)}
-.footer-brand p{font-size:13px;color:#888;line-height:1.65}
+.footer-brand p{font-size:13px;color:var(--gray);line-height:1.65}
 .footer-col h4{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
-.footer-col a{display:block;font-size:13px;color:#888;text-decoration:none;margin-bottom:8px;transition:color 0.2s}
+.footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;margin-bottom:8px;transition:color 0.2s}
 .footer-col a:hover{color:var(--cream)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-bottom p{font-size:11px;color:#666}
+.footer-bottom p{font-size:11px;color:var(--gray2)}
+
+/* ── PARCEIROS ── */
+.parceiros-label{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);margin-bottom:28px;text-align:center}
+.parceiros-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.parceiro-card{background:var(--bg3);padding:28px 32px;display:flex;align-items:center;gap:20px;border:1px solid rgba(255,255,255,0.04);transition:border-color 0.2s}
+.parceiro-card:hover{border-color:rgba(255,255,255,0.1)}
+.parceiro-icon{font-size:32px;flex-shrink:0}
+.parceiro-nome{font-family:'Anton',sans-serif;font-size:26px;color:var(--cream);letter-spacing:0.04em;line-height:1;margin-bottom:8px}
+.parceiro-desc{font-size:14px;color:var(--gray);line-height:1.55}
 .footer-bottom a{color:var(--red2);text-decoration:none}
 
 /* ── RESPONSIVE ── */
@@ -330,6 +339,7 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
   .numeros-grid{grid-template-columns:repeat(2,1fr)}
   .eco-card{padding:32px 24px}
   .container{padding:0 20px}
+  .parceiros-grid{grid-template-columns:1fr}
 }
 </style>
 <!-- Schema.org Structured Data -->
@@ -600,30 +610,30 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
 
     <!-- PARCEIROS -->
     <div style="margin-top:48px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.06);" class="fade-up">
-      <div style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);margin-bottom:28px;text-align:center;">Empresas parceiras indicadas</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:1100px;margin:0 auto;">
+      <div class="parceiros-label">Empresas parceiras indicadas</div>
+      <div class="parceiros-grid">
 
-        <div style="background:var(--bg3);padding:28px 32px;display:flex;align-items:center;gap:20px;">
-          <div style="font-size:28px;flex-shrink:0;">🏨</div>
+        <div class="parceiro-card">
+          <div class="parceiro-icon">🏨</div>
           <div>
-            <div style="font-family:'Anton',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Rede Namoa</div>
-            <div style="font-size:11px;color:var(--gray);margin-top:4px;line-height:1.5;">Origem do método · Operação real · 20 anos de experiência</div>
+            <div class="parceiro-nome">Rede Namoa</div>
+            <div class="parceiro-desc">Origem do método · Operação real · 20 anos de experiência</div>
           </div>
         </div>
 
-        <div style="background:var(--bg3);padding:28px 32px;display:flex;align-items:center;gap:20px;">
-          <div style="font-size:28px;flex-shrink:0;">🔗</div>
+        <div class="parceiro-card">
+          <div class="parceiro-icon">🔗</div>
           <div>
-            <div style="font-family:'Anton',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Booles</div>
-            <div style="font-size:11px;color:var(--gray);margin-top:4px;line-height:1.5;">Gestor de canais · Motor de reservas · Site próprio · A partir de R$250/mês</div>
+            <div class="parceiro-nome">Booles</div>
+            <div class="parceiro-desc">Gestor de canais · Motor de reservas · Site próprio · A partir de R$250/mês</div>
           </div>
         </div>
 
-        <div style="background:var(--bg3);padding:28px 32px;display:flex;align-items:center;gap:20px;">
-          <div style="font-size:28px;flex-shrink:0;">📱</div>
+        <div class="parceiro-card">
+          <div class="parceiro-icon">📱</div>
           <div>
-            <div style="font-family:'Anton',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Rudnick Digital</div>
-            <div style="font-size:11px;color:var(--gray);margin-top:4px;line-height:1.5;">Marketing hoteleiro · Tráfego · Automação</div>
+            <div class="parceiro-nome">Rudnick Digital</div>
+            <div class="parceiro-desc">Marketing hoteleiro · Tráfego · Automação</div>
           </div>
         </div>
 
