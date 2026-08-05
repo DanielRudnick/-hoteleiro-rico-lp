@@ -21,20 +21,20 @@ function renderLogin(error = '') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin — Hoteleiro Rico</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{background:#080808;color:#F5EFE6;font-family:'Barlow',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+    body{background:#080808;color:#F5EFE6;font-family:'Poppins',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
     .card{max-width:380px;width:100%;background:#0F0F0F;border:1px solid #1E1E1E;border-top:3px solid #C9A84C;padding:44px 36px}
-    .logo{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:7px;color:#333;margin-bottom:32px;text-align:center}
+    .logo{font-family:'Anton',sans-serif;font-size:11px;letter-spacing:7px;color:#666;margin-bottom:32px;text-align:center}
     .logo span{color:#4a1a1a}
-    h1{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;color:#fff;margin-bottom:6px}
-    .sub{font-size:.85rem;color:#555;margin-bottom:28px;font-weight:300}
+    h1{font-family:'Anton',sans-serif;font-size:1.8rem;letter-spacing:2px;color:#fff;margin-bottom:6px}
+    .sub{font-size:.85rem;color:#888;margin-bottom:28px;font-weight:300}
     .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
-    label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#444;font-weight:600}
-    input{background:#141414;border:1px solid #252525;color:#F5EFE6;font-family:'Barlow',sans-serif;font-size:14px;padding:12px 14px;outline:none;transition:border-color .2s;width:100%}
+    label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#777;font-weight:600}
+    input{background:#141414;border:1px solid #252525;color:#F5EFE6;font-family:'Poppins',sans-serif;font-size:14px;padding:12px 14px;outline:none;transition:border-color .2s;width:100%}
     input:focus{border-color:rgba(201,168,76,0.4)}
-    .btn{width:100%;background:#C9A84C;color:#080808;font-family:'Barlow',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px;border:none;cursor:pointer;margin-top:8px;transition:opacity .18s}
+    .btn{width:100%;background:#C9A84C;color:#080808;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px;border:none;cursor:pointer;margin-top:8px;transition:opacity .18s}
     .btn:hover{opacity:.86}
     .error{background:rgba(196,26,26,0.08);border:1px solid rgba(196,26,26,0.2);color:#d96060;font-size:13px;padding:11px 14px;margin-bottom:18px}
   </style>
@@ -65,7 +65,7 @@ function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas }) {
       <td>${esc(u.nome_propriedade || '—')}</td>
       <td style="text-align:center">${u.quartos || '—'}</td>
       <td>${esc(u.telefone || '—')}</td>
-      <td style="color:#555;font-size:12px">${u.ultimo_login ? u.ultimo_login.slice(0, 16).replace('T',' ') : '—'}</td>
+      <td style="color:#888;font-size:12px">${u.ultimo_login ? u.ultimo_login.slice(0, 16).replace('T',' ') : '—'}</td>
     </tr>`).join('');
 
   return new Response(`<!DOCTYPE html>
@@ -75,51 +75,51 @@ function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas }) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin — Hoteleiro Rico</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{background:#080808;color:#F5EFE6;font-family:'Barlow',sans-serif;min-height:100vh;padding:0}
+    body{background:#080808;color:#F5EFE6;font-family:'Poppins',sans-serif;min-height:100vh;padding:0}
     a{color:inherit;text-decoration:none}
     .topbar{background:#0A0A0A;border-bottom:1px solid #171717;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
-    .topbar-logo{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:6px;color:#2a2a2a}
+    .topbar-logo{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:6px;color:#2a2a2a}
     .topbar-logo span{color:#4a1a1a}
     .topbar-right{display:flex;align-items:center;gap:20px}
-    .topbar-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#333}
-    .btn-logout{background:none;border:1px solid #222;color:#444;font-family:'Barlow',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;transition:border-color .2s,color .2s}
-    .btn-logout:hover{border-color:#444;color:#888}
+    .topbar-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#666}
+    .btn-logout{background:none;border:1px solid #222;color:#777;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;transition:border-color .2s,color .2s}
+    .btn-logout:hover{border-color:#777;color:#888}
     .main{max-width:1100px;margin:0 auto;padding:40px 32px}
-    .section-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;color:#C9A84C;margin-bottom:20px}
+    .section-title{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:3px;color:#C9A84C;margin-bottom:20px}
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:40px}
     .stat-card{background:#0F0F0F;border:1px solid #1A1A1A;padding:20px 24px}
-    .stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#333;margin-bottom:8px}
-    .stat-value{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;color:#F5EFE6}
+    .stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:8px}
+    .stat-value{font-family:'Anton',sans-serif;font-size:2rem;letter-spacing:2px;color:#F5EFE6}
     .stat-value.online{color:#2ECC71}
-    .stat-value.offline{color:#444}
+    .stat-value.offline{color:#777}
     .controls{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px}
     @media(max-width:640px){.controls{grid-template-columns:1fr}}
     .control-card{background:#0F0F0F;border:1px solid #1A1A1A;padding:24px}
-    .control-card h3{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#444;margin-bottom:16px}
-    .toggle-btn{width:100%;padding:14px;font-family:'Barlow',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
+    .control-card h3{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#777;margin-bottom:16px}
+    .toggle-btn{width:100%;padding:14px;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
     .toggle-on{background:#2ECC71;color:#080808}
     .toggle-on:hover{background:#27ae60}
     .toggle-off{background:#C41A1A;color:#fff}
     .toggle-off:hover{background:#E02020}
-    .toggle-status{font-size:11px;color:#444;margin-top:10px;text-align:center}
+    .toggle-status{font-size:11px;color:#777;margin-top:10px;text-align:center}
     .meet-form{display:flex;gap:10px}
-    .meet-input{flex:1;background:#141414;border:1px solid #252525;color:#F5EFE6;font-family:'Barlow',sans-serif;font-size:13px;padding:11px 14px;outline:none;transition:border-color .2s;min-width:0}
+    .meet-input{flex:1;background:#141414;border:1px solid #252525;color:#F5EFE6;font-family:'Poppins',sans-serif;font-size:13px;padding:11px 14px;outline:none;transition:border-color .2s;min-width:0}
     .meet-input:focus{border-color:rgba(201,168,76,0.4)}
     .meet-input::placeholder{color:#2a2a2a}
-    .btn-save{background:#C9A84C;color:#080808;font-family:'Barlow',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:11px 20px;border:none;cursor:pointer;white-space:nowrap;transition:opacity .18s}
+    .btn-save{background:#C9A84C;color:#080808;font-family:'Poppins',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:11px 20px;border:none;cursor:pointer;white-space:nowrap;transition:opacity .18s}
     .btn-save:hover{opacity:.86}
-    .current-link{font-size:11px;color:#333;margin-top:10px;word-break:break-all}
-    .current-link span{color:#555}
+    .current-link{font-size:11px;color:#666;margin-top:10px;word-break:break-all}
+    .current-link span{color:#888}
     .table-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-    .btn-export{background:none;border:1px solid #222;color:#444;font-family:'Barlow',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s}
+    .btn-export{background:none;border:1px solid #222;color:#777;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s}
     .btn-export:hover{border-color:#C9A84C;color:#C9A84C}
     .table-wrap{overflow-x:auto}
     table{width:100%;border-collapse:collapse;font-size:13px}
     thead tr{border-bottom:1px solid #1A1A1A}
-    thead th{text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#333;padding:10px 14px;font-weight:600}
+    thead th{text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;padding:10px 14px;font-weight:600}
     tbody tr{border-bottom:1px solid #111;transition:background .15s}
     tbody tr:hover{background:#0F0F0F}
     tbody td{padding:12px 14px;color:#888;font-weight:300}

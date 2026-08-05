@@ -24,26 +24,26 @@ function renderOffline() {
   <title>Aula ao Vivo — Hoteleiro Rico</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{--red:#C41A1A;--gold:#C9A84C;--black:#080808;--cream:#F5EFE6;--gray:#777}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--black);color:var(--cream);font-family:'Barlow',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+    body{background:var(--black);color:var(--cream);font-family:'Poppins',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
     body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E");opacity:.45;pointer-events:none}
     .card{position:relative;max-width:480px;width:100%;background:#0F0F0F;border:1px solid #1E1E1E;border-top:3px solid #2E2E2E;padding:52px 44px;text-align:center}
-    .logo{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:7px;color:#333;margin-bottom:40px}
+    .logo{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:7px;color:#666;margin-bottom:40px}
     .logo span{color:#4a1a1a}
     .icon{font-size:2.4rem;margin-bottom:24px;opacity:.7}
-    .badge-offline{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.03);border:1px solid #2a2a2a;padding:5px 14px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:24px}
+    .badge-offline{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.03);border:1px solid #2a2a2a;padding:5px 14px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#888;margin-bottom:24px}
     .offline-dot{width:6px;height:6px;border-radius:50%;background:#555}
-    h1{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;color:#fff;margin-bottom:16px;line-height:1.1}
+    h1{font-family:'Anton',sans-serif;font-size:2rem;letter-spacing:2px;color:#fff;margin-bottom:16px;line-height:1.1}
     .sub{font-size:.9rem;color:var(--gray);line-height:1.75;font-weight:300;margin-bottom:12px}
-    .next{font-size:.85rem;color:#555;margin-bottom:36px;font-weight:300}
+    .next{font-size:.85rem;color:#888;margin-bottom:36px;font-weight:300}
     .next strong{color:var(--gold)}
     .divider{border:none;border-top:1px solid #1a1a1a;margin:32px 0}
-    .workshop-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#444;margin-bottom:16px}
+    .workshop-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#777;margin-bottom:16px}
     .workshop-desc{font-size:.88rem;color:var(--gray);line-height:1.7;font-weight:300;margin-bottom:28px}
-    .btn{display:inline-block;background:var(--red);color:var(--cream);font-family:'Barlow',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;text-decoration:none;transition:background .18s}
+    .btn{display:inline-block;background:var(--red);color:var(--cream);font-family:'Poppins',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;text-decoration:none;transition:background .18s}
     .btn:hover{background:#E02020}
   </style>
 </head>
@@ -72,28 +72,28 @@ function renderLogin(error = '') {
   <title>Aula ao Vivo — Hoteleiro Rico</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{--red:#C41A1A;--gold:#C9A84C;--black:#080808;--cream:#F5EFE6;--gray:#777}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--black);color:var(--cream);font-family:'Barlow',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+    body{background:var(--black);color:var(--cream);font-family:'Poppins',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
     body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E");opacity:.45;pointer-events:none}
     .card{position:relative;max-width:440px;width:100%;background:#0F0F0F;border:1px solid #1E1E1E;border-top:3px solid var(--gold);padding:48px 40px}
-    .logo{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:7px;color:#444;margin-bottom:36px;text-align:center}
+    .logo{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:7px;color:#777;margin-bottom:36px;text-align:center}
     .logo span{color:var(--red)}
     .live-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(196,26,26,0.08);border:1px solid rgba(196,26,26,0.2);padding:5px 14px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:20px}
     .live-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 1.5s ease-in-out infinite}
-    h1{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;color:#fff;margin-bottom:8px}
+    h1{font-family:'Anton',sans-serif;font-size:2.2rem;letter-spacing:2px;color:#fff;margin-bottom:8px}
     .sub{font-size:.88rem;color:var(--gray);margin-bottom:32px;line-height:1.65;font-weight:300}
     .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-    label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#444;font-weight:600}
-    input{background:#141414;border:1px solid #252525;color:var(--cream);font-family:'Barlow',sans-serif;font-size:14px;padding:13px 14px;outline:none;transition:border-color .2s;width:100%;border-radius:0}
+    label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#777;font-weight:600}
+    input{background:#141414;border:1px solid #252525;color:var(--cream);font-family:'Poppins',sans-serif;font-size:14px;padding:13px 14px;outline:none;transition:border-color .2s;width:100%;border-radius:0}
     input:focus{border-color:rgba(201,168,76,0.4)}
-    input::placeholder{color:#333}
-    .btn{display:block;width:100%;background:var(--gold);color:#080808;font-family:'Barlow',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:16px;border:none;cursor:pointer;margin-top:10px;transition:opacity .18s}
+    input::placeholder{color:#666}
+    .btn{display:block;width:100%;background:var(--gold);color:#080808;font-family:'Poppins',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:16px;border:none;cursor:pointer;margin-top:10px;transition:opacity .18s}
     .btn:hover{opacity:.86}
     .error{background:rgba(196,26,26,0.08);border:1px solid rgba(196,26,26,0.25);color:#d96060;font-size:13px;padding:12px 14px;margin-bottom:20px;line-height:1.5}
-    .note{margin-top:24px;font-size:11px;color:#333;text-align:center;line-height:1.6}
+    .note{margin-top:24px;font-size:11px;color:#666;text-align:center;line-height:1.6}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
   </style>
 </head>

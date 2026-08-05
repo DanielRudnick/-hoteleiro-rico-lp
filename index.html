@@ -28,8 +28,8 @@
 <meta name="twitter:image" content="https://ohoteleirorico.com.br/og/home.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -50,7 +50,7 @@
   --green2:#43A047;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden}
+body{background:var(--bg);color:var(--cream);font-family:'Poppins',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden}
 
 /* ── UTILS ── */
 .container{max-width:1100px;margin:0 auto;padding:0 28px}
@@ -62,7 +62,7 @@ body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;fo
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:background 0.3s,padding 0.3s}
 nav.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);padding:14px 0;border-bottom:1px solid rgba(139,26,26,0.2)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--cream);text-decoration:none}
+.nav-logo{font-family:'Anton',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--cream);text-decoration:none}
 .nav-logo span{color:var(--red3)}
 .nav-links{display:flex;align-items:center;gap:32px}
 .nav-links a{font-size:13px;color:var(--gray2);text-decoration:none;font-weight:500;letter-spacing:0.04em;transition:color 0.2s}
@@ -79,9 +79,9 @@ nav.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);padding:1
 .eyebrow-line{width:40px;height:2px;background:var(--red2)}
 .eyebrow-text{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--red3)}
 
-h1.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7.5vw,90px);line-height:0.93;letter-spacing:0.01em;color:var(--cream);margin-bottom:10px}
+h1.hero-title{font-family:'Anton',sans-serif;font-size:clamp(56px,7.5vw,90px);line-height:0.93;letter-spacing:0.01em;color:var(--cream);margin-bottom:10px}
 h1.hero-title .gold{color:var(--gold)}
-h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400}
+h1.hero-title .serif{font-family:'Poppins',serif;font-style:italic;font-weight:400}
 
 .hero-sub{font-size:18px;font-weight:300;color:var(--gray2);line-height:1.6;max-width:500px;margin:22px 0 40px}
 
@@ -116,7 +116,7 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
   background:linear-gradient(transparent,rgba(10,10,10,0.95));
   padding:32px 28px 24px;
 }
-.foto-nome{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.04em;color:var(--cream)}
+.foto-nome{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:0.04em;color:var(--cream)}
 .foto-cargo{font-size:12px;color:var(--gold);font-weight:600;letter-spacing:0.12em;text-transform:uppercase}
 .foto-badge{
   position:absolute;top:24px;right:-12px;
@@ -136,28 +136,28 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
   text-align:center;
 }
 .numero-item:last-child{border-right:none}
-.numero-val{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--cream);line-height:1;letter-spacing:0.01em}
+.numero-val{font-family:'Anton',sans-serif;font-size:52px;color:var(--cream);line-height:1;letter-spacing:0.01em}
 .numero-val sup{font-size:28px;vertical-align:top;margin-top:6px}
 .numero-label{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,239,230,0.65);margin-top:4px}
 
 /* ── SOBRE JOÃO ── */
 .sobre{padding:110px 0}
 .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.sobre-texto h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,56px);line-height:0.95;color:var(--cream);margin-bottom:24px;letter-spacing:0.02em}
-.sobre-texto h2 em{font-family:'DM Serif Display',serif;font-style:italic;color:var(--red3)}
+.sobre-texto h2{font-family:'Anton',sans-serif;font-size:clamp(38px,5vw,56px);line-height:0.95;color:var(--cream);margin-bottom:24px;letter-spacing:0.02em}
+.sobre-texto h2 em{font-family:'Poppins',serif;font-style:italic;color:var(--red3)}
 .sobre-texto p{font-size:16px;color:var(--gray2);line-height:1.75;margin-bottom:16px;font-weight:300}
 .sobre-texto p strong{color:var(--cream);font-weight:600}
 .sobre-timeline{display:flex;flex-direction:column;gap:0}
 .timeline-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
 .timeline-item:last-child{border-bottom:none}
-.tl-ano{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--red2);min-width:60px;line-height:1.1}
+.tl-ano{font-family:'Anton',sans-serif;font-size:28px;color:var(--red2);min-width:60px;line-height:1.1}
 .tl-body h4{font-size:14px;font-weight:700;color:var(--cream);margin-bottom:4px;letter-spacing:0.03em}
 .tl-body p{font-size:13px;color:var(--gray);line-height:1.55}
 
 /* ── ECOSSISTEMA ── */
 .ecossistema{padding:110px 0;background:var(--bg2)}
 .eco-header{text-align:center;max-width:660px;margin:0 auto 72px}
-.eco-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,58px);color:var(--cream);line-height:0.95;letter-spacing:0.02em;margin-bottom:16px}
+.eco-header h2{font-family:'Anton',sans-serif;font-size:clamp(38px,5vw,58px);color:var(--cream);line-height:0.95;letter-spacing:0.02em;margin-bottom:16px}
 .eco-header p{font-size:16px;color:var(--gray);font-weight:300;line-height:1.65}
 
 .eco-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
@@ -178,7 +178,7 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
 .eco-card.green::before{background:linear-gradient(90deg,var(--green),var(--green2))}
 
 .eco-icon{font-size:36px;margin-bottom:20px}
-.eco-nome{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--cream);line-height:1;margin-bottom:6px}
+.eco-nome{font-family:'Anton',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--cream);line-height:1;margin-bottom:6px}
 .eco-tipo{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px}
 .eco-card.red .eco-tipo{color:var(--red3)}
 .eco-card.gold .eco-tipo{color:var(--gold)}
@@ -215,7 +215,7 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
 .diag-inner{
   max-width:780px;margin:0 auto;text-align:center;position:relative;z-index:1;
 }
-.diag-inner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,68px);color:var(--cream);line-height:0.95;letter-spacing:0.02em;margin-bottom:20px}
+.diag-inner h2{font-family:'Anton',sans-serif;font-size:clamp(40px,6vw,68px);color:var(--cream);line-height:0.95;letter-spacing:0.02em;margin-bottom:20px}
 .diag-inner h2 span{color:var(--red3)}
 .diag-inner p{font-size:17px;color:var(--gray2);font-weight:300;line-height:1.65;margin-bottom:44px;max-width:600px;margin-left:auto;margin-right:auto}
 
@@ -225,7 +225,7 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
   text-align:left;
 }
 .diag-step{background:var(--bg3);padding:24px 24px}
-.diag-step-n{font-family:'Bebas Neue',sans-serif;font-size:42px;color:rgba(139,26,26,0.35);line-height:1;margin-bottom:8px}
+.diag-step-n{font-family:'Anton',sans-serif;font-size:42px;color:rgba(139,26,26,0.35);line-height:1;margin-bottom:8px}
 .diag-step h4{font-size:13px;font-weight:700;color:var(--cream);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
 .diag-step p{font-size:12px;color:var(--gray);line-height:1.55}
 
@@ -233,7 +233,7 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
 .missao{background:var(--red);padding:80px 0;text-align:center;position:relative;overflow:hidden}
 .missao::before{
   content:'MISSÃO';
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Anton',sans-serif;
   font-size:220px;letter-spacing:0.05em;
   color:rgba(0,0,0,0.12);
   position:absolute;top:50%;left:50%;
@@ -241,7 +241,7 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
   white-space:nowrap;pointer-events:none;line-height:1;
 }
 .missao blockquote{
-  font-family:'DM Serif Display',serif;
+  font-family:'Poppins',serif;
   font-style:italic;
   font-size:clamp(22px,4vw,36px);
   color:var(--cream);
@@ -250,7 +250,7 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
 }
 .missao cite{
   display:block;
-  font-family:'DM Sans',sans-serif;
+  font-family:'Poppins',sans-serif;
   font-style:normal;font-size:12px;
   font-weight:700;letter-spacing:0.15em;
   text-transform:uppercase;
@@ -274,7 +274,7 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
   background:linear-gradient(90deg,var(--gold),transparent);
 }
 .teaser-text h3{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Anton',sans-serif;
   font-size:38px;color:var(--cream);
   letter-spacing:0.03em;line-height:1;margin-bottom:10px;
 }
@@ -303,14 +303,14 @@ h1.hero-title .serif{font-family:'DM Serif Display',serif;font-style:italic;font
 /* ── FOOTER ── */
 footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 0 40px}
 .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;margin-bottom:48px}
-.footer-brand .logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.06em;color:var(--cream);margin-bottom:12px}
+.footer-brand .logo{font-family:'Anton',sans-serif;font-size:24px;letter-spacing:0.06em;color:var(--cream);margin-bottom:12px}
 .footer-brand .logo span{color:var(--red3)}
-.footer-brand p{font-size:13px;color:#555;line-height:1.65}
+.footer-brand p{font-size:13px;color:#888;line-height:1.65}
 .footer-col h4{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
-.footer-col a{display:block;font-size:13px;color:#555;text-decoration:none;margin-bottom:8px;transition:color 0.2s}
+.footer-col a{display:block;font-size:13px;color:#888;text-decoration:none;margin-bottom:8px;transition:color 0.2s}
 .footer-col a:hover{color:var(--cream)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-bottom p{font-size:11px;color:#333}
+.footer-bottom p{font-size:11px;color:#666}
 .footer-bottom a{color:var(--red2);text-decoration:none}
 
 /* ── RESPONSIVE ── */
@@ -636,7 +636,7 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
         <div style="background:var(--bg3);padding:28px 32px;display:flex;align-items:center;gap:20px;">
           <div style="font-size:28px;flex-shrink:0;">🏨</div>
           <div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Rede Namoa</div>
+            <div style="font-family:'Anton',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Rede Namoa</div>
             <div style="font-size:11px;color:var(--gray);margin-top:4px;line-height:1.5;">Origem do método · Operação real · 20 anos de experiência</div>
           </div>
         </div>
@@ -644,7 +644,7 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
         <div style="background:var(--bg3);padding:28px 32px;display:flex;align-items:center;gap:20px;">
           <div style="font-size:28px;flex-shrink:0;">🔗</div>
           <div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Booles</div>
+            <div style="font-family:'Anton',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Booles</div>
             <div style="font-size:11px;color:var(--gray);margin-top:4px;line-height:1.5;">Gestor de canais · Motor de reservas · Site próprio · A partir de R$250/mês</div>
           </div>
         </div>
@@ -652,7 +652,7 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
         <div style="background:var(--bg3);padding:28px 32px;display:flex;align-items:center;gap:20px;">
           <div style="font-size:28px;flex-shrink:0;">📱</div>
           <div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Rudnick Digital</div>
+            <div style="font-family:'Anton',sans-serif;font-size:22px;color:var(--cream);letter-spacing:0.04em;line-height:1;">Rudnick Digital</div>
             <div style="font-size:11px;color:var(--gray);margin-top:4px;line-height:1.5;">Marketing hoteleiro · Tráfego · Automação</div>
           </div>
         </div>
