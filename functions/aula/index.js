@@ -184,9 +184,17 @@ export async function onRequestPost({ request, env }) {
 
   const token  = crypto.randomUUID();
   const expira = getMidnightBRT().toISOString().replace('T', ' ').slice(0, 19);
+
+  // Resolve current aula_id (graceful — column may not exist yet pre-migration)
+  let aulaId = null;
+  try {
+    const cfg = await env.DB.prepare(`SELECT valor FROM config WHERE chave = 'aula_id_atual'`).first();
+    if (cfg?.valor) aulaId = parseInt(cfg.valor, 10);
+  } catch (_) {}
+
   await env.DB.prepare(
-    `INSERT INTO sessoes (token, usuario_id, expira_em) VALUES (?, ?, ?)`
-  ).bind(token, usuario.id, expira).run();
+    `INSERT INTO sessoes (token, usuario_id, expira_em, aula_id) VALUES (?, ?, ?, ?)`
+  ).bind(token, usuario.id, expira, aulaId).run();
 
   try {
     await fetch(WEBHOOK_URL, {
