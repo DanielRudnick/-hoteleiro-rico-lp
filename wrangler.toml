@@ -1,0 +1,7 @@
+name = "ohoteleirorico"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hoteleiro-rico-db"
+database_id = "3220e01c-5df9-4035-9a4f-d57af471a67a"
