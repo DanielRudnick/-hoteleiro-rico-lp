@@ -62,7 +62,7 @@
   .hero::after{content:'';position:absolute;top:0;left:-5%;width:110%;height:4px;background:linear-gradient(90deg,transparent 0%,var(--red) 30%,var(--red-bright) 50%,var(--red) 70%,transparent 100%);z-index:2}
   .hero-inner{position:relative;z-index:1;max-width:860px;margin:0 auto}
   .badge{display:inline-block;border:1px solid var(--red-dim);background:rgba(196,26,26,.08);color:var(--red-bright);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:7px 18px;margin-bottom:36px;animation:fadeUp .5s ease both}
-  .hero h1{font-family:'Anton',sans-serif;font-size:clamp(3.2rem,9vw,6.4rem);font-weight:400;line-height:.95;letter-spacing:.02em;margin-bottom:28px;color:var(--white);animation:fadeUp .6s .08s ease both;text-transform:uppercase}
+  .hero h1{font-family:'Anton',sans-serif;font-size:clamp(3.2rem,9vw,6.4rem);font-weight:400;line-height:.95;letter-spacing:.02em;margin-bottom:28px;color:var(--cream);animation:fadeUp .6s .08s ease both;text-transform:uppercase}
   .hero h1 em{font-style:normal;color:var(--red-bright)}
   .hero h1 span{display:block}
   .hero-sub{font-size:1.1rem;color:var(--gray);max-width:580px;margin:0 auto 52px;font-weight:300;animation:fadeUp .6s .16s ease both}
@@ -123,8 +123,8 @@
   .container{max-width:860px;margin:0 auto;padding:0 20px}
   .temas{padding:100px 20px;background:var(--black-2);border-top:1px solid var(--black-5);border-bottom:1px solid var(--black-5)}
   .section-tag{display:inline-block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.35);padding:5px 14px;margin-bottom:14px;font-weight:600}
-  h2.sec{font-family:'Anton',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:400;line-height:1.05;margin-bottom:16px;letter-spacing:.02em;color:var(--white)}
-  h2.sec em{font-style:normal;color:var(--red-bright)}
+  h2{font-family:'Anton',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:400;line-height:1.05;margin-bottom:16px;letter-spacing:.02em;color:var(--cream)}
+  h2 em{font-style:normal;color:var(--red2)}
   .temas-intro{text-align:center;margin-bottom:56px}
   .temas-intro p{color:var(--gray);max-width:540px;margin:0 auto}
   .temas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--black-5);border:1px solid var(--black-5)}
@@ -161,7 +161,7 @@
   /* FINAL CTA */
   .final-cta{padding:100px 20px;text-align:center;position:relative;overflow:hidden}
   .final-cta::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse,var(--red-glow) 0%,transparent 65%);pointer-events:none}
-  .final-cta h2{font-family:'Anton',sans-serif;font-size:clamp(2.4rem,6vw,4rem);margin-bottom:16px;letter-spacing:.02em;text-transform:uppercase}
+  .final-cta h2{font-size:clamp(2.4rem,6vw,4rem);margin-bottom:16px}
   .final-cta h2 em{font-style:normal;color:var(--red-bright)}
   .final-cta p{color:var(--gray);max-width:500px;margin:0 auto 48px}
 
@@ -318,7 +318,7 @@
   <div class="container">
     <div class="temas-intro reveal">
       <span class="section-tag">O que você vai aprender</span>
-      <h2 class="sec">Conteúdo que <em>move resultado</em></h2>
+      <h2>Conteúdo que <em>move resultado</em></h2>
       <p>Cada aula foca em um tema diferente — sempre prático, sempre aplicável na semana seguinte.</p>
     </div>
     <div class="temas-grid reveal">
@@ -361,7 +361,7 @@
   <div class="container">
     <div class="intro reveal">
       <span class="section-tag">Para quem é</span>
-      <h2 class="sec">Feito para quem <em>opera</em></h2>
+      <h2>Feito para quem <em>opera</em></h2>
       <p>Se você está no dia a dia da sua hospedagem e quer crescer com método, esse espaço é seu.</p>
     </div>
     <div class="check-list reveal">
