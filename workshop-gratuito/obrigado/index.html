@@ -19,13 +19,10 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1543142607331163');
     fbq('track', 'PageView');
-    fbq('track', 'CompleteRegistration', {
-      content_name: 'Workshop Gratuito 26/08',
-      content_category: 'Workshop',
-      status: 'confirmed'
-    });
+    fbq('track', 'Lead', {content_name: 'Workshop Gratuito 26/08', content_category: 'Workshop'});
+    fbq('trackCustom', 'Lead WRP', {content_name: 'Workshop Gratuito 26/08'});
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163&ev=CompleteRegistration&noscript=1"/></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163&ev=Lead&noscript=1"/></noscript>
   <style>
     :root{--black:#0A0A0A;--red:#B22222;--cream:#F5EFE6;--gold:#C9A84C;--white:#FFFFFF;--green-wa:#25D366;--green-wa-dark:#1da851;--bg2:#0F0F0F}
     *{margin:0;padding:0;box-sizing:border-box}

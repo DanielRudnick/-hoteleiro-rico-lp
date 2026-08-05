@@ -381,10 +381,6 @@ async function submitForm(e) {
     });
   } catch(_) {}
 
-  if (typeof fbq !== 'undefined') {
-    fbq('track', 'Lead', {content_name: 'Workshop Gratuito 26/08', content_category: 'Workshop'});
-  }
-
   window.location.href = '/workshop-gratuito/obrigado/';
 }
 
