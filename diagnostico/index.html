@@ -578,7 +578,6 @@ function goNext() {
     render();
     window.scrollTo(0, 0);
   } else {
-    fbq('track', 'Lead', { content_name: 'Diagnóstico Hoteleiro Rico', content_category: 'Lead Magnet' });
     showLoading();
   }
 }
@@ -716,6 +715,9 @@ Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. F
 
 // ── MOSTRAR RESULTADO ─────────────────────────────────────────────
 function showResult(score, breakdown, tier, ia) {
+  if (typeof fbq !== 'undefined') {
+    fbq('trackCustom', 'Lead Diagnóstico', {content_name: 'Diagnóstico Hoteleiro Rico', content_category: 'Lead Magnet'});
+  }
   const circunferencia = 327;
   const offset = circunferencia - (score / 100) * circunferencia;
 
