@@ -381,7 +381,7 @@ async function submitForm(e) {
     });
   } catch(_) {}
 
-  try { localStorage.setItem('wrp_lead', JSON.stringify({email: payload.email, name: payload.name})); } catch(_) {}
+  try { localStorage.setItem('wrp_lead', JSON.stringify({email: payload.email, name: payload.name, phone: payload.phone})); } catch(_) {}
   window.location.href = '/workshop-gratuito/obrigado/';
 }
 
