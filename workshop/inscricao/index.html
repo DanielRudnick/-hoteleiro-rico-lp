@@ -242,11 +242,6 @@ form.addEventListener('submit', async (e) => {
     // no-cors pode lançar mesmo com sucesso; segue o fluxo
   }
 
-  // Pixel
-  if (typeof fbq !== 'undefined') {
-    fbq('track', 'Lead', { content_name: 'Inscrição Workshop', content_category: 'Workshop' });
-  }
-
   document.getElementById('success-msg').classList.add('active');
   form.style.display = 'none';
 
