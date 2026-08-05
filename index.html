@@ -160,51 +160,50 @@ h1.hero-title .serif{font-family:'Poppins',serif;font-style:italic;font-weight:4
 .eco-header h2{font-family:'Anton',sans-serif;font-size:clamp(38px,5vw,58px);color:var(--cream);line-height:0.95;letter-spacing:0.02em;margin-bottom:16px}
 .eco-header p{font-size:16px;color:var(--gray);font-weight:300;line-height:1.65}
 
-.eco-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+.eco-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+
 .eco-card{
-  background:var(--bg3);
-  padding:44px 36px;
+  padding:40px 36px;
   position:relative;
   display:flex;flex-direction:column;
+  border:1px solid;
+  overflow:hidden;
   transition:transform 0.2s;
 }
-.eco-card:hover{transform:translateY(-4px)}
-.eco-card::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:3px;
-}
-.eco-card.red::before{background:linear-gradient(90deg,var(--red),var(--red3))}
-.eco-card.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold2))}
-.eco-card.green::before{background:linear-gradient(90deg,var(--green),var(--green2))}
+.eco-card:hover{transform:translateY(-3px)}
+.eco-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
 
-.eco-icon{font-size:36px;margin-bottom:20px}
-.eco-nome{font-family:'Anton',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--cream);line-height:1;margin-bottom:6px}
-.eco-tipo{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px}
-.eco-card.red .eco-tipo{color:var(--red3)}
-.eco-card.gold .eco-tipo{color:var(--gold)}
-.eco-card.green .eco-tipo{color:var(--green2)}
-.eco-desc{font-size:16px;color:var(--gray);line-height:1.65;flex:1;margin-bottom:28px}
-.eco-features{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
-.eco-feat{font-size:14px;color:var(--gray2);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
-.eco-feat::before{content:'→';color:var(--red3);flex-shrink:0;font-size:11px;margin-top:1px}
-.eco-card.gold .eco-feat::before{color:var(--gold)}
-.eco-card.green .eco-feat::before{color:var(--green2)}
-.eco-card.blue::before{background:linear-gradient(90deg,#1A5C8B,#2980B9)}
-.eco-card.blue .eco-tipo{color:#5BA8D4}
-.eco-card.blue .eco-feat::before{color:#5BA8D4}
-.eco-card.blue .eco-cta{background:rgba(26,92,139,0.15);color:#5BA8D4;border:1px solid rgba(26,92,139,0.4)}
-.eco-card.blue .eco-cta:hover{background:rgba(26,92,139,0.28)}
+.eco-card.red{border-color:rgba(139,26,26,0.4);background:rgba(139,26,26,0.05)}
+.eco-card.red::before{background:linear-gradient(90deg,var(--red2),transparent)}
+.eco-card.gold{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.03)}
+.eco-card.gold::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.eco-card.green{border-color:rgba(46,204,113,0.3);background:rgba(46,204,113,0.03)}
+.eco-card.green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.eco-card.blue{border-color:rgba(26,92,139,0.4);background:rgba(26,92,139,0.05)}
+.eco-card.blue::before{background:linear-gradient(90deg,#1A5C8B,transparent)}
+
+.eco-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:6px 14px;margin-bottom:20px;border:1px solid}
+.eco-card.red .eco-badge{color:var(--red3);border-color:rgba(196,26,26,0.4);background:rgba(196,26,26,0.08)}
+.eco-card.gold .eco-badge{color:var(--gold);border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.08)}
+.eco-card.green .eco-badge{color:var(--green);border-color:rgba(46,204,113,0.3);background:rgba(46,204,113,0.08)}
+.eco-card.blue .eco-badge{color:#5BA8D4;border-color:rgba(26,92,139,0.4);background:rgba(26,92,139,0.08)}
+
+.eco-nome{font-family:'Anton',sans-serif;font-size:clamp(30px,3vw,40px);letter-spacing:0.02em;color:var(--cream);line-height:1;margin-bottom:16px}
+.eco-desc{font-size:16px;color:var(--gray);line-height:1.65;flex:1;margin-bottom:32px}
+
 .eco-cta{
-  display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.08em;
-  text-transform:uppercase;padding:12px 24px;text-decoration:none;
-  margin-top:auto;text-align:center;transition:opacity 0.2s;
+  display:block;font-size:12px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;padding:16px 24px;text-decoration:none;
+  text-align:center;border:1px solid;transition:background 0.2s;
 }
-.eco-card.red .eco-cta{background:var(--red);color:var(--cream)}
-.eco-card.red .eco-cta:hover{background:var(--red2)}
-.eco-card.gold .eco-cta{background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.3)}
-.eco-card.gold .eco-cta:hover{background:rgba(201,168,76,0.25)}
-.eco-card.green .eco-cta{background:var(--green);color:#fff}
-.eco-card.green .eco-cta:hover{background:var(--green2)}
+.eco-card.red .eco-cta{border-color:rgba(196,26,26,0.5);color:var(--red3)}
+.eco-card.red .eco-cta:hover{background:rgba(196,26,26,0.12)}
+.eco-card.gold .eco-cta{border-color:rgba(201,168,76,0.4);color:var(--gold)}
+.eco-card.gold .eco-cta:hover{background:rgba(201,168,76,0.08)}
+.eco-card.green .eco-cta{border-color:rgba(46,204,113,0.35);color:var(--green)}
+.eco-card.green .eco-cta:hover{background:rgba(46,204,113,0.08)}
+.eco-card.blue .eco-cta{border-color:rgba(26,92,139,0.5);color:#5BA8D4}
+.eco-card.blue .eco-cta:hover{background:rgba(26,92,139,0.1)}
 
 /* ── DIAGNÓSTICO CTA ── */
 .diagnostico{padding:110px 0;position:relative;overflow:hidden}
@@ -326,7 +325,7 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
   .teaser-inner{padding:36px 28px;flex-direction:column;align-items:flex-start}
   nav .nav-links{display:none}
 }
-@media(max-width:560px){
+@media(max-width:640px){
   .eco-cards{grid-template-columns:1fr}
   .numeros-grid{grid-template-columns:repeat(2,1fr)}
   .eco-card{padding:32px 24px}
@@ -567,70 +566,33 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
 
       <!-- COMUNIDADE -->
       <div class="eco-card blue fade-up">
-        <div class="eco-icon">📅</div>
+        <div class="eco-badge">Aulas ao vivo · Gratuito</div>
         <div class="eco-nome">Comunidade</div>
-        <div class="eco-tipo">Aulas ao vivo · Toda quarta · Gratuito</div>
-        <p class="eco-desc">
-          Toda semana João Gallucci entra ao vivo para falar sobre operação, vendas, precificação, gestão de equipe e liderança. Sem enrolação, sem teoria.
-        </p>
-        <div class="eco-features">
-          <div class="eco-feat">Aulas ao vivo toda quarta-feira</div>
-          <div class="eco-feat">Conteúdo prático e aplicável</div>
-          <div class="eco-feat">Grupo exclusivo de hoteleiros</div>
-          <div class="eco-feat">100% gratuito</div>
-        </div>
+        <p class="eco-desc">Toda semana João Gallucci entra ao vivo para falar sobre operação, vendas, precificação e liderança. Sem enrolação, sem teoria — direto para o que move resultado.</p>
         <a href="comunidade" class="eco-cta">Entrar na comunidade →</a>
       </div>
 
       <!-- WORKSHOP -->
       <div class="eco-card green fade-up">
-        <div class="eco-icon">🎯</div>
+        <div class="eco-badge">Online · 4 horas · Revenue</div>
         <div class="eco-nome">Workshop</div>
-        <div class="eco-tipo">Online · 4 horas · Revenue Management</div>
-        <p class="eco-desc">
-          Para donos de hotéis, pousadas, chalés e hostels que querem parar de improvisar e começar a vender com previsibilidade — o ano inteiro.
-        </p>
-        <div class="eco-features">
-          <div class="eco-feat">Tarifário 365 dias estruturado na prática</div>
-          <div class="eco-feat">Estratégia de ocupação por temporada</div>
-          <div class="eco-feat">Como reduzir dependência das OTAs</div>
-          <div class="eco-feat">Online · ao vivo · com material de apoio</div>
-        </div>
+        <p class="eco-desc">Para donos de hotéis, pousadas, chalés e hostels que querem parar de improvisar e começar a vender com previsibilidade — o ano inteiro.</p>
         <a href="workshop" class="eco-cta">Ver Workshop →</a>
       </div>
 
-      <!-- HOTELEIRO RICO -->
+      <!-- MENTORIA -->
       <div class="eco-card red fade-up">
-        <div class="eco-icon">🎓</div>
+        <div class="eco-badge">Mentoria · 60 dias</div>
         <div class="eco-nome">Mentoria</div>
-        <div class="eco-tipo">Educação · Mentoria · Conteúdo</div>
-        <p class="eco-desc">
-          A porta de entrada para a gestão profissional. Conteúdo gratuito nas redes, workshops e a Mentoria de Implementação para quem quer transformar a operação em até 60 dias.
-        </p>
-        <div class="eco-features">
-          <div class="eco-feat">Mentoria de Implementação individual (60 dias)</div>
-          <div class="eco-feat">Conteúdo gratuito no YouTube e Instagram</div>
-          <div class="eco-feat">Workshops práticos de Revenue Management</div>
-          <div class="eco-feat">Diagnóstico de operação hoteleira</div>
-        </div>
+        <p class="eco-desc">Acompanhamento individual com João Gallucci para transformar sua operação em até 60 dias. Diagnóstico real, plano de ação e implementação junto com você.</p>
         <a href="mentoria" class="eco-cta">Ver Mentoria →</a>
-        <a href="receita-previsivel" style="display:block;margin-top:12px;text-align:center;font-size:12px;color:var(--gray2);text-decoration:none;padding:10px 16px;border:1px solid rgba(245,239,230,0.15);letter-spacing:0.04em;transition:color 0.2s,border-color 0.2s,background 0.2s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='rgba(245,239,230,0.35)';this.style.background='rgba(245,239,230,0.04)'" onmouseout="this.style.color='var(--gray2)';this.style.borderColor='rgba(245,239,230,0.15)';this.style.background='transparent'">Sem orçamento para a mentoria? → Receita Previsível</a>
       </div>
 
       <!-- INN.SIDE -->
       <div class="eco-card gold fade-up">
-        <div class="eco-icon">📊</div>
+        <div class="eco-badge">Consultoria · Recorrente</div>
         <div class="eco-nome">Inn.Side</div>
-        <div class="eco-tipo">Inteligência Hoteleira · Consultoria</div>
-        <p class="eco-desc">
-          O braço de consultoria do ecossistema. A Inn.Side Inteligência Hoteleira cuida de Revenue Management, distribuição em OTAs, Channel Manager e gestão de receita de forma contínua.
-        </p>
-        <div class="eco-features">
-          <div class="eco-feat">Revenue Management estratégico</div>
-          <div class="eco-feat">Configuração e otimização de OTAs</div>
-          <div class="eco-feat">Setup completo de Channel Manager</div>
-          <div class="eco-feat">Acompanhamento mensal recorrente</div>
-        </div>
+        <p class="eco-desc">O braço de consultoria do ecossistema. Revenue Management, distribuição em OTAs, Channel Manager e gestão de receita de forma contínua e especializada.</p>
         <a href="https://innsidehotelaria.com.br" target="_blank" class="eco-cta">Conhecer Inn.Side →</a>
       </div>
 
