@@ -151,8 +151,8 @@ h1.hero-title .serif{font-family:'Poppins',serif;font-style:italic;font-weight:4
 .timeline-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
 .timeline-item:last-child{border-bottom:none}
 .tl-ano{font-family:'Anton',sans-serif;font-size:28px;color:var(--red2);min-width:60px;line-height:1.1}
-.tl-body h4{font-size:14px;font-weight:700;color:var(--cream);margin-bottom:4px;letter-spacing:0.03em}
-.tl-body p{font-size:13px;color:var(--gray);line-height:1.55}
+.tl-body h4{font-size:15px;font-weight:700;color:var(--cream);margin-bottom:4px;letter-spacing:0.03em}
+.tl-body p{font-size:16px;color:var(--gray);line-height:1.7}
 
 /* ── ECOSSISTEMA ── */
 .ecossistema{padding:110px 0;background:var(--bg2)}
@@ -183,9 +183,9 @@ h1.hero-title .serif{font-family:'Poppins',serif;font-style:italic;font-weight:4
 .eco-card.red .eco-tipo{color:var(--red3)}
 .eco-card.gold .eco-tipo{color:var(--gold)}
 .eco-card.green .eco-tipo{color:var(--green2)}
-.eco-desc{font-size:14px;color:var(--gray);line-height:1.65;flex:1;margin-bottom:28px}
+.eco-desc{font-size:16px;color:var(--gray);line-height:1.65;flex:1;margin-bottom:28px}
 .eco-features{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
-.eco-feat{font-size:12px;color:var(--gray2);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.eco-feat{font-size:14px;color:var(--gray2);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
 .eco-feat::before{content:'→';color:var(--red3);flex-shrink:0;font-size:11px;margin-top:1px}
 .eco-card.gold .eco-feat::before{color:var(--gold)}
 .eco-card.green .eco-feat::before{color:var(--green2)}
@@ -226,8 +226,8 @@ h1.hero-title .serif{font-family:'Poppins',serif;font-style:italic;font-weight:4
 }
 .diag-step{background:var(--bg3);padding:24px 24px}
 .diag-step-n{font-family:'Anton',sans-serif;font-size:42px;color:rgba(139,26,26,0.35);line-height:1;margin-bottom:8px}
-.diag-step h4{font-size:13px;font-weight:700;color:var(--cream);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
-.diag-step p{font-size:12px;color:var(--gray);line-height:1.55}
+.diag-step h4{font-size:14px;font-weight:700;color:var(--cream);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
+.diag-step p{font-size:15px;color:var(--gray);line-height:1.65}
 
 /* ── MISSÃO ── */
 .missao{background:var(--red);padding:80px 0;text-align:center;position:relative;overflow:hidden}
@@ -278,7 +278,7 @@ h1.hero-title .serif{font-family:'Poppins',serif;font-style:italic;font-weight:4
   font-size:38px;color:var(--cream);
   letter-spacing:0.03em;line-height:1;margin-bottom:10px;
 }
-.teaser-text p{font-size:14px;color:var(--gray);line-height:1.65;max-width:480px}
+.teaser-text p{font-size:16px;color:var(--gray);line-height:1.65;max-width:480px}
 .teaser-badge{
   background:rgba(201,168,76,0.12);
   border:1px solid rgba(201,168,76,0.3);
@@ -323,8 +323,14 @@ footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 
   .eco-cards{grid-template-columns:repeat(2,1fr)}
   .diag-steps{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .teaser-inner{padding:36px 28px}
+  .teaser-inner{padding:36px 28px;flex-direction:column;align-items:flex-start}
   nav .nav-links{display:none}
+}
+@media(max-width:560px){
+  .eco-cards{grid-template-columns:1fr}
+  .numeros-grid{grid-template-columns:repeat(2,1fr)}
+  .eco-card{padding:32px 24px}
+  .container{padding:0 20px}
 }
 </style>
 <!-- Schema.org Structured Data -->
