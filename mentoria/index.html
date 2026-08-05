@@ -41,8 +41,9 @@
   --red3:     #E02020;
   --cream:    #F5EFE6;
   --gold:     #C9A84C;
+  --gold2:    #E8C96A;
   --white:    #FFFFFF;
-  --gray:     #9E9E9E;
+  --gray:     #AAAAAA;
   --gray2:    #CCCCCC;
   --green:    #2ECC71;
   --green2:   #43A047;
@@ -64,7 +65,7 @@ body {
 .serif { font-family: 'Poppins', serif; }
 
 /* ── UTILS ────────────────────────────────────────────────────── */
-.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 .tag {
   display: inline-block;
   font-family: 'Poppins', sans-serif;
@@ -72,26 +73,24 @@ body {
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--red3);
-  border: 1px solid var(--red);
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.35);
   padding: 5px 14px;
   margin-bottom: 20px;
 }
 
-/* ── BARRA TOPO ───────────────────────────────────────────────── */
-.topbar {
-  background: var(--red);
-  text-align: center;
-  padding: 10px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--cream);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.topbar span { color: var(--gold); }
+/* ── NAV ──────────────────────────────────────────────────────── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:background 0.3s,padding 0.3s}
+  nav.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);padding:14px 0;border-bottom:1px solid rgba(139,26,26,0.2)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:'Anton',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--cream);text-decoration:none}
+  .nav-logo span{color:var(--red3)}
+  .nav-links{display:flex;align-items:center;gap:32px}
+  .nav-links a{font-size:13px;color:var(--gray2);text-decoration:none;font-weight:500;letter-spacing:0.04em;transition:color 0.2s}
+  .nav-links a:hover{color:var(--cream)}
+  .nav-cta{background:var(--red2);color:var(--cream)!important;padding:10px 22px;font-weight:700!important;font-size:12px!important;letter-spacing:0.08em!important;text-transform:uppercase;transition:background 0.2s!important}
+  .nav-cta:hover{background:var(--red3)!important}
+  @media(max-width:900px){nav .nav-links{display:none}}
 
 /* ── HERO ─────────────────────────────────────────────────────── */
 .hero {
@@ -668,14 +667,18 @@ body {
 }
 
 /* ── FOOTER ────────────────────────────────────────────────────── */
-footer {
-  background: #060606;
-  border-top: 1px solid rgba(139,26,26,0.3);
-  padding: 40px 0;
-  text-align: center;
-}
-footer p { font-size: 12px; color: #444; line-height: 1.8; }
-footer a { color: var(--red2); text-decoration: none; }
+  footer{background:#060606;border-top:1px solid rgba(139,26,26,0.2);padding:52px 0 40px}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+  .footer-brand .logo{font-family:'Anton',sans-serif;font-size:24px;letter-spacing:0.06em;color:var(--cream);margin-bottom:12px}
+  .footer-brand .logo span{color:var(--red3)}
+  .footer-brand p{font-size:13px;color:var(--gray);line-height:1.65}
+  .footer-col h4{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+  .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;margin-bottom:8px;transition:color 0.2s}
+  .footer-col a:hover{color:var(--cream)}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .footer-bottom p{font-size:11px;color:var(--gray2)}
+  .footer-bottom a{color:var(--red2);text-decoration:none}
+  @media(max-width:900px){.footer-grid{grid-template-columns:1fr}}
 
 /* ── STICKY CTA mobile ──────────────────────────────────────────── */
 .sticky-cta {
@@ -729,6 +732,20 @@ footer a { color: var(--red2); text-decoration: none; }
 </head>
 <body>
 <style>.bg-orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;contain:strict}.orb{position:absolute;border-radius:50%;filter:blur(100px)}.orb-1{width:60vw;height:60vw;top:-20%;right:-15%;background:radial-gradient(circle,rgba(196,26,26,0.13),transparent 70%);animation:od1 30s ease-in-out infinite}.orb-2{width:50vw;height:50vw;bottom:-20%;left:-15%;background:radial-gradient(circle,rgba(201,168,76,0.07),transparent 70%);animation:od2 38s ease-in-out infinite}.orb-3{width:40vw;height:40vw;top:40%;left:30%;background:radial-gradient(circle,rgba(196,26,26,0.05),transparent 70%);animation:od3 24s ease-in-out infinite}@keyframes od1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-60px,40px) scale(1.1)}66%{transform:translate(40px,-30px) scale(0.92)}}@keyframes od2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-60px) scale(0.9)}66%{transform:translate(-30px,45px) scale(1.08)}}@keyframes od3{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px) scale(1.06)}}</style><div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">HOTELEIRO<span>RICO</span></a>
+      <div class="nav-links">
+        <a href="/">Início</a>
+        <a href="/comunidade">Comunidade</a>
+        <a href="/workshop-gratuito">Workshop Grátis</a>
+        <a href="/diagnostico" class="nav-cta">Diagnóstico Grátis</a>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <!-- ═══════════════════════════════════════════════════════
      HERO
@@ -1081,11 +1098,29 @@ footer a { color: var(--red2); text-decoration: none; }
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <p>
-      <strong style="color:var(--gray2);">Hoteleiro Rico</strong> — Mentoria de Implementação<br>
-      Dúvidas? <a href="https://wa.me/5541998251197">Fale no WhatsApp</a><br><br>
-      <span style="color:#666;">© 2025 Hoteleiro Rico · Todos os direitos reservados</span>
-    </p>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">HOTELEIRO<span>RICO</span></div>
+        <p>Democratizando a gestão profissional no turismo brasileiro desde 2009.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Soluções</h4>
+        <a href="/mentoria">Mentoria de Implementação</a>
+        <a href="/diagnostico">Diagnóstico Gratuito</a>
+        <a href="https://innsidehotelaria.com.br" target="_blank">Inn.Side Hotelaria</a>
+        <a href="https://redenamoa.com.br" target="_blank">Rede Namoa</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="https://wa.me/5541998251197" target="_blank">WhatsApp</a>
+        <a href="https://instagram.com/ohoteleirorico" target="_blank">Instagram</a>
+        <a href="https://youtube.com/@OHOTELEIRORICO" target="_blank">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Hoteleiro Rico · Todos os direitos reservados</p>
+      <p>Desenvolvido por <a href="#">Rudnick Digital</a></p>
+    </div>
   </div>
 </footer>
 
@@ -1155,5 +1190,9 @@ document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1543142607331163&ev=PageView&noscript=1"/></noscript>
 <script>(function(){document.addEventListener("mousemove",function(e){document.body.style.setProperty("--mx",e.clientX+"px");document.body.style.setProperty("--my",e.clientY+"px")})})()</script>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)});
+</script>
 </body>
 </html>
