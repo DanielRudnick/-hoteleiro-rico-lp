@@ -28,6 +28,12 @@ var CONFIGS = {
       'timestamp', 'name', 'email', 'phone', 'nome_propriedade', 'quartos'
     ]
   },
+  'comunidade': {
+    aba: 'Comunidade',
+    colunas: [
+      'timestamp', 'nome', 'email', 'telefone', 'phone', 'propriedade', 'quartos'
+    ]
+  },
   'diagnostico': {
     aba: 'Diagnóstico',
     colunas: [
@@ -90,7 +96,8 @@ function testar() {
   var testes = [
     { source: 'aula-ao-vivo', nome: 'Maria Teste', telefone: '11999990001', nome_propriedade: 'Pousada Sol', quartos: '12' },
     { source: 'workshop-gratuito', name: 'João Teste', email: 'joao@teste.com', phone: '11999990002', nome_propriedade: 'Hotel Mar', quartos: '30' },
-    { source: 'diagnostico', nome: 'Ana Teste', phone: '11999990003', hotel: 'Resort Bela Vista', quartos: '50', score: '72', perfil: 'Bem Estruturado' }
+    { source: 'comunidade', nome: 'Carlos Teste', email: 'carlos@teste.com', telefone: '11999990003', propriedade: 'Chalé das Montanhas', quartos: '8' },
+    { source: 'diagnostico', nome: 'Ana Teste', phone: '11999990004', hotel: 'Resort Bela Vista', quartos: '50', score: '72', perfil: 'Bem Estruturado' }
   ];
 
   testes.forEach(function(payload) {
