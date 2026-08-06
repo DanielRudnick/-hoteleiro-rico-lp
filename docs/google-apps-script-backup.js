@@ -1,16 +1,32 @@
 /**
  * Google Apps Script — Backup de Leads (abas separadas por formulário)
  *
- * Como implantar:
- *  1. Abra uma planilha Google → Extensões → Apps Script
- *  2. Cole este código substituindo o conteúdo padrão
- *  3. Implantar → Nova implantação → App da Web
- *     Executar como: Eu | Acesso: Qualquer pessoa
- *  4. Copie a URL e adicione como GOOGLE_SHEETS_BACKUP_URL
- *     em Cloudflare Pages → Settings → Environment Variables
+ * ── COMO USAR ────────────────────────────────────────────────────────
  *
- * Abas criadas automaticamente na primeira submissão de cada fonte.
+ *  OPÇÃO A — Script vinculado à planilha (recomendado):
+ *    1. Abra sua planilha Google
+ *    2. Extensões → Apps Script
+ *    3. Cole este código (substitua tudo)
+ *    4. Deixe SPREADSHEET_ID = '' (vazio) — ele usa a planilha atual
+ *
+ *  OPÇÃO B — Script standalone (criado em script.google.com):
+ *    1. Copie o ID da sua planilha da URL:
+ *       docs.google.com/spreadsheets/d/SEU_ID_AQUI/edit
+ *    2. Cole o ID na variável SPREADSHEET_ID abaixo
+ *
+ *  DEPOIS (nas duas opções):
+ *    3. Salve (Ctrl+S)
+ *    4. Selecione a função "criarTodasAsAbas" no menu e clique ▶ Executar
+ *    5. Na primeira vez: clique "Analisar permissões" → escolha sua conta
+ *       → "Avançado" → "Acessar [nome do projeto] (não seguro)" → Permitir
+ *    6. As 6 abas serão criadas na planilha
+ *    7. Implantar → Nova implantação → App da Web
+ *       Executar como: Eu | Acesso: Qualquer pessoa → Implantar
+ *    8. Copie a URL e adicione como GOOGLE_SHEETS_BACKUP_URL
+ *       em Cloudflare Pages → Settings → Environment Variables
  */
+
+var SPREADSHEET_ID = ''; // deixe vazio se criou via Extensões → Apps Script
 
 var CONFIGS = {
   'aula-ao-vivo': {
@@ -48,34 +64,42 @@ var CONFIGS = {
   }
 };
 
+function getSheet() {
+  var ss = SPREADSHEET_ID
+    ? SpreadsheetApp.openById(SPREADSHEET_ID)
+    : SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) throw new Error('Planilha não encontrada. Preencha SPREADSHEET_ID ou use Extensões → Apps Script de dentro de uma planilha.');
+  return ss;
+}
+
+function getOrCreateTab(ss, config) {
+  var sheet = ss.getSheetByName(config.aba);
+  if (!sheet) {
+    sheet = ss.insertSheet(config.aba);
+    sheet.appendRow(config.colunas);
+    sheet.getRange(1, 1, 1, config.colunas.length)
+      .setFontWeight('bold')
+      .setBackground('#1a1a1a')
+      .setFontColor('#ffffff');
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
 function doPost(e) {
   try {
-    var data = JSON.parse(e.postData.contents);
+    var data   = JSON.parse(e.postData.contents);
     var source = data.source || 'outros';
+    var config = CONFIGS[source] || { aba: source, colunas: ['timestamp', 'source', 'nome', 'name', 'email', 'phone', 'telefone'] };
 
-    var config = CONFIGS[source] || {
-      aba: source,
-      colunas: ['timestamp', 'source', 'nome', 'name', 'email', 'phone', 'telefone']
-    };
-
-    var ss    = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName(config.aba);
-
-    if (!sheet) {
-      sheet = ss.insertSheet(config.aba);
-      sheet.appendRow(config.colunas);
-      sheet.getRange(1, 1, 1, config.colunas.length)
-        .setFontWeight('bold')
-        .setBackground('#1a1a1a')
-        .setFontColor('#ffffff');
-      sheet.setFrozenRows(1);
-    }
+    var ss    = getSheet();
+    var sheet = getOrCreateTab(ss, config);
 
     var now = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
     var row = config.colunas.map(function(col) {
       if (col === 'timestamp') return now;
       var val = data[col];
-      return val !== undefined && val !== null ? String(val) : '';
+      return (val !== undefined && val !== null) ? String(val) : '';
     });
 
     sheet.appendRow(row);
@@ -90,22 +114,15 @@ function doPost(e) {
   }
 }
 
-// Execute esta função no editor para criar todas as abas de uma vez
+// ── Execute esta função primeiro para criar todas as abas ─────────────
 function criarTodasAsAbas() {
-  var testes = [
-    { source: 'aula-ao-vivo',    nome: 'Teste Aula',      telefone: '11900000001', nome_propriedade: 'Pousada X', quartos: '10' },
-    { source: 'comunidade',      nome: 'Teste Comunidade', email: 'a@b.com', telefone: '11900000002', propriedade: 'Hotel Y', quartos: '20' },
-    { source: 'diagnostico',     nome: 'Teste Diag',       phone: '11900000003', hotel: 'Resort Z', quartos: '50', score: '70', perfil: 'Em Desenvolvimento' },
-    { source: 'wrp-inscricao',   name: 'Teste WRP',        email: 'c@d.com', phone: '11900000004', utm_source: 'instagram', utm_medium: 'pago' },
-    { source: 'wrp-qualificacao',name: 'Teste Qual',       email: 'e@f.com', phone: '11900000005', nome_propriedade: 'Chalé W', quartos: '8' },
-    { source: 'workshop-pago',   nome: 'Teste Pago',       email: 'g@h.com', telefone: '11900000006', hotel: 'Pousada V', quartos: '15' }
-  ];
+  var ss = getSheet();
 
-  testes.forEach(function(payload) {
-    var fake = { postData: { contents: JSON.stringify(payload) } };
-    doPost(fake);
-    Logger.log('Aba criada: ' + payload.source);
+  Object.keys(CONFIGS).forEach(function(source) {
+    var config = CONFIGS[source];
+    getOrCreateTab(ss, config);
+    Logger.log('✓ Aba criada: ' + config.aba);
   });
 
-  Logger.log('Pronto! Todas as abas foram criadas.');
+  Logger.log('Pronto! Abra a planilha para ver as ' + Object.keys(CONFIGS).length + ' abas.');
 }
