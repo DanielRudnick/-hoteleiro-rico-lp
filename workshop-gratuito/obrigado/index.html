@@ -206,7 +206,7 @@
     };
 
     try {
-      await fetch('https://webhook.sellflux.app/v2/webhook/sellflux/b759bef8e928beddff9dd0823f771161', {
+      await fetch('/api/webhook/workshop', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload)

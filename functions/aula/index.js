@@ -196,7 +196,7 @@ export async function onRequestPost({ request, env }) {
   ).bind(token, usuario.id, expira, aulaId).run();
 
   try {
-    await fetch(env.SELLFLUX_WEBHOOK_URL, {
+    await fetch(env.SELLFLUX_WEBHOOK_AULA, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: nome, phone: telefone, nome_propriedade, quartos, source: 'aula-ao-vivo' })
