@@ -1,4 +1,3 @@
-const WEBHOOK_URL = 'https://webhook.sellflux.app/v2/webhook/sellflux/90346acb4e6366175e42ee24795726f8';
 const WORKSHOP_URL = 'https://ohoteleirorico.com.br/workshop';
 
 function getMidnightBRT() {
@@ -197,7 +196,7 @@ export async function onRequestPost({ request, env }) {
   ).bind(token, usuario.id, expira, aulaId).run();
 
   try {
-    await fetch(WEBHOOK_URL, {
+    await fetch(env.SELLFLUX_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: nome, phone: telefone, nome_propriedade, quartos, source: 'aula-ao-vivo' })
