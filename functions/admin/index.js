@@ -58,15 +58,53 @@ function renderLogin(error = '') {
 </html>`, { headers: { 'Content-Type': 'text/html;charset=UTF-8' } });
 }
 
-function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas }) {
+function fmtDate(iso) {
+  if (!iso) return '—';
+  const d = iso.slice(0, 16).replace('T', ' ');
+  // BRT = UTC-3
+  return d;
+}
+
+function fmtDuration(start, end) {
+  if (!start || !end) return '—';
+  try {
+    const ms = new Date(end.replace(' ', 'T') + 'Z') - new Date(start.replace(' ', 'T') + 'Z');
+    const min = Math.round(ms / 60000);
+    if (min < 60) return `${min}min`;
+    return `${Math.floor(min / 60)}h${min % 60 ? String(min % 60).padStart(2, '0') + 'min' : ''}`;
+  } catch { return '—'; }
+}
+
+function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas, aulas, ranking }) {
   const rows = usuarios.map(u => `
     <tr>
       <td>${esc(u.nome)}</td>
       <td>${esc(u.nome_propriedade || '—')}</td>
       <td style="text-align:center">${u.quartos || '—'}</td>
       <td>${esc(u.telefone || '—')}</td>
-      <td style="color:#888;font-size:12px">${u.ultimo_login ? u.ultimo_login.slice(0, 16).replace('T',' ') : '—'}</td>
+      <td style="color:#888;font-size:12px">${fmtDate(u.ultimo_login)}</td>
     </tr>`).join('');
+
+  const aulasRows = aulas.length ? aulas.map((a, i) => `
+    <tr>
+      <td style="font-family:'Anton',sans-serif;letter-spacing:1px;color:#555">#${a.id}</td>
+      <td style="color:#F5EFE6">${esc(a.titulo || `Aula ${a.id}`)}</td>
+      <td style="font-size:12px">${fmtDate(a.started_at)}</td>
+      <td style="font-size:12px">${a.status === 'live' ? '<span style="color:#2ECC71;font-size:11px;letter-spacing:2px">● LIVE</span>' : fmtDate(a.ended_at)}</td>
+      <td>${a.status === 'live' ? '—' : fmtDuration(a.started_at, a.ended_at)}</td>
+      <td style="text-align:center;font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:1px;color:#F5EFE6">${a.alunos ?? 0}</td>
+    </tr>`).join('')
+    : `<tr><td colspan="6" class="empty">Nenhuma aula registrada ainda.</td></tr>`;
+
+  const rankingRows = ranking.length ? ranking.map((u, i) => `
+    <tr>
+      <td style="font-family:'Anton',sans-serif;letter-spacing:1px;color:${i < 3 ? '#C9A84C' : '#555'}">#${i + 1}</td>
+      <td style="color:#F5EFE6">${esc(u.nome)}</td>
+      <td>${esc(u.nome_propriedade || '—')}</td>
+      <td>${esc(u.telefone || '—')}</td>
+      <td style="text-align:center;font-family:'Anton',sans-serif;font-size:1.2rem;letter-spacing:1px;color:${i < 3 ? '#C9A84C' : '#F5EFE6'}">${u.aulas_assistidas}</td>
+    </tr>`).join('')
+    : `<tr><td colspan="5" class="empty">Nenhum dado de frequência ainda.</td></tr>`;
 
   return new Response(`<!DOCTYPE html>
 <html lang="pt-BR">
@@ -80,11 +118,13 @@ function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas }) {
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{background:#080808;color:#F5EFE6;font-family:'Poppins',sans-serif;min-height:100vh;padding:0}
     a{color:inherit;text-decoration:none}
-    .topbar{background:#0A0A0A;border-bottom:1px solid #171717;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
+    .topbar{background:#0A0A0A;border-bottom:1px solid #171717;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
     .topbar-logo{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:6px;color:#2a2a2a}
     .topbar-logo span{color:#4a1a1a}
     .topbar-right{display:flex;align-items:center;gap:20px}
     .topbar-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#666}
+    .topbar-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#555;transition:color .2s}
+    .topbar-link:hover{color:#C9A84C}
     .btn-logout{background:none;border:1px solid #222;color:#777;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;transition:border-color .2s,color .2s}
     .btn-logout:hover{border-color:#777;color:#888}
     .main{max-width:1100px;margin:0 auto;padding:40px 32px}
@@ -96,7 +136,7 @@ function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas }) {
     .stat-value.online{color:#2ECC71}
     .stat-value.offline{color:#777}
     .controls{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px}
-    @media(max-width:640px){.controls{grid-template-columns:1fr}}
+    @media(max-width:640px){.controls{grid-template-columns:1fr}.topbar{padding:0 16px}.main{padding:24px 16px}}
     .control-card{background:#0F0F0F;border:1px solid #1A1A1A;padding:24px}
     .control-card h3{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#777;margin-bottom:16px}
     .toggle-btn{width:100%;padding:14px;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
@@ -116,21 +156,26 @@ function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas }) {
     .table-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
     .btn-export{background:none;border:1px solid #222;color:#777;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s}
     .btn-export:hover{border-color:#C9A84C;color:#C9A84C}
-    .table-wrap{overflow-x:auto}
+    .table-wrap{overflow-x:auto;margin-bottom:48px}
     table{width:100%;border-collapse:collapse;font-size:13px}
     thead tr{border-bottom:1px solid #1A1A1A}
-    thead th{text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;padding:10px 14px;font-weight:600}
+    thead th{text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#666;padding:10px 14px;font-weight:600;white-space:nowrap}
     tbody tr{border-bottom:1px solid #111;transition:background .15s}
     tbody tr:hover{background:#0F0F0F}
     tbody td{padding:12px 14px;color:#888;font-weight:300}
     tbody td:first-child{color:#F5EFE6;font-weight:400}
     .empty{padding:40px;text-align:center;color:#2a2a2a;font-size:14px}
+    .section-sep{border:none;border-top:1px solid #141414;margin:0 0 40px}
+    .nav-links{display:flex;gap:8px}
   </style>
 </head>
 <body>
 <div class="topbar">
   <div class="topbar-logo">HOTELEIRO <span>RICO</span></div>
   <div class="topbar-right">
+    <div class="nav-links">
+      <a href="/admin/links" class="topbar-link">Links UTM</a>
+    </div>
     <span class="topbar-tag">Painel Admin</span>
     <form method="POST" style="margin:0">
       <input type="hidden" name="action" value="logout">
@@ -153,6 +198,10 @@ function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas }) {
     <div class="stat-card">
       <div class="stat-label">Total de alunos</div>
       <div class="stat-value">${usuarios.length}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Total de aulas</div>
+      <div class="stat-value">${aulas.length}</div>
     </div>
   </div>
 
@@ -179,8 +228,48 @@ function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas }) {
     </div>
   </div>
 
+  <hr class="section-sep">
+
+  <!-- Histórico de Aulas -->
+  <div class="section-title">Histórico de Aulas</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Início</th>
+          <th>Encerramento</th>
+          <th>Duração</th>
+          <th style="text-align:center">Alunos</th>
+        </tr>
+      </thead>
+      <tbody>${aulasRows}</tbody>
+    </table>
+  </div>
+
+  <!-- Ranking de Alunos -->
+  <div class="section-title">Ranking de Frequência</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Propriedade</th>
+          <th>WhatsApp</th>
+          <th style="text-align:center">Aulas assistidas</th>
+        </tr>
+      </thead>
+      <tbody>${rankingRows}</tbody>
+    </table>
+  </div>
+
+  <hr class="section-sep">
+
+  <!-- Alunos cadastrados -->
   <div class="table-header">
-    <div class="section-title">Alunos cadastrados</div>
+    <div class="section-title" style="margin-bottom:0">Alunos cadastrados</div>
     <a href="/admin?export=csv" class="btn-export">Exportar CSV</a>
   </div>
   <div class="table-wrap">
@@ -214,7 +303,6 @@ export async function onRequestGet({ request, env }) {
 
   const url = new URL(request.url);
 
-  // Exportar CSV
   if (url.searchParams.get('export') === 'csv') {
     const { results } = await env.DB.prepare(
       `SELECT nome, telefone, nome_propriedade, quartos, origem, criado_em, ultimo_login FROM usuarios ORDER BY criado_em DESC`
@@ -233,6 +321,35 @@ export async function onRequestGet({ request, env }) {
     });
   }
 
+  // Fetch aula history and student ranking — graceful fallback if table not yet migrated
+  let aulas = [], ranking = [];
+  try {
+    const r = await env.DB.prepare(
+      `SELECT a.id, a.titulo, a.started_at, a.ended_at, a.status,
+              COUNT(s.id) as alunos
+       FROM aulas a
+       LEFT JOIN sessoes s ON s.aula_id = a.id
+       GROUP BY a.id
+       ORDER BY a.started_at DESC
+       LIMIT 30`
+    ).all();
+    aulas = r.results;
+  } catch (_) {}
+
+  try {
+    const r = await env.DB.prepare(
+      `SELECT u.nome, u.telefone, u.nome_propriedade, u.quartos,
+              COUNT(DISTINCT s.aula_id) as aulas_assistidas
+       FROM usuarios u
+       JOIN sessoes s ON s.usuario_id = u.id
+       WHERE s.aula_id IS NOT NULL
+       GROUP BY u.id
+       ORDER BY aulas_assistidas DESC
+       LIMIT 50`
+    ).all();
+    ranking = r.results;
+  } catch (_) {}
+
   const [ativa, meetLink, usuarios, sessoes] = await Promise.all([
     env.DB.prepare(`SELECT valor FROM config WHERE chave = 'aula_ativa'`).first(),
     env.DB.prepare(`SELECT valor FROM config WHERE chave = 'meet_link'`).first(),
@@ -245,6 +362,8 @@ export async function onRequestGet({ request, env }) {
     meetLink: meetLink?.valor || '',
     usuarios: usuarios.results,
     sessoesAtivas: sessoes?.total || 0,
+    aulas,
+    ranking,
   });
 }
 
@@ -277,6 +396,28 @@ export async function onRequestPost({ request, env }) {
     const atual = await env.DB.prepare(`SELECT valor FROM config WHERE chave = 'aula_ativa'`).first();
     const novo = atual?.valor === '1' ? '0' : '1';
     await env.DB.prepare(`UPDATE config SET valor = ? WHERE chave = 'aula_ativa'`).bind(novo).run();
+
+    if (novo === '1') {
+      // Opening class — create aula record and store its id
+      try {
+        const res = await env.DB.prepare(`INSERT INTO aulas (status) VALUES ('live')`).run();
+        const aulaId = res.meta.last_row_id;
+        await env.DB.prepare(
+          `INSERT INTO config (chave, valor) VALUES ('aula_id_atual', ?)
+           ON CONFLICT(chave) DO UPDATE SET valor = excluded.valor`
+        ).bind(String(aulaId)).run();
+      } catch (_) {}
+    } else {
+      // Closing class — mark current aula as ended
+      try {
+        const cfg = await env.DB.prepare(`SELECT valor FROM config WHERE chave = 'aula_id_atual'`).first();
+        if (cfg?.valor) {
+          await env.DB.prepare(
+            `UPDATE aulas SET status = 'ended', ended_at = datetime('now') WHERE id = ?`
+          ).bind(parseInt(cfg.valor, 10)).run();
+        }
+      } catch (_) {}
+    }
   }
 
   if (action === 'meet_link') {
