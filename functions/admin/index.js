@@ -116,56 +116,56 @@ function renderDashboard({ ativa, meetLink, usuarios, sessoesAtivas, aulas, rank
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{background:#080808;color:#F5EFE6;font-family:'Poppins',sans-serif;min-height:100vh;padding:0}
+    body{background:#0A0A0A;color:#F5EFE6;font-family:'Poppins',sans-serif;min-height:100vh}
     a{color:inherit;text-decoration:none}
-    .topbar{background:#0D0D0D;border-bottom:1px solid #1E1E1E;padding:0 32px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-    .topbar-logo{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:6px;color:#444}
-    .topbar-logo span{color:#8B1A1A}
-    .topbar-right{display:flex;align-items:center;gap:20px}
-    .topbar-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#888}
-    .topbar-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#888;transition:color .2s}
+    .topbar{background:#0A0A0A;border-bottom:1px solid #1A1A1A;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .topbar-logo{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:6px;color:#F5EFE6}
+    .topbar-logo span{color:#C41A1A}
+    .topbar-right{display:flex;align-items:center;gap:24px}
+    .topbar-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;font-weight:600}
+    .topbar-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F5EFE6;font-weight:500;transition:color .2s}
     .topbar-link:hover{color:#C9A84C}
-    .btn-logout{background:none;border:1px solid #333;color:#999;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;transition:border-color .2s,color .2s}
+    .btn-logout{background:none;border:1px solid rgba(245,239,230,0.2);color:#F5EFE6;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;cursor:pointer;font-weight:600;transition:all .2s}
     .btn-logout:hover{border-color:#C9A84C;color:#C9A84C}
     .main{max-width:1100px;margin:0 auto;padding:40px 32px}
-    .section-title{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:3px;color:#C9A84C;margin-bottom:20px;text-transform:uppercase}
+    .section-title{font-family:'Anton',sans-serif;font-size:1.2rem;letter-spacing:4px;color:#C9A84C;margin-bottom:20px;text-transform:uppercase}
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:40px}
-    .stat-card{background:#0F0F0F;border:1px solid #222;border-top:2px solid #1E1E1E;padding:22px 24px}
-    .stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:10px}
-    .stat-value{font-family:'Anton',sans-serif;font-size:2.2rem;letter-spacing:2px;color:#F5EFE6}
+    .stat-card{background:#111;border:1px solid #1E1E1E;border-top:2px solid #C9A84C;padding:22px 24px}
+    .stat-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;margin-bottom:10px;font-weight:600}
+    .stat-value{font-family:'Anton',sans-serif;font-size:2.4rem;letter-spacing:2px;color:#F5EFE6}
     .stat-value.online{color:#2ECC71}
-    .stat-value.offline{color:#aaa}
+    .stat-value.offline{color:#F5EFE6}
     .controls{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px}
     @media(max-width:640px){.controls{grid-template-columns:1fr}.topbar{padding:0 16px}.main{padding:24px 16px}}
-    .control-card{background:#0F0F0F;border:1px solid #222;padding:24px}
-    .control-card h3{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#999;margin-bottom:16px}
-    .toggle-btn{width:100%;padding:16px;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
+    .control-card{background:#111;border:1px solid #1E1E1E;padding:24px}
+    .control-card h3{font-family:'Anton',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#C9A84C;margin-bottom:16px}
+    .toggle-btn{width:100%;padding:16px;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
     .toggle-on{background:#2ECC71;color:#080808}
     .toggle-on:hover{background:#27ae60}
     .toggle-off{background:#C41A1A;color:#fff}
     .toggle-off:hover{background:#E02020}
-    .toggle-status{font-size:11px;color:#999;margin-top:10px;text-align:center}
+    .toggle-status{font-size:12px;color:#F5EFE6;margin-top:10px;text-align:center;font-weight:300}
     .meet-form{display:flex;gap:10px}
-    .meet-input{flex:1;background:#141414;border:1px solid #2a2a2a;color:#F5EFE6;font-family:'Poppins',sans-serif;font-size:13px;padding:11px 14px;outline:none;transition:border-color .2s;min-width:0}
-    .meet-input:focus{border-color:rgba(201,168,76,0.5)}
-    .meet-input::placeholder{color:#444}
-    .btn-save{background:#C9A84C;color:#080808;font-family:'Poppins',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:11px 20px;border:none;cursor:pointer;white-space:nowrap;transition:opacity .18s}
-    .btn-save:hover{opacity:.86}
-    .current-link{font-size:11px;color:#777;margin-top:10px;word-break:break-all}
-    .current-link span{color:#C9A84C}
+    .meet-input{flex:1;background:#0A0A0A;border:1px solid #2A2A2A;color:#F5EFE6;font-family:'Poppins',sans-serif;font-size:13px;padding:12px 14px;outline:none;transition:border-color .2s;min-width:0}
+    .meet-input:focus{border-color:#C9A84C}
+    .meet-input::placeholder{color:#555}
+    .btn-save{background:#C9A84C;color:#080808;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:12px 20px;border:none;cursor:pointer;white-space:nowrap;transition:opacity .18s}
+    .btn-save:hover{opacity:.85}
+    .current-link{font-size:12px;color:#F5EFE6;margin-top:10px;word-break:break-all;font-weight:300}
+    .current-link span{color:#C9A84C;font-weight:500}
     .table-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-    .btn-export{background:none;border:1px solid #333;color:#999;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s}
+    .btn-export{background:none;border:1px solid rgba(245,239,230,0.2);color:#F5EFE6;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;cursor:pointer;font-weight:600;text-decoration:none;transition:all .2s}
     .btn-export:hover{border-color:#C9A84C;color:#C9A84C}
     .table-wrap{overflow-x:auto;margin-bottom:48px;border:1px solid #1E1E1E}
     table{width:100%;border-collapse:collapse;font-size:13px}
-    thead tr{background:#0D0D0D;border-bottom:1px solid #222}
-    thead th{text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#aaa;padding:12px 16px;font-weight:600;white-space:nowrap}
+    thead tr{background:#111;border-bottom:1px solid #1E1E1E}
+    thead th{text-align:left;font-family:'Anton',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;padding:13px 16px;font-weight:400;white-space:nowrap}
     tbody tr{border-bottom:1px solid #161616;transition:background .15s}
-    tbody tr:hover{background:#0E0E0E}
-    tbody td{padding:13px 16px;color:#ccc;font-weight:300}
-    tbody td:first-child{color:#F5EFE6;font-weight:500}
-    .empty{padding:48px;text-align:center;color:#555;font-size:13px}
-    .section-sep{border:none;border-top:1px solid #181818;margin:0 0 40px}
+    tbody tr:hover{background:#111}
+    tbody td{padding:14px 16px;color:#F5EFE6;font-weight:400}
+    tbody td:first-child{font-weight:600}
+    .empty{padding:48px;text-align:center;color:#F5EFE6;font-size:13px;font-weight:300;opacity:.4}
+    .section-sep{border:none;border-top:1px solid #1A1A1A;margin:0 0 40px}
     .nav-links{display:flex;gap:8px}
   </style>
 </head>
