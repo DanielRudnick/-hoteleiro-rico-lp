@@ -1,11 +1,6 @@
-export async function onRequestPost({ request, env }) {
-  if (!env.SELLFLUX_WEBHOOK_WORKSHOP) {
-    return new Response(JSON.stringify({ ok: false, error: 'webhook not configured' }), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
+import { backupToSheets } from '../../_sheets.js';
 
+export async function onRequestPost({ request, env }) {
   let body;
   try {
     body = await request.json();
@@ -16,13 +11,19 @@ export async function onRequestPost({ request, env }) {
     });
   }
 
-  try {
-    await fetch(env.SELLFLUX_WEBHOOK_WORKSHOP, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...body, source: 'workshop-gratuito' }),
-    });
-  } catch (_) {}
+  const payload = { ...body, source: 'workshop-gratuito' };
+
+  if (env.SELLFLUX_WEBHOOK_WORKSHOP) {
+    try {
+      await fetch(env.SELLFLUX_WEBHOOK_WORKSHOP, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (_) {}
+  }
+
+  backupToSheets(env, payload);
 
   return new Response(JSON.stringify({ ok: true }), {
     headers: { 'Content-Type': 'application/json' },

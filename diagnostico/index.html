@@ -703,31 +703,7 @@ Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. F
 
   document.getElementById('loading-screen').classList.remove('active');
 
-  fetch('https://script.google.com/macros/s/AKfycbwTBcn3rrVYfdl9xWdvHw9HrobytPiixMQC9ZP--YxJIlieAIzhxO9hpm-aNZftkxAGZQ/exec', {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({
-      nome:           contactData.nome,
-      hotel:          contactData.hotel,
-      quartos:        resp.quartos,
-      diaria:         resp.diaria,
-      ocupacao:       resp.ocupacao,
-      otas:           resp.otas,
-      motor:          resp.motor,
-      channel:        resp.channel,
-      pms:            resp.pms,
-      dor:            resp.dor,
-      ambicao:        resp.ambicao,
-      score:          total,
-      perfil:         tier.label,
-      veredicto:      iaResult.veredicto,
-      oportunidades:  iaResult.oportunidades,
-      proximo_passo:  iaResult.proximo_passo,
-      quer_reuniao:   answers.reuniao ? (answers.reuniao.quer ? 'Sim' : 'Não') : '',
-      whatsapp:       (answers.reuniao && answers.reuniao.quer) ? (answers.reuniao.whatsapp || '') : ''
-    })
-  }).catch(() => {});
+  // Backup to Google Sheets happens server-side in /api/diagnostico
 
   showResult(total, breakdown, tier, iaResult);
 }

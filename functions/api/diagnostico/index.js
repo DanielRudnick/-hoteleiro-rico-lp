@@ -1,3 +1,5 @@
+import { backupToSheets } from '../../_sheets.js';
+
 export async function onRequestPost({ request, env }) {
   let body;
   try {
@@ -34,27 +36,31 @@ export async function onRequestPost({ request, env }) {
     } catch (_) {}
   }
 
+  const sheetData = {
+    source:        'diagnostico',
+    nome:          contact?.nome        || '',
+    phone:         contact?.whatsapp    || '',
+    email:         contact?.email       || '',
+    hotel:         contact?.hotel       || '',
+    ...(answers_summary || {}),
+    ...(iaResult ? {
+      veredicto:     iaResult.veredicto     || '',
+      oportunidades: iaResult.oportunidades || '',
+      proximo_passo: iaResult.proximo_passo || '',
+    } : {}),
+  };
+
   if (env.SELLFLUX_WEBHOOK_DIAGNOSTICO && contact) {
     try {
       await fetch(env.SELLFLUX_WEBHOOK_DIAGNOSTICO, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name:   contact.nome  || '',
-          phone:  contact.whatsapp || '',
-          email:  contact.email || '',
-          hotel:  contact.hotel || '',
-          source: 'diagnostico',
-          ...(answers_summary || {}),
-          ...(iaResult ? {
-            veredicto:     iaResult.veredicto     || '',
-            oportunidades: iaResult.oportunidades || '',
-            proximo_passo: iaResult.proximo_passo || '',
-          } : {}),
-        }),
+        body: JSON.stringify({ name: contact.nome || '', ...sheetData }),
       });
     } catch (_) {}
   }
+
+  backupToSheets(env, sheetData);
 
   return new Response(JSON.stringify({ ok: true, result: iaResult }), {
     headers: { 'Content-Type': 'application/json' },

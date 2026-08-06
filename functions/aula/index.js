@@ -1,3 +1,5 @@
+import { backupToSheets } from '../_sheets.js';
+
 const WORKSHOP_URL = 'https://ohoteleirorico.com.br/workshop';
 
 function getMidnightBRT() {
@@ -195,13 +197,19 @@ export async function onRequestPost({ request, env }) {
     `INSERT INTO sessoes (token, usuario_id, expira_em, aula_id) VALUES (?, ?, ?, ?)`
   ).bind(token, usuario.id, expira, aulaId).run();
 
-  try {
-    await fetch(env.SELLFLUX_WEBHOOK_AULA, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: nome, phone: telefone, nome_propriedade, quartos, source: 'aula-ao-vivo' })
-    });
-  } catch (_) {}
+  const leadData = { name: nome, phone: telefone, nome_propriedade, quartos, source: 'aula-ao-vivo' };
+
+  if (env.SELLFLUX_WEBHOOK_AULA) {
+    try {
+      await fetch(env.SELLFLUX_WEBHOOK_AULA, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leadData),
+      });
+    } catch (_) {}
+  }
+
+  backupToSheets(env, leadData);
 
   const config   = await env.DB.prepare(
     `SELECT valor FROM config WHERE chave = 'meet_link'`
