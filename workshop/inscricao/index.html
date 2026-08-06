@@ -207,11 +207,8 @@ nav{background:var(--black-2);border-bottom:1px solid var(--black-5);padding:16p
 </div>
 
 <script>
-const WEBHOOK = 'https://script.google.com/macros/s/AKfycbyay_iSFASx7uadFr3mG33lIdfwnej_arpe1vsUrj1E5NiINdisAvnVefD0SGmdoQ0_/exec';
-const REDIRECT = '/workshop/obrigado';
-
-const form = document.getElementById('form-inscricao');
-const btn  = document.getElementById('btn-submit');
+const form   = document.getElementById('form-inscricao');
+const btn    = document.getElementById('btn-submit');
 const errMsg = document.getElementById('error-msg');
 
 form.addEventListener('submit', async (e) => {
@@ -234,15 +231,12 @@ form.addEventListener('submit', async (e) => {
   btn.textContent = 'Enviando...';
 
   try {
-    await fetch(WEBHOOK, {
+    await fetch('/api/webhook/workshop-pago', {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ nome, email, telefone, hotel, quartos, origem: 'inscricao-workshop', data: new Date().toISOString() })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, name: nome, email, telefone, phone: telefone, hotel, quartos })
     });
-  } catch(err) {
-    // no-cors pode lançar mesmo com sucesso; segue o fluxo
-  }
+  } catch(_) {}
 
   document.getElementById('success-msg').classList.add('active');
   form.style.display = 'none';

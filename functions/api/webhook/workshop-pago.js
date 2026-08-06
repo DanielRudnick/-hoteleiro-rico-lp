@@ -11,11 +11,11 @@ export async function onRequestPost({ request, env }) {
     });
   }
 
-  const payload = { ...body, source: 'wrp-qualificacao' };
+  const payload = { ...body, source: 'workshop-pago' };
 
-  if (env.SELLFLUX_WEBHOOK_WRP_QUALIFICACAO) {
+  if (env.SELLFLUX_WEBHOOK_WORKSHOP_PAGO) {
     try {
-      await fetch(env.SELLFLUX_WEBHOOK_WRP_QUALIFICACAO, {
+      await fetch(env.SELLFLUX_WEBHOOK_WORKSHOP_PAGO, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
