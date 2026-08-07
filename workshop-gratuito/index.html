@@ -427,7 +427,7 @@ async function submitForm(e) {
   };
 
   try {
-    await fetch('https://webhook.sellflux.app/v2/webhook/sellflux/90346acb4e6366175e42ee24795726f8', {
+    await fetch('/api/webhook/wrp-inscricao', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(payload)

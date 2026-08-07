@@ -650,32 +650,6 @@ ${resumo}
 Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. Formato:
 {"veredicto":"...","oportunidades":"...","proximo_passo":"..."}`;
 
-  let iaResult = { veredicto: '', oportunidades: '', proximo_passo: '' };
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-    mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    });
-    const data = await res.json();
-    const text = data.content?.[0]?.text || '{}';
-    iaResult = JSON.parse(text.replace(/```json|```/g, '').trim());
-  } catch (e) {
-    iaResult = {
-      veredicto: `${contactData.hotel} apresenta um score de ${total}/100. Isso indica ${tier.label === 'Alto Potencial' ? 'grande margem para crescimento — vários pilares operacionais precisam de estruturação' : tier.label === 'Em Desenvolvimento' ? 'uma operação em transição — alguns pilares estão no lugar, mas há gaps importantes a resolver' : 'uma operação bem estruturada — o foco agora é em otimização e escala'}.`,
-      oportunidades: '• Estruturar o tarifário anual com base em sazonalidade\n• Integrar tecnologias de gestão (PMS + Channel Manager)\n• Aumentar reservas diretas reduzindo dependência de OTAs',
-      proximo_passo: 'Agendar uma conversa com nossa equipe para mapear as prioridades específicas do seu hotel.',
-    };
-  }
-
-  document.getElementById('loading-screen').classList.remove('active');
-
   const resp = {};
   PERGUNTAS.forEach(q => {
     if (q.tipo === 'texto_duplo' || q.tipo === 'reuniao') return;
@@ -686,31 +660,50 @@ Responda SOMENTE com JSON válido, sem markdown, sem explicações adicionais. F
       : q.opcoes[s].label;
   });
 
-  fetch('https://script.google.com/macros/s/AKfycbwTBcn3rrVYfdl9xWdvHw9HrobytPiixMQC9ZP--YxJIlieAIzhxO9hpm-aNZftkxAGZQ/exec', {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({
-      nome:           contactData.nome,
-      hotel:          contactData.hotel,
-      quartos:        resp.quartos,
-      diaria:         resp.diaria,
-      ocupacao:       resp.ocupacao,
-      otas:           resp.otas,
-      motor:          resp.motor,
-      channel:        resp.channel,
-      pms:            resp.pms,
-      dor:            resp.dor,
-      ambicao:        resp.ambicao,
-      score:          total,
-      perfil:         tier.label,
-      veredicto:      iaResult.veredicto,
-      oportunidades:  iaResult.oportunidades,
-      proximo_passo:  iaResult.proximo_passo,
-      quer_reuniao:   answers.reuniao ? (answers.reuniao.quer ? 'Sim' : 'Não') : '',
-      whatsapp:       (answers.reuniao && answers.reuniao.quer) ? (answers.reuniao.whatsapp || '') : ''
-    })
-  }).catch(() => {});
+  let iaResult = { veredicto: '', oportunidades: '', proximo_passo: '' };
+
+  try {
+    const apiRes = await fetch('/api/diagnostico', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prompt,
+        contact: {
+          nome:     contactData.nome,
+          hotel:    contactData.hotel,
+          whatsapp: (answers.reuniao && answers.reuniao.quer) ? (answers.reuniao.whatsapp || '') : '',
+        },
+        answers_summary: {
+          quartos:      resp.quartos,
+          diaria:       resp.diaria,
+          ocupacao:     resp.ocupacao,
+          otas:         resp.otas,
+          motor:        resp.motor,
+          channel:      resp.channel,
+          pms:          resp.pms,
+          dor:          resp.dor,
+          ambicao:      resp.ambicao,
+          score:        total,
+          perfil:       tier.label,
+          quer_reuniao: answers.reuniao ? (answers.reuniao.quer ? 'Sim' : 'Não') : '',
+        },
+      }),
+    });
+    const apiData = await apiRes.json();
+    if (apiData.result) iaResult = apiData.result;
+  } catch (_) {}
+
+  if (!iaResult.veredicto) {
+    iaResult = {
+      veredicto: `${contactData.hotel} apresenta um score de ${total}/100. Isso indica ${tier.label === 'Alto Potencial' ? 'grande margem para crescimento — vários pilares operacionais precisam de estruturação' : tier.label === 'Em Desenvolvimento' ? 'uma operação em transição — alguns pilares estão no lugar, mas há gaps importantes a resolver' : 'uma operação bem estruturada — o foco agora é em otimização e escala'}.`,
+      oportunidades: '• Estruturar o tarifário anual com base em sazonalidade\n• Integrar tecnologias de gestão (PMS + Channel Manager)\n• Aumentar reservas diretas reduzindo dependência de OTAs',
+      proximo_passo: 'Agendar uma conversa com nossa equipe para mapear as prioridades específicas do seu hotel.',
+    };
+  }
+
+  document.getElementById('loading-screen').classList.remove('active');
+
+  // Backup to Google Sheets happens server-side in /api/diagnostico
 
   showResult(total, breakdown, tier, iaResult);
 }
