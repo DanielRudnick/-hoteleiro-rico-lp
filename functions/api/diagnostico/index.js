@@ -60,7 +60,7 @@ export async function onRequestPost({ request, env }) {
     } catch (_) {}
   }
 
-  backupToSheets(env, sheetData);
+  await backupToSheets(env, sheetData);
 
   return new Response(JSON.stringify({ ok: true, result: iaResult }), {
     headers: { 'Content-Type': 'application/json' },

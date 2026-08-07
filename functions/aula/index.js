@@ -209,7 +209,7 @@ export async function onRequestPost({ request, env }) {
     } catch (_) {}
   }
 
-  backupToSheets(env, leadData);
+  await backupToSheets(env, leadData);
 
   const config   = await env.DB.prepare(
     `SELECT valor FROM config WHERE chave = 'meet_link'`

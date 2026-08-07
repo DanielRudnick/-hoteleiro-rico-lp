@@ -23,7 +23,7 @@ export async function onRequestPost({ request, env }) {
     } catch (_) {}
   }
 
-  backupToSheets(env, payload);
+  await backupToSheets(env, payload);
 
   return new Response(JSON.stringify({ ok: true }), {
     headers: { 'Content-Type': 'application/json' },
